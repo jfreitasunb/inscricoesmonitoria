@@ -11,6 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [
+		'uses'	=> '\Monitoriamat\Http\Controllers\HomeController@index',
+		'as'	=> 'home',
+	]);
