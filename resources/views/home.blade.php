@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="{{ config('app.locale') }}">
 <head>
   <title>Inscrições Monitoria do MAT/UnB</title>
   <meta charset="utf-8">
