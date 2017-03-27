@@ -10,6 +10,7 @@
 <body>
   <div class="container">
     @yield('content')
+    @include('templates.partials.login_registrar')
   </div>
 </body>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
