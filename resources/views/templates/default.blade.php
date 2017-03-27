@@ -11,6 +11,7 @@
   <div class="container">
     @yield('content')
     @include('templates.partials.login_registrar')
+    @include('templates.partials.alerts')
   </div>
 </body>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
