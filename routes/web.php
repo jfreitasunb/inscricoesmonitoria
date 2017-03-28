@@ -11,11 +11,29 @@
 |
 */
 
-Route::get('/', [
-		'uses'	=> '\Monitoriamat\Http\Controllers\HomeController@index',
-		'as'	=> 'home',
-	]);
+/**
+* Registrar
+ */
+Route::get('/registrar', [
+		'uses'	=> '\Monitoriamat\Http\Controllers\AuthController@getSignup',
+		'as'	=> 'auth.registrar',
+]);
 
+Route::post('/registrar', [
+		'uses'	=> '\Monitoriamat\Http\Controllers\AuthController@postSignup',
+]);
+
+/**
+* Alertas
+ */
 Route::get('/alert', function () {
 	return redirect()->route('home')->with('info', 'Sucess.');
 });
+
+/**
+* Home
+ */
+Route::get('/', [
+		'uses'	=> '\Monitoriamat\Http\Controllers\HomeController@index',
+		'as'	=> 'home',
+]);

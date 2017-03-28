@@ -8,10 +8,19 @@
   <link href="{{ asset('css/css_monitoria.css') }}" rel="stylesheet">
 </head>
 <body>
+<div class="container">
+    <div class="row">
+      <div class="jumbotron col-xs-12">
+        <div class="page-header">
+          <h1 class="col-xs-12">Departamento de Matemática</h1> 
+          <h2>Inscrições para a Monitoria do MAT: periodo_inscricao</h2> 
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="container">
     @yield('content')
     @include('templates.partials.alerts')
-    @include('templates.partials.login_registrar')
   </div>
 </body>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
