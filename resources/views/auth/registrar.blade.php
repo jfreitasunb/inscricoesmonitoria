@@ -24,11 +24,11 @@
                       <span class="help-block">{{ $errors->first('nome') }}</span>
                   @endif
                 </div>
-                <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-                  <label for="username" class="control-label">Matrícula</label>
-                  <input type="text" name="username" id="username" tabindex="1" class="form-control"  placeholder="Matrícula" value="{{ Request::old('username') ?: '' }}">
-                  @if ($errors->has('username'))
-                      <span class="help-block">{{ $errors->first('username') }}</span>
+                <div class="form-group{{ $errors->has('login') ? ' has-error' : '' }}">
+                  <label for="login" class="control-label">Matrícula</label>
+                  <input type="text" name="login" id="login" tabindex="1" class="form-control"  placeholder="Matrícula" value="{{ Request::old('login') ?: '' }}">
+                  @if ($errors->has('login'))
+                      <span class="help-block">Matrícula já cadastrada no sistema. Use o link de recuperar senha.</span>
                   @endif
                 </div>
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
