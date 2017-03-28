@@ -15,8 +15,8 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table){
             $table->increments('id_user');
-            $table->string('login');
-            $table->string('email');
+            $table->string('login')->unique();
+            $table->string('email')->unique();
             $table->string('validation_code');
             $table->tinyInteger('user_type')->default('0');;
             $table->tinyInteger('ativo')->default('0');
