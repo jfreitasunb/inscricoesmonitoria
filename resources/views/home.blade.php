@@ -10,7 +10,7 @@
               <a href="#" id="login-form-link">Login</a>
             </div>
             <div class="col-xs-6">
-              <a href="#" id="register-form-link">Registrar</a>
+              <a href="{{ route('auth.registrar') }}" id="register-form-link">Registrar</a>
             </div>
           </div>
         </div>
