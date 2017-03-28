@@ -32,7 +32,7 @@ class AuthController extends Controller
 		]);
 
 		User::create([
-			'login' => $request->input('username'),
+			'login' => $request->input('login'),
         	'email' => $request->input('email'),
         	'password' => bcrypt($request->input('password')),
         	'validation_code' =>  md5($STRING_VALIDA_EMAIL.$request->input('email').date("d-m-Y H:i:s:u")),
