@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->increments('id_user');
             $table->string('login')->unique();
             $table->string('email')->unique();
+            $table->string('password');
             $table->string('validation_code');
             $table->tinyInteger('user_type')->default('0');;
             $table->tinyInteger('ativo')->default('0');
