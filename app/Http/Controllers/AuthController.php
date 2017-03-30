@@ -2,6 +2,7 @@
 
 namespace Monitoriamat\Http\Controllers;
 
+use Auth;
 use DB;
 use Mail;
 use Monitoriamat\Models\User;
@@ -57,27 +58,36 @@ class AuthController extends Controller
 		return view('auth.login');
 	}
 
-	public function postLogin()
+	public function postLogin(Request $request)
 	{
-		dd('logando');
+		$this->validate($request, [
+			'login' => 'required',
+			'password' => 'required',
+		]);
+
+		if (!Auth::attempt($request->only(['login', 'password']))) {
+			return redirect()->back()->with('info', 'erro ao logar');
+		}
+
+		return redirect()->route('home')->with('info','Bem vindo');
 	}
 
-	public function verify($token)
-{
-    // The verified method has been added to the user model and chained here
-    // for better readability
-    User::where('validation_code',$token)->firstOrFail()->verified();
-    return redirect()->route('home')->with('info','Conta ativada com sucesso.');
-}
+// 	public function verify($token)
+// {
+//     // The verified method has been added to the user model and chained here
+//     // for better readability
+//     User::where('validation_code',$token)->firstOrFail()->verified();
+//     return redirect()->route('home')->with('info','Conta ativada com sucesso.');
+// }
 
-public function credentials(Request $request)
-{
-    return [
-        'email' => $request->email,
-        'password' => $request->password,
-        'verified' => 1,
-    ];
-}
+// public function credentials(Request $request)
+// {
+//     return [
+//         'email' => $request->email,
+//         'password' => $request->password,
+//         'verified' => 1,
+//     ];
+// }
 
 	
 }
