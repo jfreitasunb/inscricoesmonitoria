@@ -15,7 +15,7 @@
           <div class="panel-body">
             <div class="row">
               <div class="col-lg-12">
-                <form id="login-form" action="" method="post" role="form">
+                <form id="login-form" action="{{ route('auth.login') }}" method="post" role="form">
                   <div class="form-group">
                     <div class="required-field-block">
                       <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Matrícula" value="">
