@@ -80,7 +80,7 @@ class AuthController extends Controller
 		return redirect()->route('home')->with('info','Bem vindo');
 	}
 
-	public function getLogou()
+	public function getLogout()
 	{
 		Auth::logout();
 
