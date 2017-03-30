@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('login')->unique();
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('validation_code');
+            $table->string('validation_code')->nullable();
             $table->tinyInteger('user_type')->default('3');;
             $table->boolean('ativo')->default('0');
             $table->timestamps();
