@@ -19,7 +19,9 @@
     </div>
   </div>
   <div class="container">
+  <!-- Checar se está logado. Caso sim mostrar respectivo menu. Caso contrário, mostrar menu de login-->
     @yield('content')
+    @yield('menu_aluno')
     @include('templates.partials.alerts')
   </div>
 </body>
