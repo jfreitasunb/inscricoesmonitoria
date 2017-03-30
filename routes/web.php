@@ -18,6 +18,7 @@
 Route::get('/login', [
 		'uses'	=> '\Monitoriamat\Http\Controllers\AuthController@getLogin',
 		'as'	=> 'auth.login',
+		'middleware' => ['guest'],
 ]);
 
 Route::post('/login', [
