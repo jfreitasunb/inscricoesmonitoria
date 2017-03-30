@@ -2,8 +2,13 @@
 
 namespace Monitoriamat\Http\Controllers;
 
+use DB;
+use Mail;
 use Monitoriamat\Models\User;
 use Illuminate\Http\Request;
+use App\Mail\EmailVerification;
+use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 /**
 * Classe para visualização da página inicial.
