@@ -35,9 +35,9 @@ class User extends Authenticatable
     ];
 
     public function verified()
-{
-    $this->ativo = 1;
-    $this->validation_code = null;
-    $this->save();
-}
+    {
+        $this->ativo = 1;
+        $this->validation_code = null;
+        $this->save();
+    }
 }
