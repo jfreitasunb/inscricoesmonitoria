@@ -65,29 +65,28 @@ class AuthController extends Controller
 			'password' => 'required',
 		]);
 
-		if (!Auth::attempt($request->only(['login', 'password']))) {
-			return redirect()->back()->with('info', 'erro ao logar');
+		
+		$user = DB::table('users')->where('login', $request->input('login'))->value('ativo');
+
+		if (!$user) {
+			return redirect()->back()->with('info', 'Você não ativou sua conta ainda.');
+		}else{
+			if (!Auth::attempt($request->only(['login', 'password']))) {
+				return redirect()->back()->with('info', 'erro ao logar');
+			}
 		}
+				
 
 		return redirect()->route('home')->with('info','Bem vindo');
 	}
 
-// 	public function verify($token)
-// {
-//     // The verified method has been added to the user model and chained here
-//     // for better readability
-//     User::where('validation_code',$token)->firstOrFail()->verified();
-//     return redirect()->route('home')->with('info','Conta ativada com sucesso.');
-// }
-
-// public function credentials(Request $request)
-// {
-//     return [
-//         'email' => $request->email,
-//         'password' => $request->password,
-//         'verified' => 1,
-//     ];
-// }
+	public function verify($token)
+{
+    // The verified method has been added to the user model and chained here
+    // for better readability
+    User::where('validation_code',$token)->firstOrFail()->verified();
+    return redirect()->route('home')->with('info','Conta ativada com sucesso.');
+}
 
 	
 }
