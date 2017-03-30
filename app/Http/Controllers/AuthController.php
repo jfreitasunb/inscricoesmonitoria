@@ -80,13 +80,20 @@ class AuthController extends Controller
 		return redirect()->route('home')->with('info','Bem vindo');
 	}
 
+	public function getLogou()
+	{
+		Auth::logout();
+
+		return redirect()->route('home')->with('info','Você saiu da sua conta');
+	}
+
 	public function verify($token)
-{
-    // The verified method has been added to the user model and chained here
-    // for better readability
-    User::where('validation_code',$token)->firstOrFail()->verified();
-    return redirect()->route('home')->with('info','Conta ativada com sucesso.');
-}
+	{
+	    // The verified method has been added to the user model and chained here
+	    // for better readability
+	    User::where('validation_code',$token)->firstOrFail()->verified();
+	    return redirect()->route('home')->with('info','Conta ativada com sucesso.');
+	}
 
 	
 }
