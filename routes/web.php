@@ -12,6 +12,24 @@
 */
 
 /**
+* Logar
+ */
+
+Route::get('/login', [
+		'uses'	=> '\Monitoriamat\Http\Controllers\AuthController@getLogin',
+		'as'	=> 'auth.login',
+]);
+
+Route::get('/login', [
+		'uses'	=> '\Monitoriamat\Http\Controllers\AuthController@getLogin',
+		'as'	=> 'auth.login',
+]);
+
+Route::get('register/verify/{token}',[
+	'uses' => '\Monitoriamat\Http\Controllers\AuthController@verify',
+]);
+
+/**
 * Registrar
  */
 Route::get('/registrar', [
