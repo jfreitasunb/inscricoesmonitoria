@@ -16,21 +16,18 @@
             <div class="row">
               <div class="col-lg-12">
                 <form id="login-form" action="{{ route('auth.login') }}" method="post" role="form">
-                  <div class="form-group">
-                    <div class="required-field-block">
-                      <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Matrícula" value="">
-                        <div class="required-icon">
-                          <div class="text">*</div>
-                        </div>
+                  <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                    <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Matrícula" value="">
+                      @if ($errors->has('username'))
+                        <span class="help-block">{{ $errors->first('username') }}</span>
+                      @endif
                     </div>
+                  <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                    <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Senha">
+                    @if ($errors->has('password'))
+                      <span class="help-block">{{ $errors->first('password') }}</span>
+                    @endif
                   </div>
-                  <div class="form-group">
-                    <div class="required-field-block">
-                      <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Senha">
-                      <div class="required-icon">
-                        <div class="text">*</div>
-                      </div>
-                    </div>
                     <div class="col-xs-12" style="height:20px;"></div>
                     <div class="form-group">
                       <div class="row">
