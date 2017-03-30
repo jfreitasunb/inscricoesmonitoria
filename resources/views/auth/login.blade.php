@@ -16,10 +16,10 @@
             <div class="row">
               <div class="col-lg-12">
                 <form id="login-form" action="{{ route('auth.login') }}" method="post" role="form">
-                  <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-                    <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Matrícula" value="">
-                      @if ($errors->has('username'))
-                        <span class="help-block">{{ $errors->first('username') }}</span>
+                  <div class="form-group{{ $errors->has('login') ? ' has-error' : '' }}">
+                    <input type="text" name="login" id="login" tabindex="1" class="form-control" placeholder="Matrícula" value="">
+                      @if ($errors->has('login'))
+                        <span class="help-block">{{ $errors->first('login') }}</span>
                       @endif
                     </div>
                   <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
@@ -32,7 +32,7 @@
                     <div class="form-group">
                       <div class="row">
                         <div class="col-sm-6 col-sm-offset-3">
-                          <input type="submit" name = "login" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Entrar">
+                          <input type="submit" name = "login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Entrar">
                         </div>
                       </div>
                     </div>
