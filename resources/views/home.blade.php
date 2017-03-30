@@ -7,7 +7,7 @@
         <div class="panel-heading">
           <div class="row">
             <div class="col-xs-6">
-              <a href="#" id="login-form-link">Login</a>
+              <a href="{{ route('auth.login') }}">Login</a>
             </div>
             <div class="col-xs-6">
               <a href="{{ route('auth.registrar') }}">Registrar</a>
