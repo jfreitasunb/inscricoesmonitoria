@@ -32,6 +32,7 @@ class AuthController extends Controller
 		]);
 
 		User::create([
+			'nome' => $request->input('nome'),
 			'login' => $request->input('login'),
         	'email' => $request->input('email'),
         	'password' => bcrypt($request->input('password')),
