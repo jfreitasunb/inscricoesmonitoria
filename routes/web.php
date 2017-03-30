@@ -20,9 +20,8 @@ Route::get('/login', [
 		'as'	=> 'auth.login',
 ]);
 
-Route::get('/login', [
-		'uses'	=> '\Monitoriamat\Http\Controllers\AuthController@getLogin',
-		'as'	=> 'auth.login',
+Route::post('/login', [
+		'uses'	=> '\Monitoriamat\Http\Controllers\AuthController@postLogin',
 ]);
 
 Route::get('register/verify/{token}',[
