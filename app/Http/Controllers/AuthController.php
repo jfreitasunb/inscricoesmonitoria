@@ -52,6 +52,16 @@ class AuthController extends Controller
 
 	}
 
+	public function getLogin()
+	{
+		return view('auth.login');
+	}
+
+	public function postLogin()
+	{
+		dd('logando');
+	}
+
 	public function verify($token)
 {
     // The verified method has been added to the user model and chained here
