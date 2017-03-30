@@ -1,6 +1,8 @@
 <?php
 
 namespace Monitoriamat\Mail;
+use Monitoriamat\Models\User;
+
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -10,17 +12,16 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class EmailVerification extends Mailable
 {
     use Queueable, SerializesModels;
-
+    public $user;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(User $user)
     {
-        //
+        $this->user = $user;
     }
-
     /**
      * Build the message.
      *
@@ -28,6 +29,6 @@ class EmailVerification extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('emails.verification');
     }
 }
