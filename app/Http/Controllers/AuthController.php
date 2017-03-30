@@ -36,7 +36,7 @@ class AuthController extends Controller
 
 		]);
 
-		User::create([
+		$user = User::create([
 			'nome' => $request->input('nome'),
 			'login' => $request->input('login'),
         	'email' => $request->input('email'),
@@ -44,8 +44,9 @@ class AuthController extends Controller
         	'validation_code' =>  md5($STRING_VALIDA_EMAIL.$request->input('email').date("d-m-Y H:i:s:u")),
 		]);
 
-		$email = new EmailVerification(new User(['validation_code' => md5($STRING_VALIDA_EMAIL.$request->input('email').date("d-m-Y H:i:s:u")), 'name' => $request->input('nome')]));
-        Mail::to($request->input('email'))->send($email);
+		$email = new EmailVerification(new User(['validation_code' => $user->validation_code, 'nome' => $user->nome]));
+
+        Mail::to($user->email)->send($email);
 
 		return redirect()->route('home')->with('info','Conta criada com sucesso.');
 
