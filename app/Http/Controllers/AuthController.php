@@ -6,8 +6,8 @@ use DB;
 use Mail;
 use Monitoriamat\Models\User;
 use Illuminate\Http\Request;
-use App\Mail\EmailVerification;
-use App\Http\Controllers\Controller;
+use Monitoriamat\Mail\EmailVerification;
+use Monitoriamat\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 /**
@@ -44,11 +44,29 @@ class AuthController extends Controller
         	'validation_code' =>  md5($STRING_VALIDA_EMAIL.$request->input('email').date("d-m-Y H:i:s:u")),
 		]);
 
-		$email = new EmailVerification(new User(['validation_code' => md5($STRING_VALIDA_EMAIL.$request->input('email').date("d-m-Y H:i:s:u")), 'name' => $user->nome]));
-        Mail::to($user->email)->send($email);
+		$email = new EmailVerification(new User(['validation_code' => md5($STRING_VALIDA_EMAIL.$request->input('email').date("d-m-Y H:i:s:u")), 'name' => $request->input('nome')]));
+        Mail::to($request->input('email'))->send($email);
 
 		return redirect()->route('home')->with('info','Conta criada com sucesso.');
 
-	}	
+	}
+
+	public function verify($token)
+{
+    // The verified method has been added to the user model and chained here
+    // for better readability
+    User::where('validation_code',$token)->firstOrFail()->verified();
+    return redirect()->route('home')->with('info','Conta ativada com sucesso.');
+}
+
+public function credentials(Request $request)
+{
+    return [
+        'email' => $request->email,
+        'password' => $request->password,
+        'verified' => 1,
+    ];
+}
+
 	
 }
