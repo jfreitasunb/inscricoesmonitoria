@@ -20,8 +20,11 @@
   </div>
   <div class="container">
   <!-- Checar se está logado. Caso sim mostrar respectivo menu. Caso contrário, mostrar menu de login-->
-    @yield('content')
-    @yield('menu_aluno')
+    @if (Auth::check())
+      @yield('menu_aluno')
+    @else
+      @yield('content')
+    @endif
     @include('templates.partials.alerts')
   </div>
 </body>
