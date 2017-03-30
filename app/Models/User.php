@@ -33,4 +33,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
     ];
+
+    public function verified()
+{
+    $this->verified = 1;
+    $this->email_token = null;
+    $this->save();
+}
 }
