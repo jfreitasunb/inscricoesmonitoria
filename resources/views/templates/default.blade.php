@@ -21,7 +21,7 @@
   <div class="container">
   <!-- Checar se está logado. Caso sim mostrar respectivo menu. Caso contrário, mostrar menu de login-->
     @if (Auth::check())
-      @yield('menu_aluno')
+      @include('templates.partials.menu_aluno')
     @else
       @yield('content')
     @endif
