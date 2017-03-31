@@ -5,6 +5,7 @@ namespace Monitoriamat\Http\Controllers;
 use Auth;
 use DB;
 use Mail;
+use Session;
 use Monitoriamat\Models\User;
 use Illuminate\Http\Request;
 use Monitoriamat\Mail\EmailVerification;
@@ -75,8 +76,10 @@ class AuthController extends Controller
 				return redirect()->back()->with('info', 'erro ao logar');
 			}
 		}
-				
 
+		$user_type = DB::table('users')->where('login', $request->input('login'))->value('user_type');
+
+		Session::put('user_type', $user_type);
 		return redirect()->route('home')->with('info','Bem vindo');
 	}
 
