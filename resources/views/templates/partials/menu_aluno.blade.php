@@ -14,7 +14,7 @@
             <li><a href="#">Dados Bancários</a></li>
             <li><a href="#">Dados Acadêmicos</a></li>
             <li><a href="#">Escolher Monitoria</a></li>
-            <li><a href="#">Sair</a></li>
+            <li><a href="{{ route('auth.logout') }}">Sair</a></li>
           </ul>
         </div>
       </nav>
