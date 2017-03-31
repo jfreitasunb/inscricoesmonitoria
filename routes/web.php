@@ -11,6 +11,20 @@
 |
 */
 
+
+/**
+* Logout
+ */
+
+Route::get('/logout', [
+		'uses'	=> '\Monitoriamat\Http\Controllers\AuthController@getLogout',
+		'as'	=> 'auth.logout',
+]);
+
+Route::post('/login', [
+		'uses'	=> '\Monitoriamat\Http\Controllers\AuthController@postLogin',
+]);
+
 /**
 * Logar
  */
