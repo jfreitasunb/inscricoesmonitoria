@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('validation_code')->nullable();
             $table->tinyInteger('user_type')->default('3');;
             $table->boolean('ativo')->default('0');
+            $table->rememberToken();
             $table->timestamps();
         });
     }
