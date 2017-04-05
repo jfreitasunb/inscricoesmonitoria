@@ -13,7 +13,12 @@ class CreateCursosGraduacaoTable extends Migration
      */
     public function up()
     {
-        //
+         Schema::create('cursos_graduacao', function (Blueprint $table){
+            $table->increments('id');
+            $table->integer('id_curso_graduacao');
+            $table->string('nome_curso',255);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +28,6 @@ class CreateCursosGraduacaoTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('cursos_graduacao');
     }
 }
