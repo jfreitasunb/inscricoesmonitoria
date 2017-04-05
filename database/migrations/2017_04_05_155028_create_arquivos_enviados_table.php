@@ -13,7 +13,12 @@ class CreateArquivosEnviadosTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('arquivos_enviados', function (Blueprint $table){
+            $table->increments('id');
+            $table->integer('id_user');
+            $table->string('nome_arquivo',255);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +28,6 @@ class CreateArquivosEnviadosTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('arquivos_enviados');
     }
 }
