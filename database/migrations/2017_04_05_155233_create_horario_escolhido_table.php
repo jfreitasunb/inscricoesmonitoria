@@ -13,7 +13,14 @@ class CreateHorarioEscolhidoTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('finaliza_escolhas', function (Blueprint $table){
+            $table->increments('id');
+            $table->integer('id_user');
+            $table->string('horario_monitoria',100);
+            $table->string('dia_semana',100);
+            $table->integer('id_monitoria');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +30,6 @@ class CreateHorarioEscolhidoTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('finaliza_escolhas');
     }
 }
