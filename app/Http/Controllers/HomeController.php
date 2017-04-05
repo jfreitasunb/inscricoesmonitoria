@@ -13,8 +13,16 @@ class HomeController extends Controller
 	
 	public function index()
 	{
-		$periodo_inscricao = Monitoria::retorna_periodo_inscricao();
+		$monitoria = new Monitoria();
+
+		$periodo_inscricao = $monitoria->retorna_periodo_inscricao();
 
 		return view('home',['periodo_inscricao' => $periodo_inscricao]);
+	}
+
+	public function testando()
+	{	
+		$monitoria = new Monitoria();
+		dd($monitoria->retorna_periodo_inscricao());
 	}
 }
