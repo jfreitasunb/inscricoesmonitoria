@@ -13,7 +13,16 @@ class CreateDadosAcademicosTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('dados_academicos', function (Blueprint $table){
+            $table->increments('id');
+            $table->integer('id_user');
+            $table->double('ira',2,5);
+            $table->boolean('monitor_convidado');
+            $table->string('nome_professor',255);
+            $table->integer('curso_graduacao');
+            $table->integer('id_monitoria');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +32,6 @@ class CreateDadosAcademicosTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('dados_academicos');
     }
 }
