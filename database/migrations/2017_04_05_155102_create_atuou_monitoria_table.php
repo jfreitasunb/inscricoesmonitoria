@@ -13,7 +13,12 @@ class CreateAtuouMonitoriaTable extends Migration
      */
     public function up()
     {
-        //
+         Schema::create('atuou_monitoria', function (Blueprint $table){
+            $table->increments('id');
+            $table->integer('id_user');
+            $table->string('atuou_monitoria',255);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +28,6 @@ class CreateAtuouMonitoriaTable extends Migration
      */
     public function down()
     {
-        //
+       Schema::drop('atuou_monitoria');
     }
 }
