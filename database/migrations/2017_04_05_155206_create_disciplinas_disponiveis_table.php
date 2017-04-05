@@ -13,7 +13,12 @@ class CreateDisciplinasDisponiveisTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('disciplinas_disponiveis', function (Blueprint $table){
+            $table->increments('id');
+            $table->integer('id_monitoria');
+            $table->integer('codigo_disciplina');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +28,6 @@ class CreateDisciplinasDisponiveisTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('disciplinas_disponiveis');
     }
 }
