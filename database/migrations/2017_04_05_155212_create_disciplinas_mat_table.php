@@ -13,7 +13,14 @@ class CreateDisciplinasMatTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('disciplinas_mat', function (Blueprint $table){
+            $table->increments('id');
+            $table->integer('codigo');
+            $table->string('nome',200);
+            $table->integer('creditos');
+            $table->string('status',5);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +30,6 @@ class CreateDisciplinasMatTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('disciplinas_mat');
     }
 }
