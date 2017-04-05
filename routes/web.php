@@ -16,6 +16,11 @@
 * Logout
  */
 
+Route::get('/teste', [
+		'uses'	=> '\Monitoriamat\Http\Controllers\HomeController@testando',
+]);
+
+
 Route::get('/logout', [
 		'uses'	=> '\Monitoriamat\Http\Controllers\AuthController@getLogout',
 		'as'	=> 'auth.logout',
