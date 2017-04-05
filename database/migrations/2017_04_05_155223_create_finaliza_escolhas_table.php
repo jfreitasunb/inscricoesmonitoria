@@ -13,7 +13,16 @@ class CreateFinalizaEscolhasTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('finaliza_escolhas', function (Blueprint $table){
+            $table->increments('id');
+            $table->integer('id_user');
+            $table->string('escolha_aluno',20);
+            $table->string('tipo_monitoria',32);
+            $table->boolen('concordatermos');
+            $table->integer('id_monitoria');
+            $table->boolen('finaliza_escolhas');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +32,6 @@ class CreateFinalizaEscolhasTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('finaliza_escolhas');
     }
 }
