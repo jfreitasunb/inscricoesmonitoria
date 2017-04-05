@@ -13,7 +13,15 @@ class CreateDadosBancariosTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('dados_bancarios', function (Blueprint $table){
+            $table->increments('id');
+            $table->integer('id_user');
+            $table->string('nome_banco',100);
+            $table->string('numero_banco',10);
+            $table->string('agencia_bancaria',10);
+            $table->string('numero_conta_corrente',10);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +31,6 @@ class CreateDadosBancariosTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('dados_bancarios');
     }
 }
