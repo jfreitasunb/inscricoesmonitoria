@@ -285,8 +285,18 @@ class ComposerStaticInit3f39956306b8f7357be9a0219143fa0d
     );
 
     public static $classMap = array (
+        'CreateArquivosEnviadosTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_05_155028_create_arquivos_enviados_table.php',
+        'CreateAtuouMonitoriaTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_05_155102_create_atuou_monitoria_table.php',
         'CreateConfiguraMonitoriaTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_04_235058_create_configura_monitoria_table.php',
+        'CreateCursosGraduacaoTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_05_155136_create_cursos_graduacao_table.php',
+        'CreateDadosAcademicosTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_05_155145_create_dados_academicos_table.php',
+        'CreateDadosBancariosTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_05_155150_create_dados_bancarios_table.php',
         'CreateDadosPessoaisTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_05_145628_create_dados_pessoais_table.php',
+        'CreateDisciplinasDisponiveisTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_05_155206_create_disciplinas_disponiveis_table.php',
+        'CreateDisciplinasMatTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_05_155212_create_disciplinas_mat_table.php',
+        'CreateEscolhasCandidatosTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_05_155218_create_escolhas_candidatos_table.php',
+        'CreateFinalizaEscolhasTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_05_155223_create_finaliza_escolhas_table.php',
+        'CreateHorarioEscolhidoTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_05_155233_create_horario_escolhido_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_28_010249_create_users_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
