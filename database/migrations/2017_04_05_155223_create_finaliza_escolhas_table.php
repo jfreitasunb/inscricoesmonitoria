@@ -18,9 +18,9 @@ class CreateFinalizaEscolhasTable extends Migration
             $table->integer('id_user');
             $table->string('escolha_aluno',20);
             $table->string('tipo_monitoria',32);
-            $table->boolen('concordatermos');
+            $table->boolean('concordatermos');
             $table->integer('id_monitoria');
-            $table->boolen('finaliza_escolhas');
+            $table->boolean('finalizar');
             $table->timestamps();
         });
     }
