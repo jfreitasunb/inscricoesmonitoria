@@ -18,7 +18,6 @@ class CreateDisciplinasMatTable extends Migration
             $table->integer('codigo');
             $table->string('nome',200);
             $table->integer('creditos');
-            $table->string('status',5);
             $table->timestamps();
         });
     }
