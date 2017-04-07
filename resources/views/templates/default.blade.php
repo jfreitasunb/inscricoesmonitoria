@@ -22,15 +22,16 @@
   <!-- Checar se está logado. Caso sim mostrar respectivo menu. Caso contrário, mostrar menu de login-->
     @include('templates.partials.alerts')
     @if (Auth::check())
-      @if (Session::has('user_type') && Session::get('user_type')===3)
-        @include('templates.partials.menu_aluno')  
+      @include($templatemenu)
+      {{-- @if (Session::has('user_type') && Session::get('user_type')===3)
+        @include('templates.partials.menu_aluno')
       @endif
       @if (Session::has('user_type') && Session::get('user_type')===2)
-        @include('templates.partials.menu_coordenador')  
+        @include('templates.partials.menu_coordenador')
       @endif
       @if (Session::has('user_type') && Session::get('user_type')===1)
-        @include('templates.partials.menu_admin')  
-      @endif
+        @include('templates.partials.menu_admin')
+      @endif --}}
     @else
       @yield('content')
     @endif
