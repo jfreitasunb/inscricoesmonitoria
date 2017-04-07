@@ -7,6 +7,7 @@ use DB;
 use Mail;
 use Session;
 use Monitoriamat\Models\User;
+use Monitoriamat\Models\Monitoria;
 use Illuminate\Http\Request;
 use Monitoriamat\Mail\EmailVerification;
 use Monitoriamat\Http\Controllers\Controller;
@@ -20,7 +21,11 @@ class AuthController extends Controller
 
 	public function getSignup()
 	{
-		return view('auth.registrar');
+		$monitoria = new Monitoria();
+
+		$periodo_inscricao = $monitoria->retorna_periodo_inscricao();
+		
+		return view('auth.registrar',['periodo_inscricao' => $periodo_inscricao]);
 	}
 
 	public function postSignup( Request $request)
@@ -55,8 +60,12 @@ class AuthController extends Controller
 	}
 
 	public function getLogin()
-	{
-		return view('auth.login');
+	{	
+		$monitoria = new Monitoria();
+
+		$periodo_inscricao = $monitoria->retorna_periodo_inscricao();
+
+		return view('auth.login',['periodo_inscricao' => $periodo_inscricao]);
 	}
 
 	public function postLogin(Request $request)
