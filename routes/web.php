@@ -11,15 +11,20 @@
 |
 */
 
-
-/**
-* Logout
- */
-
 Route::get('/teste', [
 		'uses'	=> '\Monitoriamat\Http\Controllers\HomeController@testando',
 ]);
 
+
+Route::get('/teste2', [
+		'uses'	=> '\Monitoriamat\Http\Controllers\HomeController@testando',
+		'middleware' => ['user.role:coordenador'],
+]);
+
+
+/**
+* Logout
+ */
 
 Route::get('/logout', [
 		'uses'	=> '\Monitoriamat\Http\Controllers\AuthController@getLogout',
