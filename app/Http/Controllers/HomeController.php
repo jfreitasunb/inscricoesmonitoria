@@ -9,16 +9,16 @@ use Auth;
 /**
 * Classe para visualização da página inicial.
 */
-class HomeController extends Controller
+class HomeController extends BaseController
 {
 	
+	public function __construct(){
+       parent::__construct();
+    }
+
 	public function index()
 	{
-		$monitoria = new Monitoria();
-
-		$periodo_inscricao = $monitoria->retorna_periodo_inscricao();
-
-		return view('home',['periodo_inscricao' => $periodo_inscricao]);
+		return view('home');
 	}
 
 	public function testando()
