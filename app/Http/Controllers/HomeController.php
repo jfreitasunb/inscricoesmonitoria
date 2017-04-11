@@ -2,7 +2,6 @@
 
 namespace Monitoriamat\Http\Controllers;
 
-use Monitoriamat\Models\Monitoria;
 use Auth;
 
 
@@ -23,7 +22,7 @@ class HomeController extends BaseController
 
 	public function testando()
 	{	
-		$monitoria = new Monitoria();
+
 		dd(Auth::user()->user_type);
 	}
 }
