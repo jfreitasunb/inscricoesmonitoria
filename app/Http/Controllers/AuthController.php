@@ -20,11 +20,7 @@ class AuthController extends BaseController
 {
 
 	public function getSignup()
-	{
-		$monitoria = new Monitoria();
-
-		$periodo_inscricao = $monitoria->retorna_periodo_inscricao();
-		
+	{	
 		return view('auth.registrar');
 	}
 
@@ -61,10 +57,6 @@ class AuthController extends BaseController
 
 	public function getLogin()
 	{	
-		$monitoria = new Monitoria();
-
-		$periodo_inscricao = $monitoria->retorna_periodo_inscricao();
-
 		return view('auth.login');
 	}
 
