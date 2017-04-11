@@ -51,6 +51,7 @@ Route::post('/login', [
 
 Route::get('register/verify/{token}',[
 	'uses' => '\Monitoriamat\Http\Controllers\AuthController@verify',
+	'middleware' => ['guest'],
 ]);
 
 /**
@@ -59,6 +60,7 @@ Route::get('register/verify/{token}',[
 Route::get('/registrar', [
 		'uses'	=> '\Monitoriamat\Http\Controllers\AuthController@getSignup',
 		'as'	=> 'auth.registrar',
+		'middleware' => ['guest','autoriza.inscricao']
 ]);
 
 Route::post('/registrar', [
