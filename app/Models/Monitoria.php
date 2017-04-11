@@ -36,10 +36,10 @@ class Monitoria extends Model
 
     public function retorna_periodo_inscricao()
     {
-        $monitoria_ativa = new Monitoria();
+        // $monitoria_ativa = new Monitoria();
 
-        $data_inicio = Carbon::createFromFormat('Y-m-d', $monitoria_ativa->retorna_monitoria_ativa()->inicio_inscricao);
-        $data_fim = Carbon::createFromFormat('Y-m-d', $monitoria_ativa->retorna_monitoria_ativa()->fim_inscricao);
+        $data_inicio = Carbon::createFromFormat('Y-m-d', $this->retorna_monitoria_ativa()->inicio_inscricao);
+        $data_fim = Carbon::createFromFormat('Y-m-d', $this->retorna_monitoria_ativa()->fim_inscricao);
 
         $data_hoje = (new Carbon())->format('Y-m-d');
 
