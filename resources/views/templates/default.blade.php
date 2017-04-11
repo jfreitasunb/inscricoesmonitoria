@@ -22,7 +22,7 @@
   <!-- Checar se está logado. Caso sim mostrar respectivo menu. Caso contrário, mostrar menu de login-->
     @include('templates.partials.alerts')
     @if (Auth::check())
-      @include($templatemenu)
+      {{-- @include($templatemenu) --}}
       {{-- @if (Session::has('user_type') && Session::get('user_type')===3)
         @include('templates.partials.menu_aluno')
       @endif
