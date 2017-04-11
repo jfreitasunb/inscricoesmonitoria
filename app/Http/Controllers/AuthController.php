@@ -16,7 +16,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 /**
 * Classe para visualização da página inicial.
 */
-class AuthController extends Controller
+class AuthController extends BaseController
 {
 
 	public function getSignup()
@@ -25,7 +25,7 @@ class AuthController extends Controller
 
 		$periodo_inscricao = $monitoria->retorna_periodo_inscricao();
 		
-		return view('auth.registrar',['periodo_inscricao' => $periodo_inscricao]);
+		return view('auth.registrar');
 	}
 
 	public function postSignup( Request $request)
@@ -65,7 +65,7 @@ class AuthController extends Controller
 
 		$periodo_inscricao = $monitoria->retorna_periodo_inscricao();
 
-		return view('auth.login',['periodo_inscricao' => $periodo_inscricao]);
+		return view('auth.login');
 	}
 
 	public function postLogin(Request $request)
