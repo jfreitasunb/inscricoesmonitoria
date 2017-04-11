@@ -57,5 +57,6 @@ class Kernel extends HttpKernel
         'guest' => \Monitoriamat\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'user.role' => \Monitoriamat\Http\Middleware\UserRoles::class,
+        'autoriza.inscricao' => \Monitoriamat\Http\Middleware\AutorizaLogin::class,
     ];
 }
