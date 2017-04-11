@@ -55,4 +55,18 @@ class Monitoria extends Model
             return $periodo_inscricao = "Inscrições encerradas.";
         }
     }
+
+    public function autoriza_inscricao()
+    {
+        $data_inicio = Carbon::createFromFormat('Y-m-d', $this->retorna_monitoria_ativa()->inicio_inscricao);
+        $data_fim = Carbon::createFromFormat('Y-m-d', $this->retorna_monitoria_ativa()->fim_inscricao);
+
+        $data_hoje = (new Carbon())->format('Y-m-d');
+
+        if ($data_hoje >= $data_inicio && $data_hoje <= $data_fim) {
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
