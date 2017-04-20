@@ -21,6 +21,15 @@ Route::get('/teste2', [
 		'middleware' => ['user.role:coordenador'],
 ]);
 
+/*
+*Área do coordenador
+ */
+
+Route::get('/coordenador', [
+	'uses' => '\Monitoriamat\Http\Controllers\CoordenadorController@getMenu',
+	'as'   => 'menu.coordenador',
+	'middleware' => ['user.role:coordenador'],
+]);
 
 /**
 * Logout
