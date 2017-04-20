@@ -81,6 +81,10 @@ class AuthController extends BaseController
 		$user_type = DB::table('users')->where('login', $request->input('login'))->value('user_type');
 
 		Session::put('user_type', $user_type);
+
+		if ($user_type === 'coordenador') {
+			return redirect()->intended('coordenador');
+		}
 		return redirect()->route('home')->with('info','Bem vindo');
 	}
 
