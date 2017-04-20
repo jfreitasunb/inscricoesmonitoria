@@ -23,13 +23,13 @@
     @include('templates.partials.alerts')
     @if (Auth::check())
       {{-- @include($templatemenu) --}}
-      @if (Session::has('user_type') && Session::get('user_type')===3)
+      @if (Session::has('user_type') && Session::get('user_type')==='aluno')
         @include('templates.partials.menu_aluno')
       @endif
       @if (Session::has('user_type') && Session::get('user_type')==='coordenador')
         @include('templates.partials.menu_coordenador')
       @endif
-      @if (Session::has('user_type') && Session::get('user_type')===1)
+      @if (Session::has('user_type') && Session::get('user_type')==='admin')
         @include('templates.partials.menu_admin')
       @endif
     @else
