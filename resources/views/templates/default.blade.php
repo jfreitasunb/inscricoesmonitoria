@@ -29,6 +29,7 @@
       @if (Session::has('user_type') && Session::get('user_type')==='coordenador')
         @include('templates.partials.menu_coordenador')
         @yield('configura_monitoria')
+        @yield('relatorio_monitoria')
       @endif
       @if (Session::has('user_type') && Session::get('user_type')==='admin')
         @include('templates.partials.menu_admin')
