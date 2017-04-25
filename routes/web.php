@@ -25,6 +25,12 @@ Route::get('/teste2', [
 *Área do coordenador
  */
 
+Route::get('/coordenador/relatorio/monitoria', [
+	'uses' => '\Monitoriamat\Http\Controllers\CoordenadorController@getRelatorioMonitoria',
+	'as' => 'relatorio.monitoria',
+	'middleware' => ['user.role:coordenador'],
+]);
+
 Route::get('/coordenador/configura/monitoria', [
 	'uses' => '\Monitoriamat\Http\Controllers\CoordenadorController@getConfiguraMonitoria',
 	'as' => 'configura.monitoria',
