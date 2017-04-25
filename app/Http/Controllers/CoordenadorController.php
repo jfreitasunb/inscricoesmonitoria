@@ -31,6 +31,12 @@ class CoordenadorController extends BaseController
 		return view('templates.partials.coordenador.configurar_monitoria');
 	}
 
+	public function getRelatorioMonitoria()
+	{
+
+		return view('templates.partials.coordenador.relatorio_monitoria');
+	}
+
 	public function getLogin()
 	{	
 		return view('auth.login');
