@@ -1,8 +1,7 @@
 @extends('templates.default')
 
-@section('content')
-  <div class="container">
-  <form action="coordenador_configura_monitoria.php" method="POST">
+@section('configura_monitoria')
+  <form action="" method="POST">
     <legend>Configurar período da abertura da inscrição</legend>
     <div class="row">
       <div class='col-xs-4'>
@@ -81,5 +80,4 @@
   </form>
 
   <div id="result"></div>
-</div>
 @stop
