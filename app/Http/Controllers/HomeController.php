@@ -22,7 +22,6 @@ class HomeController extends BaseController
 
 	public function testando()
 	{	
-
-		dd(Auth::user()->user_type);
+		return view('templates.partials.coordenador.configurar_monitoria');
 	}
 }
