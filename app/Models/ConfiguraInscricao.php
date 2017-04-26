@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
-class Monitoria extends Model
+class ConfiguraInscricao extends Model
 {
     
 
@@ -19,6 +19,8 @@ class Monitoria extends Model
     
     protected $primaryKey = 'id_monitoria';
 
+    protected $table = 'configura_monitoria';
+
     protected $fillable = [
         'ano_monitoria',
         'semestre_monitoria', 
@@ -29,9 +31,7 @@ class Monitoria extends Model
     public function pega_disciplinas_monitoria()
     {
     
-        $monitoria = new Monitoria();
-
-        $id_monitoria_ativa = $this->retorna_monitoria_ativa();
+        $id_monitoria_ativa = $this->retorna_inscricao_ativa();
 
         $disciplinas_para_monitoria = DB::table('disciplinas_mat')->select('codigo', 'nome')->get()->toArray();
 
@@ -44,9 +44,9 @@ class Monitoria extends Model
         return $disciplinas_para_monitoria;
     }
 
-    public function retorna_monitoria_ativa()
+    public function retorna_inscricao_ativa()
     {
-        $monitoria_ativa = DB::table('configura_monitoria')->orderby('id_monitoria', 'desc')->first();
+        $monitoria_ativa = $this->get()->sortByDesc('id_monitoria')->first();
 
         return $monitoria_ativa;
 
@@ -54,10 +54,9 @@ class Monitoria extends Model
 
     public function retorna_periodo_inscricao()
     {
-        // $monitoria_ativa = new Monitoria();
 
-        $data_inicio = Carbon::createFromFormat('Y-m-d', $this->retorna_monitoria_ativa()->inicio_inscricao);
-        $data_fim = Carbon::createFromFormat('Y-m-d', $this->retorna_monitoria_ativa()->fim_inscricao);
+        $data_inicio = Carbon::createFromFormat('Y-m-d', $this->retorna_inscricao_ativa()->inicio_inscricao);
+        $data_fim = Carbon::createFromFormat('Y-m-d', $this->retorna_inscricao_ativa()->fim_inscricao);
 
         $data_hoje = (new Carbon())->format('Y-m-d');
 
@@ -76,8 +75,8 @@ class Monitoria extends Model
 
     public function autoriza_inscricao()
     {
-        $data_inicio = Carbon::createFromFormat('Y-m-d', $this->retorna_monitoria_ativa()->inicio_inscricao);
-        $data_fim = Carbon::createFromFormat('Y-m-d', $this->retorna_monitoria_ativa()->fim_inscricao);
+        $data_inicio = Carbon::createFromFormat('Y-m-d', $this->retorna_inscricao_ativa()->inicio_inscricao);
+        $data_fim = Carbon::createFromFormat('Y-m-d', $this->retorna_inscricao_ativa()->fim_inscricao);
 
         $data_hoje = (new Carbon())->format('Y-m-d');
 
