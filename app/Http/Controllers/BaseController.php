@@ -2,7 +2,7 @@
 
 namespace Monitoriamat\Http\Controllers;
 
-use Monitoriamat\Models\Monitoria;
+use Monitoriamat\Models\ConfiguraInscricao;
 
 use View;
 
@@ -19,7 +19,7 @@ class BaseController extends Controller
 
 	public function __construct() {
 
-       $monitoria = new Monitoria();
+       $monitoria = new ConfiguraInscricao();
 
 	   $periodo_inscricao = $monitoria->retorna_periodo_inscricao();
 

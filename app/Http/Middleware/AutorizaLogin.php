@@ -3,7 +3,7 @@
 namespace Monitoriamat\Http\Middleware;
 
 use Closure;
-use Monitoriamat\Models\Monitoria;
+use Monitoriamat\Models\ConfiguraInscricao;
 
 class AutorizaLogin
 {
@@ -16,7 +16,7 @@ class AutorizaLogin
      */
     public function handle($request, Closure $next)
     {
-        $monitoria = new Monitoria();
+        $monitoria = new ConfiguraInscricao();
 
         $autoriza_inscricao = $monitoria->autoriza_inscricao();
 

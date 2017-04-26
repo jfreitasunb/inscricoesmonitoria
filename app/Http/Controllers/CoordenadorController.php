@@ -7,7 +7,7 @@ use DB;
 use Mail;
 use Session;
 use Monitoriamat\Models\User;
-use Monitoriamat\Models\Monitoria;
+use Monitoriamat\Models\ConfiguraInscricao;
 use Illuminate\Http\Request;
 use Monitoriamat\Mail\EmailVerification;
 use Monitoriamat\Http\Controllers\Controller;
@@ -28,7 +28,7 @@ class CoordenadorController extends BaseController
 	public function getConfiguraMonitoria()
 	{
 
-		$monitoria = new Monitoria();
+		$monitoria = new ConfiguraInscricao();
 
 		$disciplinas = $monitoria->pega_disciplinas_monitoria();
 
