@@ -28,7 +28,11 @@ class CoordenadorController extends BaseController
 	public function getConfiguraMonitoria()
 	{
 
-		return view('templates.partials.coordenador.configurar_monitoria');
+		$monitoria = new Monitoria();
+
+		$disciplinas = $monitoria->pega_disciplinas_monitoria();
+
+		return view('templates.partials.coordenador.configurar_monitoria')->with('disciplinas', $disciplinas);
 	}
 
 	public function getRelatorioMonitoria()
