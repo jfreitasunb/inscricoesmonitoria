@@ -12,7 +12,7 @@
 */
 
 Route::get('/teste', [
-		'uses'	=> '\Monitoriamat\Http\Controllers\HomeController@testando',
+		'uses'	=> '\Monitoriamat\Http\Controllers\CoordenadorController@pega_disciplinas_monitoria',
 ]);
 
 
