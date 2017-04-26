@@ -50,18 +50,18 @@
               </tr>
             </thead>
             <tbody>
-            <!-- BEGIN lista_disciplinas -->
-              <tr>
-              <!--BEGIN codigo_disciplina -->
-              <!-- BEGIN nome_disciplina -->
-                <td><input type="checkbox" id="disciplinas" name="escolhas_coordenador[]" class="checkbox" {codigo_disciplina}></td>
-                <td>{nome_disciplina}</td>
-                <td><input type="checkbox" id="disciplinas" name="escolhas_coordenador[]" class="checkbox" {codigo_disciplina2}></td>
-                <td>{nome_disciplina2}</td>
-              <!-- END nome_disciplina -->
-              <!-- END codigo_disciplina -->
-              </tr>
-            <!-- END lista_disciplinas -->
+            <?php $i=0;?>
+            @while ($i < sizeof($disciplinas))
+                <tr>
+                  <td><input type="checkbox" id="disciplinas" name="escolhas_coordenador[]" class="checkbox" {{ $disciplinas[$i]->codigo }}></td>
+                  <td>{{ $disciplinas[$i]->nome }}</td>
+                  @if ($i+1<sizeof($disciplinas))
+                    <td><input type="checkbox" id="disciplinas" name="escolhas_coordenador[]" class="checkbox" {{ $disciplinas[$i+1]->codigo }}></td>
+                    <td>{{ $disciplinas[$i+1]->nome }}</td>
+                  @endif
+                </tr>
+                <?php $i=$i+2;?>
+            @endwhile
             </tbody>
           </table>
         </div>
