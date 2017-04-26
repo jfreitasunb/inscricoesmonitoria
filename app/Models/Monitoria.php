@@ -26,6 +26,24 @@ class Monitoria extends Model
         'fim_inscricao',
     ];
 
+    public function pega_disciplinas_monitoria()
+    {
+    
+        $monitoria = new Monitoria();
+
+        $id_monitoria_ativa = $this->retorna_monitoria_ativa();
+
+        $disciplinas_para_monitoria = DB::table('disciplinas_mat')->select('codigo', 'nome')->get()->toArray();
+
+      //   $disciplinas = DB::table('disciplinas_mat')
+            // ->select('codigo', 'name')
+            // ->join('disciplinas_disponiveis', 'codigo', '=', 'codigo_disciplina')
+            // ->where('id_monitoria', $id_monitoria_ativa)
+            // ->get();
+
+        return $disciplinas_para_monitoria;
+    }
+
     public function retorna_monitoria_ativa()
     {
         $monitoria_ativa = DB::table('configura_monitoria')->orderby('id_monitoria', 'desc')->first();
