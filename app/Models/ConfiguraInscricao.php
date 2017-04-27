@@ -28,22 +28,6 @@ class ConfiguraInscricao extends Model
         'fim_inscricao',
     ];
 
-    public function pega_disciplinas_monitoria()
-    {
-    
-        $id_monitoria_ativa = $this->retorna_inscricao_ativa();
-
-        $disciplinas_para_monitoria = DB::table('disciplinas_mat')->select('codigo', 'nome')->get()->toArray();
-
-      //   $disciplinas = DB::table('disciplinas_mat')
-            // ->select('codigo', 'name')
-            // ->join('disciplinas_disponiveis', 'codigo', '=', 'codigo_disciplina')
-            // ->where('id_monitoria', $id_monitoria_ativa)
-            // ->get();
-
-        return $disciplinas_para_monitoria;
-    }
-
     public function retorna_inscricao_ativa()
     {
         $monitoria_ativa = $this->get()->sortByDesc('id_monitoria')->first();
