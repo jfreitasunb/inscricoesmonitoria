@@ -38,6 +38,18 @@ class CoordenadorController extends BaseController
 		return view('templates.partials.coordenador.configurar_monitoria')->with('disciplinas', $disciplinas);
 	}
 
+	public function postConfiguraMonitoria(Request $request)
+	{
+
+		$this->validate($request, [
+			'inicio_inscricao' => 'required',
+			'fim_inscricao' => 'required',
+			'semestre' => 'required',
+			'escolhas_coordenador' => 'required',
+		]);
+
+	}
+
 	public function getRelatorioMonitoria()
 	{
 
