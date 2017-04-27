@@ -8,6 +8,7 @@ use Mail;
 use Session;
 use Monitoriamat\Models\User;
 use Monitoriamat\Models\ConfiguraInscricao;
+use Monitoriamat\Models\DisciplinaMat;
 use Illuminate\Http\Request;
 use Monitoriamat\Mail\EmailVerification;
 use Monitoriamat\Http\Controllers\Controller;
@@ -30,7 +31,9 @@ class CoordenadorController extends BaseController
 
 		$monitoria = new ConfiguraInscricao();
 
-		$disciplinas = $monitoria->pega_disciplinas_monitoria();
+		$disciplina = new DisciplinaMat();
+
+		$disciplinas = $disciplina->pega_disciplinas_monitoria();
 
 		return view('templates.partials.coordenador.configurar_monitoria')->with('disciplinas', $disciplinas);
 	}
