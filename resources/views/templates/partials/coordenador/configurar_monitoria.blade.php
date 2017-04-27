@@ -8,8 +8,10 @@
           <div class="form-group form-inline">
               <label for="">Início da Inscrição:</label>
               <div class='input-group date' id='inicio_inscricao'>
-                  <input type='text' class="form-control{{ $errors->has('inicio_inscricao') ? ' has-error' : '' }}" name="inicio_inscricao"/>{{ Request::old('inicio_inscricao') ?: '' }}
-                  
+                  <input type='text' class="form-control{{ $errors->has('inicio_inscricao') ? ' has-error' : '' }}" name="inicio_inscricao" value="{{ Request::old('inicio_inscricao') ?: '' }}"/>
+                  <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
               </div>
               @if ($errors->has('inicio_inscricao'))
                       <span class="help-block">{{ $errors->first('inicio_inscricao') }}</span>
@@ -20,7 +22,7 @@
           <div class="form-group form-inline">
               <label for="">Final da Inscrição:</label>
               <div class='input-group date' id='fim_inscricao'>
-                  <input type='text' class="form-control{{ $errors->has('fim_inscricao') ? ' has-error' : '' }}" name="fim_inscricao"/>{{ Request::old('fim_inscricao') ?: '' }}
+                  <input type='text' class="form-control{{ $errors->has('fim_inscricao') ? ' has-error' : '' }}" name="fim_inscricao" value="{{ Request::old('fim_inscricao') ?: '' }}"/>
                   <span class="input-group-addon">
                       <span class="glyphicon glyphicon-calendar"></span>
                   </span>
