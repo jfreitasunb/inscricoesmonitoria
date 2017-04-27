@@ -42,7 +42,7 @@ class CoordenadorController extends BaseController
 	{
 
 		$this->validate($request, [
-			'inicio_inscricao' => 'required',
+			'inicio_inscricao' => 'required|before:fim_inscricao',
 			'fim_inscricao' => 'required',
 			'semestre' => 'required',
 			'escolhas_coordenador' => 'required',
