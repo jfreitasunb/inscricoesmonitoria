@@ -65,7 +65,7 @@ class ConfiguraInscricao extends Model
         }
 
         if ($data_hoje < $data_inicio) {
-            return $periodo_inscricao = "Inscrições não está aberta";
+            return $periodo_inscricao = "A inscrição não est aberta";
         }
 
         if ($data_hoje > $data_fim) {
