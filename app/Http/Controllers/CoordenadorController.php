@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Monitoriamat\Models\User;
 use Monitoriamat\Models\ConfiguraInscricao;
 use Monitoriamat\Models\DisciplinaMat;
+use Monitoriamat\Models\DisciplinaMonitoria;
 use Illuminate\Http\Request;
 use Monitoriamat\Mail\EmailVerification;
 use Monitoriamat\Http\Controllers\Controller;
@@ -65,6 +66,23 @@ class CoordenadorController extends BaseController
 		$monitoria->fim_inscricao = $data_fim;
 
 		$monitoria->save();
+
+		$id_monitoria=$monitoria->id_monitoria;
+
+		for ($i=0; $i < sizeof($request->escolhas_coordenador); $i++) { 
+
+			$disciplinamonitoria = new DisciplinaMonitoria;
+
+			$disciplinamonitoria->id_monitoria = $id_monitoria;
+			
+			$disciplinamonitoria->codigo_disciplina = $request->escolhas_coordenador[$i];
+
+			$disciplinamonitoria->save();
+
+		}
+
+
+		
 
 	}
 
