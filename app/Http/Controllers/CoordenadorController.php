@@ -6,6 +6,7 @@ use Auth;
 use DB;
 use Mail;
 use Session;
+use Carbon\Carbon;
 use Monitoriamat\Models\User;
 use Monitoriamat\Models\ConfiguraInscricao;
 use Monitoriamat\Models\DisciplinaMat;
@@ -42,11 +43,28 @@ class CoordenadorController extends BaseController
 	{
 
 		$this->validate($request, [
-			'inicio_inscricao' => 'required|before:fim_inscricao',
-			'fim_inscricao' => 'required',
+			'inicio_inscricao' => 'required|date_format:"d/m/Y"|before:fim_inscricao|after:today',
+			'fim_inscricao' => 'required|date_format:"d/m/Y"|after:inicio_inscricao|after:today',
 			'semestre' => 'required',
 			'escolhas_coordenador' => 'required',
 		]);
+    
+    	$inicio = Carbon::createFromFormat('d/m/Y', $request->inicio_inscricao);
+    	$fim = Carbon::createFromFormat('d/m/Y', $request->fim_inscricao);
+
+    	$data_inicio = $inicio->format('Y-m-d');
+    	$data_fim = $fim->format('Y-m-d');
+
+    	$ano = $inicio->format('Y');
+
+    	$monitoria = new ConfiguraInscricao();
+
+		$monitoria->ano_monitoria = $ano;
+		$monitoria->semestre_monitoria = $request->semestre;
+		$monitoria->inicio_inscricao = $data_inicio;
+		$monitoria->fim_inscricao = $data_fim;
+
+		$monitoria->save();
 
 	}
 
