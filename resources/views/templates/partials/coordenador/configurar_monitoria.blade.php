@@ -35,8 +35,8 @@
       <div class="col-xs-4">
         <div class="form-group form-inline{{ $errors->has('semestre') ? ' has-error' : '' }}">
         <label for="">Semestre: </label>
-          <input type="radio" name="semestre" id="semestre" class="radio" value="1" @if(Request::old('semestre')) checked @endif> 1
-          <input type="radio" name="semestre" id="semestre" class="radio" value="2" @if(Request::old('semestre')) checked @endif> 2
+          <input type="radio" name="semestre" id="semestre" class="radio" value="1" @if(Request::old('semestre')==1) checked @endif> 1
+          <input type="radio" name="semestre" id="semestre" class="radio" value="2" @if(Request::old('semestre')==2) checked @endif> 2
         </div>
       </div>
     </div>
