@@ -81,6 +81,7 @@ class CoordenadorController extends BaseController
 
 		}
 
+		return redirect()->route('configura.monitoria')->with('info','Dados gravados com sucesso');
 
 		
 
