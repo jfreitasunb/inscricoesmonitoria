@@ -1,14 +1,18 @@
 @extends('templates.default')
 
+@section('stylesheets')
+  <link href="{{ asset('css/parsley.css') }}" rel="stylesheet">
+@endsection
+
 @section('configura_monitoria')
-  <form action="{{ route('configura.monitoria') }}" method="POST">
+  <form action="{{ route('configura.monitoria') }}" method="POST" data-parsley-validate>
     <legend>Configurar período da abertura da inscrição</legend>
     <div class="row">
       <div class='col-xs-4'>
           <div class="form-group form-inline">
               <label for="">Início da Inscrição:</label>
-              <div class='input-group date' id='inicio_inscricao'>
-                  <input type='text' class="form-control{{ $errors->has('inicio_inscricao') ? ' has-error' : '' }}" name="inicio_inscricao" value="{{ Request::old('inicio_inscricao') ?: '' }}"/>
+              <div class='input-group' id='inicio_inscricao'>
+                  <input type='text' class="form-control{{ $errors->has('inicio_inscricao') ? ' has-error' : '' }}" name="inicio_inscricao" value="{{ Request::old('inicio_inscricao') ?: '' }}" required/>
                   <span class="input-group-addon">
                       <span class="glyphicon glyphicon-calendar"></span>
                   </span>
@@ -100,4 +104,5 @@
   <link rel="stylesheet" href="{{ asset('bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css')}}" />
   <script src="{{ asset('bower_components/moment/locale/fr.js')}}"></script>
   <script type="text/javascript" src="{{ asset('js/datepicker.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/parsely.min.js') }}"></script>
 @endsection

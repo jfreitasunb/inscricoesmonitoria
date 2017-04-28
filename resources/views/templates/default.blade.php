@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('css/css_monitoria.css') }}" rel="stylesheet">
+
+  @yield('stylesheets')
 </head>
 <body>
 <div class="container">
@@ -19,7 +21,6 @@
     </div>
   </div>
   <div class="container">
-  <!-- Checar se está logado. Caso sim mostrar respectivo menu. Caso contrário, mostrar menu de login-->
     @include('templates.partials.alerts')
     @if (Auth::check())
       {{-- @include($templatemenu) --}}
