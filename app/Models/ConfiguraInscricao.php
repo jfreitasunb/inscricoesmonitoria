@@ -39,17 +39,21 @@ class ConfiguraInscricao extends Model
     public function retorna_periodo_inscricao()
     {
 
-        $data_inicio = Carbon::createFromFormat('Y-m-d', $this->retorna_inscricao_ativa()->inicio_inscricao);
-        $data_fim = Carbon::createFromFormat('Y-m-d', $this->retorna_inscricao_ativa()->fim_inscricao);
+        $inicio = Carbon::createFromFormat('Y-m-d', $this->retorna_inscricao_ativa()->inicio_inscricao);
+        $fim = Carbon::createFromFormat('Y-m-d', $this->retorna_inscricao_ativa()->fim_inscricao);
 
         $data_hoje = (new Carbon())->format('Y-m-d');
+        
+        $data_inicio = $inicio->format('Y-m-d');
+        $data_fim = $fim->format('Y-m-d');
+
 
         if ($data_hoje >= $data_inicio && $data_hoje <= $data_fim) {
-            return $periodo_inscricao = $data_inicio->format('d/m/Y')." à ".$data_fim->format('d/m/Y');
+            return $periodo_inscricao = $inicio->format('d/m/Y')." à ".$fim->format('d/m/Y');
         }
 
         if ($data_hoje < $data_inicio) {
-            return $periodo_inscricao = "A inscrição não est aberta";
+            return $periodo_inscricao = "A inscrição não está aberta";
         }
 
         if ($data_hoje > $data_fim) {
