@@ -188,5 +188,8 @@ legend.scheduler-border {
     margin: -3px 0 0 12px;
 }
 
+.has-error .form-control {
+    border-color: #a94442;
+}
 
 /* Required field END */
