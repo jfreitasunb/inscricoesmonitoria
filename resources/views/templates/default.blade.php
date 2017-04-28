@@ -46,32 +46,6 @@
   <script src="{{ asset('js/monitoria.js') }}"></script>
   
 
-  <script type="text/javascript" src="{{ asset('bower_components/jquery/jquery.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('bower_components/moment/min/moment.min.js')}}"></script>
-  <script type="text/javascript" src="{{ asset('bower_components/moment/locale/pt-br.js')}}"></script>
-  <script type="text/javascript" src="{{ asset('bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')}}"></script>
-  <link rel="stylesheet" href="{{ asset('bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css')}}" />
-  <script src="{{ asset('bower_components/moment/locale/fr.js')}}"></script>
-    
+  @yield('scripts')
 
-  <script type="text/javascript">
-    $(function () {
-        $('#inicio_inscricao').datetimepicker({
-            locale: 'pt-br',
-            format: 'DD/MM/YYYY'
-        });
-        $('#fim_inscricao').datetimepicker({
-            locale: 'pt-br',
-            format: 'DD/MM/YYYY'
-        });
-    }); 
-  </script>
-<script>
-  $('#disciplinas').click(function() {
-  var checkedStatus = this.checked;
-  $('#disciplinas tbody tr').find('td :checkbox').each(function() {
-    $(this).prop('checked', checkedStatus);
-  });
-});
-</script>
 </html>
