@@ -114,12 +114,6 @@
 @endsection
 
 @section('scripts')
-  <script type="text/javascript" src="{{ asset('bower_components/jquery/jquery.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('bower_components/moment/min/moment.min.js')}}"></script>
   <script type="text/javascript" src="{{ asset('bower_components/moment/locale/pt-br.js')}}"></script>
-  <script type="text/javascript" src="{{ asset('bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')}}"></script>
-  <link rel="stylesheet" href="{{ asset('bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css')}}" />
-  <script src="{{ asset('bower_components/moment/locale/fr.js')}}"></script>
-  <script type="text/javascript" src="{{ asset('js/datepicker.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/parsely.min.js') }}"></script>
 @endsection
