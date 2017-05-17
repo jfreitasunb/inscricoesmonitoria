@@ -44,9 +44,22 @@ class CandidatoController extends BaseController
 			echo "temp";
 		}
 		
+	}
 
-
-		
+	public function postDadosPessoais(Request $request)
+	{
+			$this->validate($request, [
+			'numerorg' => 'required',
+			'emissorrg' => 'required',
+			'semestre' => 'required',
+			'cpf' => 'required',
+			'endereco' => 'required',
+			'cidade' => 'required',
+			'cep' => 'required',
+			'estado' => 'required',
+			'telefone' => 'required',
+			'celular' => 'required',
+		]);
 	}
 
 	// public function showNome()
