@@ -14,7 +14,7 @@
         <div class="row">
           <label class="col-md-4 control-label" for="nome">Nome</label>  
           <div class="col-md-4">
-            <input id="nome" name="nome" type="text" class="form-control input-md">
+            <input id="nome" name="nome" type="text" class="form-control input-md" value="{{$nome or Request::old('nome') ?: '' }}">
           </div>
         </div>
       </div>
