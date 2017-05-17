@@ -6,7 +6,7 @@
 
 @section('dados_pessoais')
 <div class="row">
-  <form class="form-horizontal" action="" method="post">
+  <form data-parsley-validate="" class="form-horizontal" action="" method="post">
     <fieldset class="scheduler-border">
       <legend class="scheduler-border">Dados Pessoais</legend>
 
@@ -14,7 +14,7 @@
         <div class="row">
           <label class="col-md-4 control-label" for="nome">Nome</label>  
           <div class="col-md-4">
-            <input id="nome" name="nome" type="text" class="form-control input-md" required="required" {{$periodo_inscricao}}>
+            <input id="nome" name="nome" type="text" class="form-control input-md">
           </div>
         </div>
       </div>
@@ -23,7 +23,7 @@
         <div class="row">
           <label class="col-md-4 control-label" for="numerorg">RG</label>  
           <div class="col-md-4">
-            <input id="numerorg" name="numerorg" type="text" class="form-control input-md" required="required">
+            <input id="numerorg" name="numerorg" type="text" class="form-control input-md" required="" data-parsley-type="alphanum">
           </div>
         </div>
       </div>
@@ -115,6 +115,6 @@
 @endsection
 
 @section('scripts')
-  <script type="text/javascript" src="{{ asset('bower_components/moment/locale/pt-br.js')}}"></script>
-  <script type="text/javascript" src="{{ asset('js/parsely.min.js') }}"></script>
+  <script src="{{ asset('js/parsley.min.js') }}"></script>
+  <script src="{{ asset('i18n/pt-br.js') }}"></script>
 @endsection
