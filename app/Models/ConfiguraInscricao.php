@@ -63,8 +63,11 @@ class ConfiguraInscricao extends Model
 
     public function autoriza_inscricao()
     {
-        $data_inicio = Carbon::createFromFormat('Y-m-d', $this->retorna_inscricao_ativa()->inicio_inscricao);
-        $data_fim = Carbon::createFromFormat('Y-m-d', $this->retorna_inscricao_ativa()->fim_inscricao);
+        $inicio = Carbon::createFromFormat('Y-m-d', $this->retorna_inscricao_ativa()->inicio_inscricao);
+        $fim = Carbon::createFromFormat('Y-m-d', $this->retorna_inscricao_ativa()->fim_inscricao);
+
+        $data_inicio = $inicio->format('Y-m-d');
+        $data_fim = $fim->format('Y-m-d');
 
         $data_hoje = (new Carbon())->format('Y-m-d');
 
