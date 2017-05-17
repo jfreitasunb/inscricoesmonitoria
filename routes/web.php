@@ -22,6 +22,17 @@ Route::get('/teste2', [
 ]);
 
 /*
+*Área do candidato
+*/
+
+Route::get('/aluno', [
+	'uses' => '\Monitoriamat\Http\Controllers\CandidatoController@getMenu',
+	'as'   => 'menu.candidato',
+	'middleware' => ['user.role:aluno'],
+]);
+
+
+/*
 *Área do coordenador
  */
 
