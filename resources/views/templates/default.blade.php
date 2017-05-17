@@ -26,6 +26,7 @@
       {{-- @include($templatemenu) --}}
       @if (Session::has('user_type') && Session::get('user_type')==='aluno')
         @include('templates.partials.menu_aluno')
+        @yield('dados_pessoais')
       @endif
       @if (Session::has('user_type') && Session::get('user_type')==='coordenador')
         @include('templates.partials.menu_coordenador')
