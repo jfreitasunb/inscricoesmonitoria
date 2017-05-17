@@ -50,14 +50,14 @@
                 </div>
                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                   <label for="password" class="control-label">Senha</label>
-                  <input type="password" name="password" id="password" tabindex="2" class="form-control" required="" data-parsley-minlength="8" placeholder="Senha">
+                  <input type="password" name="password" id="password" tabindex="2" class="form-control" required="" data-parsley-minlength="1" placeholder="Senha">
                   @if ($errors->has('password'))
                       <span class="help-block">{{ $errors->first('password') }}</span>
                   @endif
                 </div>
                 <div class="form-group{{ $errors->has('confirmar-password') ? ' has-error' : '' }}">
                   <label for="confirmar-password" class="control-label">Confirmar Senha</label>
-                  <input type="password" name="confirmar-password" id="confirmar-password" tabindex="2" class="form-control" required="" data-parsley-minlength="8" data-parsley-equalto="#password" placeholder="Confirmar Senha">
+                  <input type="password" name="confirmar-password" id="confirmar-password" tabindex="2" class="form-control" required="" data-parsley-minlength="1" data-parsley-equalto="#password" placeholder="Confirmar Senha">
                   @if ($errors->has('confirmar-password'))
                       <span class="help-block">{{ $errors->first('confirmar-password') }}</span>
                   @endif
