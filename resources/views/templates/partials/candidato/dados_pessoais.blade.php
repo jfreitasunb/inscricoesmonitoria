@@ -109,6 +109,7 @@
         </div>
       </div>
     </fieldset>
+    <input type="hidden" name="_token" value="{{ Session::token() }}">
   </form>
 </div>
 @endsection
