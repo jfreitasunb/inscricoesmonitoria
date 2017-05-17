@@ -24,16 +24,10 @@ class CandidatoController extends BaseController
 		return view('home');
 	}
 
-	public function getConfiguraMonitoria()
+	public function getDadosPessoais()
 	{
 
-		$monitoria = new ConfiguraInscricao();
-
-		$disciplina = new DisciplinaMat();
-
-		$disciplinas = $disciplina->pega_disciplinas_monitoria();
-
-		return view('templates.partials.coordenador.configurar_monitoria')->with('disciplinas', $disciplinas);
+		return view('templates.partials.candidato.dados_pessoais');
 	}
 
 	public function postConfiguraMonitoria(Request $request)

@@ -31,6 +31,12 @@ Route::get('/aluno', [
 	'middleware' => ['user.role:aluno'],
 ]);
 
+Route::get('/aluno/dados/pessoais', [
+	'uses' => '\Monitoriamat\Http\Controllers\CandidatoController@getDadosPessoais',
+	'as'   => 'dados.pessoais',
+	'middleware' => ['user.role:aluno'],
+]);
+
 
 /*
 *Área do coordenador
