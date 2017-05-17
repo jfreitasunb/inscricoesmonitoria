@@ -30,7 +30,7 @@ class CandidatoController extends BaseController
 		return view('templates.partials.candidato.dados_pessoais');
 	}
 
-	public function showNome()
+	public function showDadosPessoais()
 	{
 		Auth::user()->nome;
 	}
