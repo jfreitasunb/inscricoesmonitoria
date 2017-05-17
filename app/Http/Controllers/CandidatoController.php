@@ -27,12 +27,13 @@ class CandidatoController extends BaseController
 	public function getDadosPessoais()
 	{
 
-		return view('templates.partials.candidato.dados_pessoais');
+		return view('templates.partials.candidato.dados_pessoais')->with('nome', Auth::user()->nome);
 	}
 
-	public function showDadosPessoais()
+	public function showNome()
 	{
-		Auth::user()->nome;
+		$nome = Auth::user()->nome;
+		return view('templates.partials.candidato.dados_pessoais')->with('nome', Auth::user()->nome);
 	}
 
 	public function postConfiguraMonitoria(Request $request)
