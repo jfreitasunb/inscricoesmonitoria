@@ -85,6 +85,10 @@ class AuthController extends BaseController
 		if ($user_type === 'coordenador') {
 			return redirect()->intended('coordenador');
 		}
+
+		if ($user_type === 'aluno') {
+			return redirect()->intended('aluno');
+		}
 		return redirect()->route('home')->with('info','Bem vindo');
 	}
 
