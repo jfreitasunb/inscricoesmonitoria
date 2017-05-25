@@ -103,6 +103,8 @@ class CandidatoController extends BaseController
 				
 				$candidato->update($dados_pessoais);
 			}
+
+			return redirect()->route('home')->with('success','Seus dados foram atualizados.');
 	}
 
 
