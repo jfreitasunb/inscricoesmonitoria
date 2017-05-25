@@ -104,7 +104,7 @@ class AuthController extends BaseController
 	    // The verified method has been added to the user model and chained here
 	    // for better readability
 	    User::where('validation_code',$token)->firstOrFail()->verified();
-	    return redirect()->route('home')->with('info','Conta ativada com sucesso.');
+	    return redirect()->route('home')->with('success','Conta ativada com sucesso.');
 	}
 
 	
