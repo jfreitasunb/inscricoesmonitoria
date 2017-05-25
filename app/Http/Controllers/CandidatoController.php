@@ -63,8 +63,7 @@ class CandidatoController extends BaseController
 
 	public function postDadosPessoais(Request $request)
 	{
-		DB::enableQueryLog();
-			$this->validate($request, [
+		$this->validate($request, [
 			'numerorg' => 'required|max:21',
 			'emissorrg' => 'required|max:201',
 			'cpf' => 'required|cpf|numeric',
@@ -97,14 +96,13 @@ class CandidatoController extends BaseController
 
 			$candidato =  DadoPessoal::find($id_user);
 
-			// if (is_null($candidato)) {
-			// 	$cria_candidato = new DadoPessoal();
-			// 	$cria_candidato->save($dados_pessoais);
-			// }else{
+			if (is_null($candidato)) {
+				$cria_candidato = new DadoPessoal();
+				$cria_candidato->save($dados_pessoais);
+			}else{
 				
 				$candidato->update($dados_pessoais);
-				DB::getQueryLog();	
-			// }
+			}
 	}
 
 
