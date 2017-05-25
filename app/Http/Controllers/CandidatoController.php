@@ -52,7 +52,7 @@ class CandidatoController extends BaseController
 			'numerorg' => 'required',
 			'emissorrg' => 'required',
 			'semestre' => 'required',
-			'cpf' => 'required',
+			'cpf' => 'required|cpf',
 			'endereco' => 'required',
 			'cidade' => 'required',
 			'cep' => 'required',
