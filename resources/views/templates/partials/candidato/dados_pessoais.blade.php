@@ -26,7 +26,7 @@
         <div class="row">
           <label class="col-md-4 control-label" for="numerorg">RG</label>  
           <div class="col-md-4">
-            <input id="numerorg" name="numerorg" type="text" class="form-control input-md" required="" data-parsley-type="alphanum">
+            <input id="numerorg" name="numerorg" type="text" class="form-control input-md" required="" data-parsley-type="alphanum" value="{{ Request::old('numerorg') ?: '' }}">
           </div>
         </div>
         @if ($errors->has('numerorg'))
@@ -38,7 +38,7 @@
         <div class="row">
           <label class="col-md-4 control-label" for="emissorrg">Órgão Emissor</label>  
           <div class="col-md-4">
-            <input id="emissorrg" name="emissorrg" type="text" class="form-control input-md" required="required">
+            <input id="emissorrg" name="emissorrg" type="text" class="form-control input-md" required="required" value="{{ Request::old('emissorrg') ?: '' }}">
           </div>
         </div>
         @if ($errors->has('emissorrg'))
@@ -50,7 +50,7 @@
         <div class="row">
           <label class="col-md-4 control-label" for="cpf">CPF</label>  
           <div class="col-md-4">
-            <input id="cpf" name="cpf" type="text" placeholder="Somente números" class="form-control input-md" required="required">
+            <input id="cpf" name="cpf" type="text" placeholder="Somente números" class="form-control input-md" required="required" value="{{ Request::old('cpf') ?: '' }}">
           </div>
         </div>
         @if ($errors->has('cpf'))
@@ -62,7 +62,7 @@
         <div class="row">
           <label class="col-md-4 control-label" for="endereco">Endereço</label>  
           <div class="col-md-4">
-            <input id="endereco" name="endereco" type="text" placeholder="" class="form-control input-md" required="">
+            <input id="endereco" name="endereco" type="text" placeholder="" class="form-control input-md" required="" value="{{ Request::old('endereco') ?: '' }}">
           </div>
         </div>
         @if ($errors->has('endereco'))
@@ -74,7 +74,7 @@
         <div class="row">
           <label class="col-md-4 control-label" for="cidade">Cidade</label>  
           <div class="col-md-4">
-            <input id="cidade" name="cidade" type="text" placeholder="" class="form-control input-md" required="">
+            <input id="cidade" name="cidade" type="text" placeholder="" class="form-control input-md" required="" value="{{ Request::old('cidade') ?: '' }}">
           </div>
         </div>
         @if ($errors->has('cidade'))
@@ -86,7 +86,7 @@
         <div class="row">
           <label class="col-md-4 control-label" for="cep">CEP</label>  
           <div class="col-md-4">
-            <input id="cep" name="cep" type="text" placeholder="" class="form-control input-md" required="">
+            <input id="cep" name="cep" type="text" placeholder="" class="form-control input-md" required="" value="{{ Request::old('cep') ?: '' }}">
           </div>
         </div>
         @if ($errors->has('cep'))
@@ -98,7 +98,7 @@
         <div class="row">
           <label class="col-md-4 control-label" for="estado">Estado</label>  
           <div class="col-md-4">
-            <input id="estado" name="estado" type="text" placeholder="" class="form-control input-md" required="">
+            <input id="estado" name="estado" type="text" placeholder="" class="form-control input-md" required="" value="{{ Request::old('estado') ?: '' }}">
           </div>
         </div>
         @if ($errors->has('estado'))
@@ -110,7 +110,7 @@
         <div class="row">
           <label class="col-md-4 control-label" for="telefone">Telefone</label>  
           <div class="col-md-4">
-            <input id="telefone" name="telefone" type="text" placeholder="(DD)#######" class="form-control input-md" required="">
+            <input id="telefone" name="telefone" type="text" placeholder="(DD)#######" class="form-control input-md" required="" value="{{ Request::old('telefone') ?: '' }}">
           </div>
         </div>
         @if ($errors->has('telefone'))
@@ -122,7 +122,7 @@
         <div class="row">
           <label class="col-md-4 control-label" for="celular">Celular</label>  
           <div class="col-md-4">
-            <input id="celular" name="celular" type="text" placeholder="(DD)#######" class="form-control input-md" required="">
+            <input id="celular" name="celular" type="text" placeholder="(DD)#######" class="form-control input-md" required="" value="{{ Request::old('celular') ?: '' }}">
           </div>
         </div>
         @if ($errors->has('celular'))
