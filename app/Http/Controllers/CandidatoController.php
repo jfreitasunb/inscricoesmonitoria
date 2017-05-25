@@ -50,15 +50,15 @@ class CandidatoController extends BaseController
 	public function postDadosPessoais(Request $request)
 	{
 			$this->validate($request, [
-			'numerorg' => 'required',
-			'emissorrg' => 'required',
-			'cpf' => 'required|cpf',
-			'endereco' => 'required',
-			'cidade' => 'required',
-			'cep' => 'required',
-			'estado' => 'required',
-			'telefone' => 'required',
-			'celular' => 'required',
+			'numerorg' => 'required|max:21',
+			'emissorrg' => 'required|max:201',
+			'cpf' => 'required|cpf|numeric',
+			'endereco' => 'required|max:256',
+			'cidade' => 'required|max:101',
+			'cep' => 'required|max:12',
+			'estado' => 'required|max:3',
+			'telefone' => 'required|max:21',
+			'celular' => 'required|max:21',
 		]);
 
 			$user = Auth::user();
