@@ -39,16 +39,31 @@ class CandidatoController extends BaseController
 		$dados_pessoais = $candidato->retorna_dados_pessoais($id_user);
 
 		if (is_null($dados_pessoais)) {
-			return view('templates.partials.candidato.dados_pessoais')->with('nome', $nome);	
+			$dados = [
+				'nome' => $nome,
+			];
+			return view('templates.partials.candidato.dados_pessoais')->with('dados', $dados);	
 		}else{
-
-			echo "temp";
+			$dados = [
+				'nome' => $nome,
+				'numerorg' => $dados_pessoais->numerorg,
+				'emissorrg' => $dados_pessoais->emissorrg,
+				'cpf' => $dados_pessoais->cpf,
+				'endereco' => $dados_pessoais->endereco,
+				'cidade' => $dados_pessoais->cidade,
+				'cep' => $dados_pessoais->cep,
+				'estado' => $dados_pessoais->estado,
+				'telefone' => $dados_pessoais->telefone,
+				'celular' => $dados_pessoais->celular,
+			];
+			return view('templates.partials.candidato.dados_pessoais')->with('dados', $dados);	
 		}
 		
 	}
 
 	public function postDadosPessoais(Request $request)
 	{
+		DB::enableQueryLog();
 			$this->validate($request, [
 			'numerorg' => 'required|max:21',
 			'emissorrg' => 'required|max:201',
@@ -63,24 +78,33 @@ class CandidatoController extends BaseController
 
 			$user = Auth::user();
 			$id_user = $user->id_user;
-
+			
 			$user->nome = $request->input('nome');
 			$user->save();
+			
+			$dados_pessoais = [
+				'id_user' => $id_user,
+				'numerorg' => $request->input('numerorg'),
+				'emissorrg' => $request->input('emissorrg'),
+				'cpf' => $request->input('cpf'),
+				'endereco' => $request->input('endereco'),
+				'cidade' => $request->input('cidade'),
+				'cep' => $request->input('cep'),
+				'estado' => $request->input('estado'),
+				'telefone' => $request->input('telefone'),
+				'celular' => $request->input('celular'),
+			];
 
-			$candidato = new DadoPessoal();
+			$candidato =  DadoPessoal::find($id_user);
 
-			$candidato->id_user = $id_user;
-			$candidato->numerorg = $request->input('numerorg');
-			$candidato->emissorrg = $request->input('emissorrg');
-			$candidato->cpf = $request->input('cpf');
-			$candidato->endereco = $request->input('endereco');
-			$candidato->cidade = $request->input('cidade');
-			$candidato->cep = $request->input('cep');
-			$candidato->estado = $request->input('estado');
-			$candidato->telefone = $request->input('telefone');
-			$candidato->celular = $request->input('celular');
-
-			$candidato->save();
+			// if (is_null($candidato)) {
+			// 	$cria_candidato = new DadoPessoal();
+			// 	$cria_candidato->save($dados_pessoais);
+			// }else{
+				
+				$candidato->update($dados_pessoais);
+				DB::getQueryLog();	
+			// }
 	}
 
 

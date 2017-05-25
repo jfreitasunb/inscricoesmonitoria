@@ -9,13 +9,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class DadoPessoal extends Model
 {
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'id_user';
 
     protected $table = 'dados_pessoais';
 
     protected $fillable = [
         'numerorg',
-        'emissor', 
+        'emissorrg', 
         'cpf',
         'endereco',
         'cidade',

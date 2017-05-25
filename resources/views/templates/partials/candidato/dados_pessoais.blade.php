@@ -14,7 +14,7 @@
         <div class="row">
           <label class="col-md-4 control-label" for="nome">Nome</label>  
           <div class="col-md-4">
-            <input id="nome" name="nome" type="text" class="form-control input-md" value="{{$nome or Request::old('nome') ?: '' }}">
+            <input id="nome" name="nome" type="text" class="form-control input-md" value="{{$dados['nome'] or Request::old('nome') ?: '' }}">
           </div>
         </div>
         @if ($errors->has('nome'))
@@ -26,7 +26,7 @@
         <div class="row">
           <label class="col-md-4 control-label" for="numerorg">RG</label>  
           <div class="col-md-4">
-            <input id="numerorg" name="numerorg" type="text" class="form-control input-md" required="" data-parsley-type="alphanum" data-parsley-maxlength="20" value="{{ Request::old('numerorg') ?: '' }}">
+            <input id="numerorg" name="numerorg" type="text" class="form-control input-md" required="" data-parsley-type="alphanum" data-parsley-maxlength="20" value="{{$dados['numerorg'] or Request::old('numerorg') ?: '' }}">
           </div>
         </div>
         @if ($errors->has('numerorg'))
@@ -38,7 +38,7 @@
         <div class="row">
           <label class="col-md-4 control-label" for="emissorrg">Órgão Emissor</label>  
           <div class="col-md-4">
-            <input id="emissorrg" name="emissorrg" type="text" class="form-control input-md" required="required" data-parsley-maxlength="200" value="{{ Request::old('emissorrg') ?: '' }}">
+            <input id="emissorrg" name="emissorrg" type="text" class="form-control input-md" required="required" data-parsley-maxlength="200" value="{{$dados['emissorrg'] or Request::old('emissorrg') ?: '' }}">
           </div>
         </div>
         @if ($errors->has('emissorrg'))
@@ -50,7 +50,7 @@
         <div class="row">
           <label class="col-md-4 control-label" for="cpf">CPF</label>  
           <div class="col-md-4">
-            <input id="cpf" name="cpf" type="text" placeholder="Somente números" class="form-control input-md" required="required" data-parsley-maxlength="13" data-parsley-type="digits" value="{{ Request::old('cpf') ?: '' }}">
+            <input id="cpf" name="cpf" type="text" placeholder="Somente números" class="form-control input-md" required="required" data-parsley-maxlength="13" data-parsley-type="digits" value="{{$dados['cpf'] or Request::old('cpf') ?: '' }}">
           </div>
         </div>
         @if ($errors->has('cpf'))
@@ -62,7 +62,7 @@
         <div class="row">
           <label class="col-md-4 control-label" for="endereco">Endereço</label>  
           <div class="col-md-4">
-            <input id="endereco" name="endereco" type="text" placeholder="" class="form-control input-md" required="" data-parsley-maxlength="255" value="{{ Request::old('endereco') ?: '' }}">
+            <input id="endereco" name="endereco" type="text" placeholder="" class="form-control input-md" required="" data-parsley-maxlength="255" value="{{$dados['endereco'] or Request::old('endereco') ?: '' }}">
           </div>
         </div>
         @if ($errors->has('endereco'))
@@ -74,7 +74,7 @@
         <div class="row">
           <label class="col-md-4 control-label" for="cidade">Cidade</label>  
           <div class="col-md-4">
-            <input id="cidade" name="cidade" type="text" placeholder="" class="form-control input-md" required="" data-parsley-maxlength="100" value="{{ Request::old('cidade') ?: '' }}">
+            <input id="cidade" name="cidade" type="text" placeholder="" class="form-control input-md" required="" data-parsley-maxlength="100" value="{{$dados['cidade'] or Request::old('cidade') ?: '' }}">
           </div>
         </div>
         @if ($errors->has('cidade'))
@@ -86,7 +86,7 @@
         <div class="row">
           <label class="col-md-4 control-label" for="cep">CEP</label>  
           <div class="col-md-4">
-            <input id="cep" name="cep" type="text" placeholder="" class="form-control input-md" required="" data-parsley-maxlength="11" value="{{ Request::old('cep') ?: '' }}">
+            <input id="cep" name="cep" type="text" placeholder="" class="form-control input-md" required="" data-parsley-maxlength="11" value="{{$dados['cep'] or Request::old('cep') ?: '' }}">
           </div>
         </div>
         @if ($errors->has('cep'))
@@ -98,7 +98,7 @@
         <div class="row">
           <label class="col-md-4 control-label" for="estado">Estado</label>  
           <div class="col-md-4">
-            <input id="estado" name="estado" type="text" placeholder="" class="form-control input-md" required="" data-parsley-maxlength="3" value="{{ Request::old('estado') ?: '' }}">
+            <input id="estado" name="estado" type="text" placeholder="" class="form-control input-md" required="" data-parsley-maxlength="3" value="{{$dados['estado'] or Request::old('estado') ?: '' }}">
           </div>
         </div>
         @if ($errors->has('estado'))
@@ -110,7 +110,7 @@
         <div class="row">
           <label class="col-md-4 control-label" for="telefone">Telefone</label>  
           <div class="col-md-4">
-            <input id="telefone" name="telefone" type="text" placeholder="(DD)#######" class="form-control input-md" required="" data-parsley-maxlength="20" value="{{ Request::old('telefone') ?: '' }}">
+            <input id="telefone" name="telefone" type="text" placeholder="(DD)#######" class="form-control input-md" required="" data-parsley-maxlength="20" value="{{$dados['telefone'] or Request::old('telefone') ?: '' }}">
           </div>
         </div>
         @if ($errors->has('telefone'))
@@ -122,7 +122,7 @@
         <div class="row">
           <label class="col-md-4 control-label" for="celular">Celular</label>  
           <div class="col-md-4">
-            <input id="celular" name="celular" type="text" placeholder="(DD)#######" class="form-control input-md" required="" data-parsley-maxlength="20" value="{{ Request::old('celular') ?: '' }}">
+            <input id="celular" name="celular" type="text" placeholder="(DD)#######" class="form-control input-md" required="" data-parsley-maxlength="20" value="{{$dados['celular'] or Request::old('celular') ?: '' }}">
           </div>
         </div>
         @if ($errors->has('celular'))
