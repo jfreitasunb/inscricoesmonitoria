@@ -7,7 +7,7 @@
     "require": {
         "php": ">=5.6.4",
         "codecourse/notify": "^1.1",
-        "jailtonsc/validador-cpf-laravel": "^2.0",
+        "jailtonsc/validador-cpf-laravel": "^4.0",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0"
     },

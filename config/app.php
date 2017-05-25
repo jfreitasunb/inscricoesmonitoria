@@ -1,7 +1,7 @@
 <?php
 
 return [
-
+   
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -176,6 +176,7 @@ return [
         // Monitoriamat\Providers\BroadcastServiceProvider::class,
         Monitoriamat\Providers\EventServiceProvider::class,
         Monitoriamat\Providers\RouteServiceProvider::class,
+        ValidadorCpf\CpfServiceProvider54::class
 
     ],
 
