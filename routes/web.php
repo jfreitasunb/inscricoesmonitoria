@@ -31,6 +31,12 @@ Route::get('/aluno', [
 	'middleware' => ['user.role:aluno'],
 ]);
 
+Route::get('/aluno/dados/bancarios', [
+	'uses' => '\Monitoriamat\Http\Controllers\CandidatoController@getDadosbancarios',
+	'as'   => 'dados.bancarios',
+	'middleware' => ['user.role:aluno'],
+]);
+
 Route::get('/aluno/dados/pessoais', [
 	'uses' => '\Monitoriamat\Http\Controllers\CandidatoController@getDadosPessoais',
 	'as'   => 'dados.pessoais',
