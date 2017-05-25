@@ -51,7 +51,6 @@ class CandidatoController extends BaseController
 			$this->validate($request, [
 			'numerorg' => 'required',
 			'emissorrg' => 'required',
-			'semestre' => 'required',
 			'cpf' => 'required|cpf',
 			'endereco' => 'required',
 			'cidade' => 'required',
