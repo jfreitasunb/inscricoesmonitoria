@@ -66,6 +66,17 @@ Route::post('/aluno/dados/pessoais', [
 	'middleware' => ['user.role:aluno'],
 ]);
 
+Route::get('/aluno/dados/escolhas', [
+	'uses' => '\Monitoriamat\Http\Controllers\CandidatoController@getEscolhaCandidato',
+	'as'   => 'dados.escolhas',
+	'middleware' => ['user.role:aluno'],
+]);
+
+Route::post('/aluno/dados/escolhas', [
+	'uses' => '\Monitoriamat\Http\Controllers\CandidatoController@postEscolhaCandidato',
+	'middleware' => ['user.role:aluno'],
+]);
+
 
 /*
 *Área do coordenador
