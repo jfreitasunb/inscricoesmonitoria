@@ -12,7 +12,7 @@
       <ul class="nav navbar-nav">
         <li><a href="{{ route('dados.pessoais') }}">Dados Pessoais</a></li>
         <li><a href="{{ route('dados.bancarios') }}">Dados Bancários</a></li>
-        <li><a href="#">Dados Acadêmicos</a></li>
+        <li><a href="{{ route('dados.academicos') }}">Dados Acadêmicos</a></li>
         <li><a href="#">Escolher Monitoria</a></li>
         <li><a href="{{ route('auth.logout') }}">Sair</a></li>
       </ul>
