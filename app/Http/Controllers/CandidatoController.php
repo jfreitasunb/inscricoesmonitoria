@@ -197,18 +197,10 @@ class CandidatoController extends BaseController
 		$user = Auth::user();
 		$id_user = $user->id_user;
 		
-		$candidato = new DadoAcademico();
-		$dados_academicos = $candidato->retorna_dados_academicos($id_user);
+		$monitoria_ativa = new ConfiguraInscricao();
+		$ano_semestre_ira = $monitoria_ativa->ira_ano_semestre();
 
-		if (!is_null($dados_academicos)) {
-			$dados = [
-				'ira' => $dados_academicos->ira,
-				'curso_graduacao' => $dados_academicos->curso_graduacao,
-			];
-			return view('templates.partials.candidato.dados_academicos')->with('dados', $dados);	
-		}else{
-			return view('templates.partials.candidato.dados_academicos');
-		}
+		return view('templates.partials.candidato.dados_academicos')->with('ano_semestre_ira', $ano_semestre_ira);	
 		
 	}
 

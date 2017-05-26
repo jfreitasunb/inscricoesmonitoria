@@ -8,7 +8,7 @@
   <form data-parsley-validate="" action="" method="POST" class="form-group" enctype="multipart/form-data">
       <fieldset class="scheduler-border">
         <!-- BEGIN ano_semestre_ira -->
-        <legend class="scheduler-border">IRA atualizado ({ano_semestre_ira})</legend>
+        <legend class="scheduler-border">IRA atualizado ({{$ano_semestre_ira}})</legend>
         <!-- END ano_semestre_ira -->
         <div class="form-horizontal"{{ $errors->has('nome') ? ' has-error' : '' }}>
           <div class="row">

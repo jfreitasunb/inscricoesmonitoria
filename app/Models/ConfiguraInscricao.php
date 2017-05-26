@@ -77,4 +77,21 @@ class ConfiguraInscricao extends Model
             return false;
         }
     }
+
+    public function ira_ano_semestre(){
+        
+        $date = new Carbon();
+        $mes = $date->format('m');
+        $ano = $date->format('y');
+    
+        if ($mes < 7) {
+            $ano_semestre_ira = "02/".($ano-1);
+        }else{
+            $ano_semestre_ira = "01/".$ano;
+        }
+
+        return $ano_semestre_ira;
+    }
+
+    
 }
