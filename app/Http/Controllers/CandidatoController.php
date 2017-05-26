@@ -14,6 +14,8 @@ use Monitoriamat\Models\DisciplinaMonitoria;
 use Monitoriamat\Models\DadoPessoal;
 use Monitoriamat\Models\DadoBancario;
 use Monitoriamat\Models\DadoAcademico;
+use Monitoriamat\Models\AtuacaoMonitoria;
+use Monitoriamat\Models\Documento;
 use Illuminate\Http\Request;
 use Monitoriamat\Mail\EmailVerification;
 use Monitoriamat\Http\Controllers\Controller;
@@ -213,37 +215,43 @@ class CandidatoController extends BaseController
 	public function postDadosAcademicos(Request $request)
 	{
 		$this->validate($request, [
-			'ira' => 'required|max:21',
+			'ira' => 'required|regex:/^\d+(,\d+)*(\.\d+)?$/|min:0',
 			'curso_graduacao' => 'required|max:201',
+			'checkbox_foi_monitor' => 'required',
+			'arquivo' => 'required|max:10000'
 		]);
 
 			$user = Auth::user();
 			$id_user = $user->id_user;
+
+
+			for ($i=0; $i < sizeof($request->checkbox_foi_monitor); $i++) {
+				$atuacao = new AtuacaoMonitoria;
+
+				$atuacao->id_user = $id_user;
+				$atuacao->atuou_monitoria = $request->checkbox_foi_monitor[$i];
+
+				$atuacao->save();
+			}
+
+			$monitoria_ativa = new ConfiguraInscricao();
+
+			$id_monitoria = $monitoria_ativa->retorna_inscricao_ativa()->id_monitoria;
 			
-			$dados_academicos = [
-				'id_user' => $id_user,
-				'nome_banco' => $request->input('nome_banco'),
-				'numero_banco' => $request->input('numero_banco'),
-				'agencia_bancaria' => $request->input('agencia_bancaria'),
-				'numero_conta_corrente' => $request->input('numero_conta_corrente'),
-			];
+			$cria_dados_academicos = new DadoAcademico();
+			$cria_dados_academicos->id_user = $id_user;
+			$cria_dados_academicos->ira = $request->input('ira');
+			$cria_dados_academicos->curso_graduacao = $request->input('curso_graduacao');
+			$cria_dados_academicos->id_monitoria = $id_monitoria;
+			$cria_dados_academicos->save();
 
-			// $academico =  DadoAcademico::find($id_user);
-
-			// if (is_null($academico)) {
-			// 	$cria_dados_academicos = new DadoAcademico();
-			// 	$cria_dados_academicos->id_user = $id_user;
-			// 	$cria_dados_academicos->nome_dados_academicos = $request->input('nome_dados_academicos');
-			// 	$cria_dados_academicos->numero_dados_academicos = $request->input('numero_dados_academicos');
-			// 	$cria_dados_academicos->agencia_bancaria = $request->input('agencia_bancaria');
-			// 	$cria_dados_academicos->numero_conta_corrente = $request->input('numero_conta_corrente');
-			// 	$cria_dados_academicos->save();
-			// }else{
-				
-			// 	$academico->update($dados_academicos);
-			// }
-
-			// return redirect()->route('home')->with('success','Seus dados foram atualizados.');
+			$filename = $request->arquivo->store('documentos');
+			$arquivo = new Documento();
+			$arquivo->id_user = $id_user;
+			$arquivo->nome_arquivo = $filename;
+			$arquivo->save();
+			
+			return redirect()->route('home')->with('success','Seus dados foram atualizados.');
 	}
 
 
