@@ -29,6 +29,7 @@
         @yield('dados_pessoais')
         @yield('dados_bancarios')
         @yield('dados_academicos')
+        @yield('escolha_monitoria')
       @endif
       @if (Session::has('user_type') && Session::get('user_type')==='coordenador')
         @include('templates.partials.menu_coordenador')
