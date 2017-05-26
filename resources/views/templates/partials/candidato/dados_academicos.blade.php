@@ -13,7 +13,7 @@
         <div class="form-horizontal"{{ $errors->has('nome') ? ' has-error' : '' }}>
           <div class="row">
             <div class="col-md-4 form-group">
-              <input id="ira" name="ira" type="text" class="form-control" required="" value="{{$dados['numerorg'] or Request::old('numerorg') ?: '' }}">
+              <input id="ira" name="ira" type="text" class="form-control" required="" value="{{Request::old('ira') ?: '' }}">
             </div>
           </div>
         </div>
@@ -23,14 +23,14 @@
         <legend class="scheduler-border">Curso de Graduação</legend>
         <div class="form-horizontal{{ $errors->has('nome') ? ' has-error' : '' }}">
           <p>
-            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="matematica" required=""> Matemática (Bacharelado/Licenciatura)<br>
-            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="computacao"> Ciências da Computação (Bacharelado/Licenciatura)<br>
-            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="estatistica"> Estatística<br>
-            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="fisica"> Física (Bacharelado/Licenciatura)<br>
-            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="quimica"> Química (Bacharelado/Licenciatura)<br>
-            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="geologia_geofisica"> Geologia/Geofísica<br>
-            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="engenharia"> Engenharia (Mecânica/Elétrica/Civil/Redes/Mecatrônica/Química/Produção)<br>
-            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="outros"> Outros<br>
+            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="matematica" required="" @if(Request::old('curso_graduacao')=="matematica") checked @endif> Matemática (Bacharelado/Licenciatura)<br>
+            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="computacao" @if(Request::old('curso_graduacao')=="computacao") checked @endif> Ciências da Computação (Bacharelado/Licenciatura)<br>
+            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="estatistica" @if(Request::old('curso_graduacao')=="estatistica") checked @endif> Estatística<br>
+            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="fisica" @if(Request::old('curso_graduacao')=="fisica") checked @endif> Física (Bacharelado/Licenciatura)<br>
+            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="quimica" @if(Request::old('curso_graduacao')=="quimica") checked @endif> Química (Bacharelado/Licenciatura)<br>
+            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="geologia_geofisica" @if(Request::old('curso_graduacao')=="geologia_geofisica") checked @endif> Geologia/Geofísica<br>
+            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="engenharia" @if(Request::old('curso_graduacao')=="engenharia") checked @endif> Engenharia (Mecânica/Elétrica/Civil/Redes/Mecatrônica/Química/Produção)<br>
+            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="outros" @if(Request::old('curso_graduacao')=="outros") checked @endif> Outros<br>
           </p>
         </div>
         @if ($errors->has('nome'))
@@ -43,17 +43,17 @@
         <div class="form-horizontal"{{ $errors->has('nome') ? ' has-error' : '' }} required="">
           <div class="row">
             <p>
-              <input type="checkbox" name="checkbox_foi_monitor[]" id="checkbox_foi_monitor" value="calculo1_matematica1" required=""> Sim, de Cálculo 1 ou Matemática 1<br>
+              <input type="checkbox" name="checkbox_foi_monitor[]" id="checkbox_foi_monitor" value="calculo1_matematica1" @if(is_array(Request::old('checkbox_foi_monitor')) && in_array("calculo1_matematica1",Request::old('checkbox_foi_monitor'))) checked @endif required=""> Sim, de Cálculo 1 ou Matemática 1<br>
             
-              <input type="checkbox" name="checkbox_foi_monitor[]" id="checkbox_foi_monitor" value="calculo2_matematica_2"> Sim, de Cálculo 2 ou Matemática 2<br>
+              <input type="checkbox" name="checkbox_foi_monitor[]" id="checkbox_foi_monitor" value="calculo2_matematica_2" @if(is_array(Request::old('checkbox_foi_monitor')) && in_array("calculo2_matematica_2",Request::old('checkbox_foi_monitor'))) checked @endif> Sim, de Cálculo 2 ou Matemática 2<br>
             
-              <input type="checkbox" name="checkbox_foi_monitor[]" id="checkbox_foi_monitor" value="calculo3"> Sim, de Cálculo 3<br>
+              <input type="checkbox" name="checkbox_foi_monitor[]" id="checkbox_foi_monitor" value="calculo3" @if(is_array(Request::old('checkbox_foi_monitor')) && in_array("calculo3",Request::old('checkbox_foi_monitor'))) checked @endif> Sim, de Cálculo 3<br>
             
-              <input type="checkbox" name="checkbox_foi_monitor[]" id="checkbox_foi_monitor" value="ial_algebra-linear"> Sim, de Introdução à Álgebra Linear ou Álgebra Linear<br>
+              <input type="checkbox" name="checkbox_foi_monitor[]" id="checkbox_foi_monitor" value="ial_algebra-linear" @if(is_array(Request::old('checkbox_foi_monitor')) && in_array("ial_algebra-linear",Request::old('checkbox_foi_monitor'))) checked @endif> Sim, de Introdução à Álgebra Linear ou Álgebra Linear<br>
             
-              <input type="checkbox" name="checkbox_foi_monitor[]" id="checkbox_foi_monitor" value="outras"> Sim, de outras disciplinas<br>
+              <input type="checkbox" name="checkbox_foi_monitor[]" id="checkbox_foi_monitor" value="outras" @if(is_array(Request::old('checkbox_foi_monitor')) && in_array("outras",Request::old('checkbox_foi_monitor'))) checked @endif> Sim, de outras disciplinas<br>
             
-              <input type="checkbox" name="checkbox_foi_monitor[]" id="checkbox_foi_monitor" value="nao"> Não<br>
+              <input type="checkbox" name="checkbox_foi_monitor[]" id="checkbox_foi_monitor" value="nao" @if(is_array(Request::old('checkbox_foi_monitor')) && in_array("nao",Request::old('checkbox_foi_monitor'))) checked @endif> Não<br>
             </p>
           </div>
            @if ($errors->has('nome'))
@@ -64,7 +64,7 @@
 
       <fieldset class="scheduler-border">
         <legend class="scheduler-border">Histórico</legend>
-        <div class="form-horizontal"{{ $errors->has('nome') ? ' has-error' : '' }} required="">
+        <div class="form-horizontal"{{ $errors->has('nome') ? ' has-error' : '' }}>
           <div class="row">
             <span class="input-group-btn">
                 <!-- image-preview-clear button -->
@@ -73,7 +73,7 @@
                 </button>
                 <!-- image-preview-input -->
                 <div class="btn btn-primary">
-                    <input type="file" accept="application/pdf, image/png, image/jpeg, image/jpg, image/gif" name="arquivo"  required=""/> <!-- rename it -->
+                    <input type="file" accept="application/pdf, image/png, image/jpeg, image/jpg, image/gif" name="arquivo" required=""/> <!-- rename it -->
                 </div>
             </span>
           </div>
