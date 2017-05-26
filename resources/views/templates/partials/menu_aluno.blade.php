@@ -13,7 +13,7 @@
         <li><a href="{{ route('dados.pessoais') }}">Dados Pessoais</a></li>
         <li><a href="{{ route('dados.bancarios') }}">Dados Bancários</a></li>
         <li><a href="{{ route('dados.academicos') }}">Dados Acadêmicos</a></li>
-        <li><a href="#">Escolher Monitoria</a></li>
+        <li><a href="{{ route('dados.escolhas') }}">Escolher Monitoria</a></li>
         <li><a href="{{ route('auth.logout') }}">Sair</a></li>
       </ul>
     </div>
