@@ -247,5 +247,63 @@ class CandidatoController extends BaseController
 	}
 
 
+	/*
+/Gravação dos escolhas do Candidato
+ */
+	public function getEscolhaCandidato()
+	{
+		// $user = Auth::user();
+		// $id_user = $user->id_user;
+		
+		// $monitoria_ativa = new ConfiguraInscricao();
+		// $ano_semestre_ira = $monitoria_ativa->ira_ano_semestre();
+
+		return view('templates.partials.candidato.escolha_monitoria');
+		
+	}
+
+	public function postEscolhaCandidato(Request $request)
+	{
+		// $this->validate($request, [
+		// 	'ira' => 'required|regex:/^\d+(,\d+)*(\.\d+)?$/|min:0',
+		// 	'curso_graduacao' => 'required|max:201',
+		// 	'checkbox_foi_monitor' => 'required',
+		// 	'arquivo' => 'required|max:10000'
+		// ]);
+
+		// 	$user = Auth::user();
+		// 	$id_user = $user->id_user;
+
+
+		// 	for ($i=0; $i < sizeof($request->checkbox_foi_monitor); $i++) {
+		// 		$atuacao = new AtuacaoMonitoria;
+
+		// 		$atuacao->id_user = $id_user;
+		// 		$atuacao->atuou_monitoria = $request->checkbox_foi_monitor[$i];
+
+		// 		$atuacao->save();
+		// 	}
+
+		// 	$monitoria_ativa = new ConfiguraInscricao();
+
+		// 	$id_monitoria = $monitoria_ativa->retorna_inscricao_ativa()->id_monitoria;
+			
+		// 	$cria_dados_academicos = new DadoAcademico();
+		// 	$cria_dados_academicos->id_user = $id_user;
+		// 	$cria_dados_academicos->ira = $request->input('ira');
+		// 	$cria_dados_academicos->curso_graduacao = $request->input('curso_graduacao');
+		// 	$cria_dados_academicos->id_monitoria = $id_monitoria;
+		// 	$cria_dados_academicos->save();
+
+		// 	$filename = $request->arquivo->store('documentos');
+		// 	$arquivo = new Documento();
+		// 	$arquivo->id_user = $id_user;
+		// 	$arquivo->nome_arquivo = $filename;
+		// 	$arquivo->save();
+			
+		// 	return redirect()->route('home')->with('success','Seus dados foram atualizados.');
+	}
+
+
 
 }
