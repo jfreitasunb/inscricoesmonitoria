@@ -99,6 +99,16 @@ class CandidatoController extends BaseController
 
 			if (is_null($candidato)) {
 				$cria_candidato = new DadoPessoal();
+				$cria_candidato->id_user = $id_user;
+				$cria_candidato->numerorg = $request->input('numerorg');
+				$cria_candidato->emissorrg = $request->input('emissorrg');
+				$cria_candidato->cpf = $request->input('cpf');
+				$cria_candidato->endereco = $request->input('endereco');
+				$cria_candidato->cidade = $request->input('cidade');
+				$cria_candidato->cep = $request->input('cep');
+				$cria_candidato->estado = $request->input('estado');
+				$cria_candidato->telefone = $request->input('telefone');
+				$cria_candidato->celular = $request->input('celular');
 				$cria_candidato->save($dados_pessoais);
 			}else{
 				
