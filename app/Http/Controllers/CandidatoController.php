@@ -13,6 +13,7 @@ use Monitoriamat\Models\DisciplinaMat;
 use Monitoriamat\Models\DisciplinaMonitoria;
 use Monitoriamat\Models\DadoPessoal;
 use Monitoriamat\Models\DadoBancario;
+use Monitoriamat\Models\DadoAcademico;
 use Illuminate\Http\Request;
 use Monitoriamat\Mail\EmailVerification;
 use Monitoriamat\Http\Controllers\Controller;
@@ -29,6 +30,10 @@ class CandidatoController extends BaseController
 	{	
 		return view('home');
 	}
+
+/*
+/Gravação dos dados Pessoais
+ */
 
 	public function getDadosPessoais()
 	{
@@ -118,6 +123,10 @@ class CandidatoController extends BaseController
 			return redirect()->route('home')->with('success','Seus dados foram atualizados.');
 	}
 
+/*
+/Gravação dos dados Bancários
+ */
+
 	public function getDadosBancarios()
 	{
 		$user = Auth::user();
@@ -176,6 +185,65 @@ class CandidatoController extends BaseController
 			}
 
 			return redirect()->route('home')->with('success','Seus dados foram atualizados.');
+	}
+
+/*
+/Gravação dos dados Acadêmicos
+ */
+	public function getDadosAcademicos()
+	{
+		$user = Auth::user();
+		$id_user = $user->id_user;
+		
+		$candidato = new DadoAcademico();
+		$dados_academicos = $candidato->retorna_dados_academicos($id_user);
+
+		if (!is_null($dados_academicos)) {
+			$dados = [
+				'ira' => $dados_academicos->ira,
+				'curso_graduacao' => $dados_academicos->curso_graduacao,
+			];
+			return view('templates.partials.candidato.dados_academicos')->with('dados', $dados);	
+		}else{
+			return view('templates.partials.candidato.dados_academicos');
+		}
+		
+	}
+
+	public function postDadosAcademicos(Request $request)
+	{
+		$this->validate($request, [
+			'ira' => 'required|max:21',
+			'curso_graduacao' => 'required|max:201',
+		]);
+
+			$user = Auth::user();
+			$id_user = $user->id_user;
+			
+			$dados_academicos = [
+				'id_user' => $id_user,
+				'nome_banco' => $request->input('nome_banco'),
+				'numero_banco' => $request->input('numero_banco'),
+				'agencia_bancaria' => $request->input('agencia_bancaria'),
+				'numero_conta_corrente' => $request->input('numero_conta_corrente'),
+			];
+
+			// $academico =  DadoAcademico::find($id_user);
+
+			// if (is_null($academico)) {
+			// 	$cria_dados_academicos = new DadoAcademico();
+			// 	$cria_dados_academicos->id_user = $id_user;
+			// 	$cria_dados_academicos->nome_dados_academicos = $request->input('nome_dados_academicos');
+			// 	$cria_dados_academicos->numero_dados_academicos = $request->input('numero_dados_academicos');
+			// 	$cria_dados_academicos->agencia_bancaria = $request->input('agencia_bancaria');
+			// 	$cria_dados_academicos->numero_conta_corrente = $request->input('numero_conta_corrente');
+			// 	$cria_dados_academicos->save();
+			// }else{
+				
+			// 	$academico->update($dados_academicos);
+			// }
+
+			// return redirect()->route('home')->with('success','Seus dados foram atualizados.');
 	}
 
 
