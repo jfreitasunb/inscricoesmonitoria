@@ -31,14 +31,26 @@ Route::get('/aluno', [
 	'middleware' => ['user.role:aluno'],
 ]);
 
+Route::get('/aluno/dados/academicos', [
+	'uses' => '\Monitoriamat\Http\Controllers\CandidatoController@getDadosAcademicos',
+	'as'   => 'dados.academicos',
+	'middleware' => ['user.role:aluno'],
+]);
+
+Route::post('/aluno/dados/academicos', [
+	'uses' => '\Monitoriamat\Http\Controllers\CandidatoController@postDadosAcademicos',
+	'as'   => 'dados.academicos',
+	'middleware' => ['user.role:aluno'],
+]);
+
 Route::get('/aluno/dados/bancarios', [
-	'uses' => '\Monitoriamat\Http\Controllers\CandidatoController@getDadosbancarios',
+	'uses' => '\Monitoriamat\Http\Controllers\CandidatoController@getDadosBancarios',
 	'as'   => 'dados.bancarios',
 	'middleware' => ['user.role:aluno'],
 ]);
 
 Route::post('/aluno/dados/bancarios', [
-	'uses' => '\Monitoriamat\Http\Controllers\CandidatoController@postDadosbancarios',
+	'uses' => '\Monitoriamat\Http\Controllers\CandidatoController@postDadosBancarios',
 	'as'   => 'dados.bancarios',
 	'middleware' => ['user.role:aluno'],
 ]);
