@@ -232,7 +232,7 @@ class CandidatoController extends BaseController
 			
 			$cria_dados_academicos = new DadoAcademico();
 			$cria_dados_academicos->id_user = $id_user;
-			$cria_dados_academicos->ira = $request->input('ira');
+			$cria_dados_academicos->ira = str_replace(',', '.', $request->input('ira'));
 			$cria_dados_academicos->curso_graduacao = $request->input('curso_graduacao');
 			$cria_dados_academicos->id_monitoria = $id_monitoria;
 			$cria_dados_academicos->save();
