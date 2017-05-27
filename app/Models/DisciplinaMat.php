@@ -32,12 +32,6 @@ class DisciplinaMat extends Model
     
         $disciplinas_para_monitoria = $this->select('codigo', 'nome')->orderBy('nome')->get();
 
-      //   $disciplinas = DB::table('disciplinas_mat')
-            // ->select('codigo', 'name')
-            // ->join('disciplinas_disponiveis', 'codigo', '=', 'codigo_disciplina')
-            // ->where('id_monitoria', $id_monitoria_ativa)
-            // ->get();
-
         return $disciplinas_para_monitoria;
     }
 }
