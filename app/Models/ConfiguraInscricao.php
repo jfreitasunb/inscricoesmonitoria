@@ -78,8 +78,8 @@ class ConfiguraInscricao extends Model
         }
     }
 
-    public function ira_ano_semestre(){
-        
+    public function ira_ano_semestre()
+    {    
         $date = new Carbon();
         $mes = $date->format('m');
         $ano = $date->format('y');
