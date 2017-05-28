@@ -25,4 +25,15 @@ class DisciplinaMonitoria extends Model
         'id_monitoria',
         'codigo_disciplina', 
     ];
+
+    public function pega_disciplinas_monitoria($id_monitoria){
+
+        $disciplinas = DB::table('disciplinas_mat')
+            ->select('codigo', 'nome')
+            ->join('disciplinas_monitoria', 'codigo', '=', 'codigo_disciplina')
+            ->where('id_monitoria', $id_monitoria)
+            ->get();
+            
+        return $disciplinas;
+    }
 }

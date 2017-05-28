@@ -252,11 +252,18 @@ class CandidatoController extends BaseController
  */
 	public function getEscolhaCandidato()
 	{
-		// $user = Auth::user();
-		// $id_user = $user->id_user;
+		$user = Auth::user();
+		$id_user = $user->id_user;
 		
-		// $monitoria_ativa = new ConfiguraInscricao();
-		// $ano_semestre_ira = $monitoria_ativa->ira_ano_semestre();
+		$monitoria_ativa = new ConfiguraInscricao();
+		$id_monitoria = $monitoria_ativa->retorna_inscricao_ativa();
+		dd($id_monitoria);
+		
+		$disciplinas_escolhas = new DisciplinaMonitoria();
+		$escolhas = $disciplinas_escolhas->pega_disciplinas_monitoria($id_monitoria);
+
+		dd($escolhas);
+
 
 		return view('templates.partials.candidato.escolha_monitoria');
 		
