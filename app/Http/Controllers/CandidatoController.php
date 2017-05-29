@@ -256,8 +256,7 @@ class CandidatoController extends BaseController
 		$id_user = $user->id_user;
 		
 		$monitoria_ativa = new ConfiguraInscricao();
-		$id_monitoria = $monitoria_ativa->retorna_inscricao_ativa();
-		dd($id_monitoria);
+		$id_monitoria = $monitoria_ativa->retorna_inscricao_ativa()->id_monitoria;
 		
 		$disciplinas_escolhas = new DisciplinaMonitoria();
 		$escolhas = $disciplinas_escolhas->pega_disciplinas_monitoria($id_monitoria);
