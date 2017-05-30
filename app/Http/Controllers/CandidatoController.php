@@ -273,12 +273,10 @@ class CandidatoController extends BaseController
 
 	public function postEscolhaCandidato(Request $request)
 	{
-		// $this->validate($request, [
-		// 	'ira' => 'required|regex:/^\d+(,\d+)*(\.\d+)?$/|min:0',
-		// 	'curso_graduacao' => 'required|max:201',
-		// 	'checkbox_foi_monitor' => 'required',
-		// 	'arquivo' => 'required|max:10000'
-		// ]);
+		$this->validate($request, [
+			'escolha_aluno' => 'required',
+			'nome_hora_monitoria' => 'required',
+		]);
 
 		// 	$user = Auth::user();
 		// 	$id_user = $user->id_user;

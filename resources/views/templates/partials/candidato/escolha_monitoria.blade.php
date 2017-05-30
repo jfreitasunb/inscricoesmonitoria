@@ -14,20 +14,20 @@
           <p>
             <div class="form-group col-xs-6">
               <label for="email">Disciplina:</label>
-              <select id="id_disciplina" name="escolha_aluno[]" class="form-control" required="">
+              <select id="id_disciplina" name="escolha_aluno_1" class="form-control" required="">
                 <option value="" selected=""></option>
                 @foreach ($escolhas as $escolha)
-                  <option value="{{$escolha->codigo}}">{{$escolha->nome}}</option>
+                  <option value="{{$escolha->codigo}}" @if(is_array(Request::old('escolha_aluno')) && in_array($escolha->codigo,Request::old('escolha_aluno'))) selected="" @endif >{{$escolha->nome}}</option>
                 @endforeach
               </select>
             </div>
             <div class="form-group col-xs-6">
               <label for="email">Menção:</label>
-              <select id="id_mencao" name="mencao_aluno[]" class="form-control" required="">
+              <select id="id_mencao" name="mencao_aluno_1" class="form-control" required="">
                 <option selected="" value=""></option>
-                <option value="SS">SS</option>
-                <option value="MS">MS</option>
-                <option value="MM">MM</option>
+                <option value="SS" @if(is_array(Request::old('mencao_aluno')) && in_array("SS",Request::old('mencao_aluno'))) selected="" @endif>SS</option>
+                <option value="MS" @if(is_array(Request::old('mencao_aluno')) && in_array("MS",Request::old('mencao_aluno'))) selected="" @endif>MS</option>
+                <option value="MM" @if(is_array(Request::old('mencao_aluno')) && in_array("MM",Request::old('mencao_aluno'))) selected="" @endif>MM</option>
               </select>
             </div> 
             </p>
@@ -36,20 +36,20 @@
             <p>
             <div class="form-group col-xs-6">
               <label for="email">Disciplina:</label>
-              <select id="id_disciplina" name="escolha_aluno[]" class="form-control">
+              <select id="id_disciplina" name="escolha_aluno_2" class="form-control">
               <option value="" selected=""></option>
                 @foreach ($escolhas as $escolha)
-                  <option value="{{$escolha->codigo}}">{{$escolha->nome}}</option>
+                  <option value="{{$escolha->codigo}}" @if(is_array(Request::old('escolha_aluno')) && in_array($escolha->codigo,Request::old('escolha_aluno'))) selected="" @endif>{{$escolha->nome}}</option>
                 @endforeach
               </select>
             </div>
             <div class="form-group col-xs-6">
               <label for="email">Menção:</label>
-              <select id="id_mencao" name="mencao_aluno[]" class="form-control">
+              <select id="id_mencao" name="mencao_aluno_2" class="form-control">
                 <option selected="" value=""></option>
-                <option value="SS">SS</option>
-                <option value="MS">MS</option>
-                <option value="MM">MM</option>
+                <option value="SS" @if(is_array(Request::old('mencao_aluno')) && in_array("SS",Request::old('mencao_aluno'))) selected="" @endif>SS</option>
+                <option value="MS" @if(is_array(Request::old('mencao_aluno')) && in_array("MS",Request::old('mencao_aluno'))) selected="" @endif>MS</option>
+                <option value="MM" @if(is_array(Request::old('mencao_aluno')) && in_array("MM",Request::old('mencao_aluno'))) selected="" @endif>MM</option>
               </select>
             </div>
             </p>
@@ -58,20 +58,20 @@
             <p>
             <div class="form-group col-xs-6">
               <label for="email">Disciplina:</label>
-              <select id="id_disciplina" name="escolha_aluno[]" class="form-control">
+              <select id="id_disciplina" name="escolha_aluno_3" class="form-control">
               <option value="" selected=""></option>
                 @foreach ($escolhas as $escolha)
-                  <option value="{{$escolha->codigo}}">{{$escolha->nome}}</option>
+                  <option value="{{$escolha->codigo}}" @if(is_array(Request::old('escolha_aluno')) && in_array($escolha->codigo,Request::old('escolha_aluno'))) selected="" @endif>{{$escolha->nome}}</option>
                 @endforeach
               </select>
             </div>
             <div class="form-group col-xs-6">
               <label for="email">Menção:</label>
-              <select id="id_mencao" name="mencao_aluno[]" class="form-control" >
+              <select id="id_mencao" name="mencao_aluno_3" class="form-control">
                 <option selected="" value=""></option>
-                <option value="SS">SS</option>
-                <option value="MS">MS</option>
-                <option value="MM">MM</option>
+                <option value="SS" @if(is_array(Request::old('mencao_aluno')) && in_array("SS",Request::old('mencao_aluno'))) selected="" @endif>SS</option>
+                <option value="MS" @if(is_array(Request::old('mencao_aluno')) && in_array("MS",Request::old('mencao_aluno'))) selected="" @endif>MS</option>
+                <option value="MM" @if(is_array(Request::old('mencao_aluno')) && in_array("MM",Request::old('mencao_aluno'))) selected="" @endif>MM</option>
               </select>
             </div> 
             </p>      
@@ -125,13 +125,13 @@
                     <tr>
                       <td>{{$dia_semana}}</td>
                       <td scope="row" class="text-center">
-                        <input type="radio" name="nome_hora_monitoria_{{$dia_semana}}" id="radio_hora_monitoria" value="{{$dia_semana}}_{{$array_horarios_disponiveis[0]}}">
+                        <input type="radio" name="nome_hora_monitoria[{{$dia_semana}}]" id="radio_hora_monitoria" value="{{$dia_semana}}_{{$array_horarios_disponiveis[0]}}">
                       </td>
                       <td class="text-center">
-                        <input type="radio" name="nome_hora_monitoria_{{$dia_semana}}" id="radio_hora_monitoria" value="{{$dia_semana}}_{{$array_horarios_disponiveis[1]}}">
+                        <input type="radio" name="nome_hora_monitoria[{{$dia_semana}}]" id="radio_hora_monitoria" value="{{$dia_semana}}_{{$array_horarios_disponiveis[1]}}">
                       </td>
                       <td class="text-center">
-                        <input type="radio" name="nome_hora_monitoria_{{$dia_semana}}" id="checkbox_hora_monitoria" value="{{$dia_semana}}_{{$array_horarios_disponiveis[2]}}">
+                        <input type="radio" name="nome_hora_monitoria[{{$dia_semana}}]" id="checkbox_hora_monitoria" value="{{$dia_semana}}_{{$array_horarios_disponiveis[2]}}">
                       </td>
                     </tr>
                     @endforeach
