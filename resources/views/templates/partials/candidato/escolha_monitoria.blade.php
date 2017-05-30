@@ -107,7 +107,6 @@
     
         <fieldset class="scheduler-border">
           <legend class="scheduler-border">Explicite seus dias e horários possíveis para a monitoria:</legend>
-          <p>
           <div class="form-horizontal">
             <div class="row">
               <table class="table table-striped">                     
@@ -140,7 +139,6 @@
               </table>
             </div>
           </div>
-          </p>
         </fieldset>
 
         <fieldset class="scheduler-border">

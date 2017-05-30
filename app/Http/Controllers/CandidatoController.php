@@ -274,6 +274,9 @@ class CandidatoController extends BaseController
 	public function postEscolhaCandidato(Request $request)
 	{
 		$this->validate($request, [
+			'escolha_aluno_1' => 'required',
+			'mencao_aluno_1' => 'mencao_aluno_1',
+			'monitor_projeto' => 'monitor_projeto',
 			'escolha_aluno' => 'required',
 			'nome_hora_monitoria' => 'required',
 		]);
