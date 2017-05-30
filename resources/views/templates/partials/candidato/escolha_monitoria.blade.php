@@ -11,9 +11,11 @@
         <h4 align="center">Escolha até três (03) disciplinas, em ordem de prioridade.</h4>
         <div class="form-inline">
           <div class="row">
+          <p>
             <div class="form-group col-xs-6">
               <label for="email">Disciplina:</label>
-              <select id="id_disciplina" name="escolha_aluno[]" class="form-control">
+              <select id="id_disciplina" name="escolha_aluno[]" class="form-control" required="">
+                <option value="" selected=""></option>
                 @foreach ($escolhas as $escolha)
                   <option value="{{$escolha->codigo}}">{{$escolha->nome}}</option>
                 @endforeach
@@ -21,16 +23,21 @@
             </div>
             <div class="form-group col-xs-6">
               <label for="email">Menção:</label>
-              <select id="id_mencao" name="{mencao_aluno}" class="form-control">
-                <option selected="selected" value="mencao_vazia">Menção</option>
+              <select id="id_mencao" name="mencao_aluno[]" class="form-control" required="">
+                <option selected="" value=""></option>
                 <option value="SS">SS</option>
                 <option value="MS">MS</option>
                 <option value="MM">MM</option>
               </select>
             </div> 
+            </p>
+          </div>
+          <div class="row">
+            <p>
             <div class="form-group col-xs-6">
               <label for="email">Disciplina:</label>
               <select id="id_disciplina" name="escolha_aluno[]" class="form-control">
+              <option value="" selected=""></option>
                 @foreach ($escolhas as $escolha)
                   <option value="{{$escolha->codigo}}">{{$escolha->nome}}</option>
                 @endforeach
@@ -38,31 +45,36 @@
             </div>
             <div class="form-group col-xs-6">
               <label for="email">Menção:</label>
-              <select id="id_mencao" name="{mencao_aluno}" class="form-control">
-                <option selected="selected" value="mencao_vazia">Menção</option>
+              <select id="id_mencao" name="mencao_aluno[]" class="form-control">
+                <option selected="" value=""></option>
+                <option value="SS">SS</option>
+                <option value="MS">MS</option>
+                <option value="MM">MM</option>
+              </select>
+            </div>
+            </p>
+            </div>
+            <div class="row">
+            <p>
+            <div class="form-group col-xs-6">
+              <label for="email">Disciplina:</label>
+              <select id="id_disciplina" name="escolha_aluno[]" class="form-control">
+              <option value="" selected=""></option>
+                @foreach ($escolhas as $escolha)
+                  <option value="{{$escolha->codigo}}">{{$escolha->nome}}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="form-group col-xs-6">
+              <label for="email">Menção:</label>
+              <select id="id_mencao" name="mencao_aluno[]" class="form-control" >
+                <option selected="" value=""></option>
                 <option value="SS">SS</option>
                 <option value="MS">MS</option>
                 <option value="MM">MM</option>
               </select>
             </div> 
-            <div class="form-group col-xs-6">
-              <label for="email">Disciplina:</label>
-              <select id="id_disciplina" name="escolha_aluno[]" class="form-control">
-                @foreach ($escolhas as $escolha)
-                  <option value="{{$escolha->codigo}}">{{$escolha->nome}}</option>
-                @endforeach
-              </select>
-            </div>
-
-            <div class="form-group col-xs-6">
-              <label for="email">Menção:</label>
-              <select id="id_mencao" name="{mencao_aluno}" class="form-control">
-                <option selected="selected" value="mencao_vazia">Menção</option>
-                <option value="SS">SS</option>
-                <option value="MS">MS</option>
-                <option value="MM">MM</option>
-              </select>
-            </div>       
+            </p>      
           </div>
         </div>
       </fieldset>
@@ -95,6 +107,7 @@
     
         <fieldset class="scheduler-border">
           <legend class="scheduler-border">Explicite seus dias e horários possíveis para a monitoria:</legend>
+          <p>
           <div class="form-horizontal">
             <div class="row">
               <table class="table table-striped">                     
@@ -127,6 +140,7 @@
               </table>
             </div>
           </div>
+          </p>
         </fieldset>
 
         <fieldset class="scheduler-border">
@@ -143,7 +157,7 @@
         <div class="form-group">
           <div class="row">
             <div class="col-md-6 col-md-offset-3 text-center">
-              <input type="submit" name="registrar" id="register-submit" class="btn btn-primary btn-lg" tabindex="4" value="Enviar" disabled="disabled">
+              <input type="submit" name="registrar" id="register-submit" class="btn btn-primary btn-lg" tabindex="4" value="Enviar">
             </div>
           </div>
         </div>
