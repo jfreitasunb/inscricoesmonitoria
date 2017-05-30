@@ -260,11 +260,14 @@ class CandidatoController extends BaseController
 		
 		$disciplinas_escolhas = new DisciplinaMonitoria();
 		$escolhas = $disciplinas_escolhas->pega_disciplinas_monitoria($id_monitoria);
+	
 
-		dd($escolhas);
+		$array_horarios_disponiveis = array('12:00 às 13:00','13:00 às 14:00','18:00 às 19:00');
 
+    
+    	$array_dias_semana = array('Segunda-Feira','Terça-Feira','Quarta-Feira','Quinta-Feira','Sexta-Feira');
 
-		return view('templates.partials.candidato.escolha_monitoria');
+		return view('templates.partials.candidato.escolha_monitoria')->with(compact('escolhas','array_horarios_disponiveis','array_dias_semana'));
 		
 	}
 
