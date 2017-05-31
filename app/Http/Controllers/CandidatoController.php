@@ -16,6 +16,7 @@ use Monitoriamat\Models\DadoPessoal;
 use Monitoriamat\Models\DadoBancario;
 use Monitoriamat\Models\DadoAcademico;
 use Monitoriamat\Models\AtuacaoMonitoria;
+use Monitoriamat\Models\EscolhaMonitoria;
 use Monitoriamat\Models\Documento;
 use Illuminate\Http\Request;
 use Monitoriamat\Mail\EmailVerification;
@@ -268,7 +269,16 @@ class CandidatoController extends BaseController
     
     	$array_dias_semana = array('Segunda-Feira','Terça-Feira','Quarta-Feira','Quinta-Feira','Sexta-Feira');
 
-		return view('templates.partials.candidato.escolha_monitoria')->with(compact('escolhas','array_horarios_disponiveis','array_dias_semana'));
+    	$escolhas_candidato = new EscolhaMonitoria();
+		$fez_escolhas = $escolhas_candidato->retorna_escolha_monitoria($id_user,$id_monitoria);
+
+		$disable[] = 'disabled="disabled"';
+
+		if (count($fez_escolhas)==3) {
+			return view('templates.partials.candidato.escolha_monitoria')->with(compact('disable','escolhas','array_horarios_disponiveis','array_dias_semana'));
+		}else{
+			return view('templates.partials.candidato.escolha_monitoria')->with(compact('escolhas','array_horarios_disponiveis','array_dias_semana'));
+		}
 		
 	}
 
@@ -284,8 +294,29 @@ class CandidatoController extends BaseController
 
 		]);
 
-		// 	$user = Auth::user();
-		// 	$id_user = $user->id_user;
+
+		$user = Auth::user();
+		$id_user = $user->id_user;
+		$monitoria_ativa = new ConfiguraInscricao();
+		$id_monitoria = $monitoria_ativa->retorna_inscricao_ativa()->id_monitoria;
+
+
+		$escolhas = new EscolhaMonitoria();
+		$fez_escolhas = $escolhas->retorna_escolha_monitoria($id_user,$id_monitoria);
+
+		// if (count($fez_escolhas)==3) {
+		// 	return redirect()->route('home')->with('error','Você já fez as três escolhas possíveis.');
+		// }else{
+			if (count($fez_escolhas)==0 or count($fez_escolhas)<=3) {
+				$grava_escolhas = new EscolhaMonitoria();
+				$grava_escolhas->id_user = $id_user;
+				$grava_escolhas->id_monitoria = $id_monitoria;
+				$grava_escolhas->escolha_aluno = $request->escolha_aluno_1;
+				$grava_escolhas->mencao_aluno = $request->mencao_aluno_1;
+				$grava_escolhas->save();
+			}
+		// }
+		
 
 
 		// 	for ($i=0; $i < sizeof($request->checkbox_foi_monitor); $i++) {
