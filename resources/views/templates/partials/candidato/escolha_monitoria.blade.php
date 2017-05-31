@@ -17,7 +17,7 @@
               <select id="id_disciplina" name="escolha_aluno_1" class="form-control" required="">
                 <option value="" selected=""></option>
                 @foreach ($escolhas as $escolha)
-                  <option value="{{$escolha->codigo}}" @if(is_array(Request::old('escolha_aluno')) && in_array($escolha->codigo,Request::old('escolha_aluno'))) selected="" @endif >{{$escolha->nome}}</option>
+                  <option value="{{$escolha->codigo}}" @if(Request::old('escolha_aluno_1')==$escolha->codigo) selected="" @endif >{{$escolha->nome}}</option>
                 @endforeach
               </select>
             </div>
@@ -25,9 +25,9 @@
               <label for="email">Menção:</label>
               <select id="id_mencao" name="mencao_aluno_1" class="form-control" required="">
                 <option selected="" value=""></option>
-                <option value="SS" @if(is_array(Request::old('mencao_aluno')) && in_array("SS",Request::old('mencao_aluno'))) selected="" @endif>SS</option>
-                <option value="MS" @if(is_array(Request::old('mencao_aluno')) && in_array("MS",Request::old('mencao_aluno'))) selected="" @endif>MS</option>
-                <option value="MM" @if(is_array(Request::old('mencao_aluno')) && in_array("MM",Request::old('mencao_aluno'))) selected="" @endif>MM</option>
+                <option value="SS" @if(Request::old('mencao_aluno_1')=="SS") selected="" @endif>SS</option>
+                <option value="MS" @if(Request::old('mencao_aluno_1')=="MS") selected="" @endif>MS</option>
+                <option value="MM" @if(Request::old('mencao_aluno_1')=="MM") selected="" @endif>MM</option>
               </select>
             </div> 
             </p>
@@ -39,7 +39,7 @@
               <select id="id_disciplina" name="escolha_aluno_2" class="form-control">
               <option value="" selected=""></option>
                 @foreach ($escolhas as $escolha)
-                  <option value="{{$escolha->codigo}}" @if(is_array(Request::old('escolha_aluno')) && in_array($escolha->codigo,Request::old('escolha_aluno'))) selected="" @endif>{{$escolha->nome}}</option>
+                  <option value="{{$escolha->codigo}}" @if(Request::old('escolha_aluno_2')==$escolha->codigo) selected="" @endif>{{$escolha->nome}}</option>
                 @endforeach
               </select>
             </div>
@@ -47,9 +47,9 @@
               <label for="email">Menção:</label>
               <select id="id_mencao" name="mencao_aluno_2" class="form-control">
                 <option selected="" value=""></option>
-                <option value="SS" @if(is_array(Request::old('mencao_aluno')) && in_array("SS",Request::old('mencao_aluno'))) selected="" @endif>SS</option>
-                <option value="MS" @if(is_array(Request::old('mencao_aluno')) && in_array("MS",Request::old('mencao_aluno'))) selected="" @endif>MS</option>
-                <option value="MM" @if(is_array(Request::old('mencao_aluno')) && in_array("MM",Request::old('mencao_aluno'))) selected="" @endif>MM</option>
+                <option value="SS" @if(Request::old('mencao_aluno_2')=="SS") selected="" @endif>SS</option>
+                <option value="MS" @if(Request::old('mencao_aluno_2')=="MS") selected="" @endif>MS</option>
+                <option value="MM" @if(Request::old('mencao_aluno_2')=="MM") selected="" @endif>MM</option>
               </select>
             </div>
             </p>
@@ -61,7 +61,7 @@
               <select id="id_disciplina" name="escolha_aluno_3" class="form-control">
               <option value="" selected=""></option>
                 @foreach ($escolhas as $escolha)
-                  <option value="{{$escolha->codigo}}" @if(is_array(Request::old('escolha_aluno')) && in_array($escolha->codigo,Request::old('escolha_aluno'))) selected="" @endif>{{$escolha->nome}}</option>
+                  <option value="{{$escolha->codigo}}" @if(Request::old('escolha_aluno_3')==$escolha->codigo) selected="" @endif>{{$escolha->nome}}</option>
                 @endforeach
               </select>
             </div>
@@ -69,9 +69,9 @@
               <label for="email">Menção:</label>
               <select id="id_mencao" name="mencao_aluno_3" class="form-control">
                 <option selected="" value=""></option>
-                <option value="SS" @if(is_array(Request::old('mencao_aluno')) && in_array("SS",Request::old('mencao_aluno'))) selected="" @endif>SS</option>
-                <option value="MS" @if(is_array(Request::old('mencao_aluno')) && in_array("MS",Request::old('mencao_aluno'))) selected="" @endif>MS</option>
-                <option value="MM" @if(is_array(Request::old('mencao_aluno')) && in_array("MM",Request::old('mencao_aluno'))) selected="" @endif>MM</option>
+                <option value="SS" @if(Request::old('mencao_aluno_3')=="SS") selected="" @endif>SS</option>
+                <option value="MS" @if(Request::old('mencao_aluno_3')=="MS") selected="" @endif>MS</option>
+                <option value="MM" @if(Request::old('mencao_aluno_3')=="MM") selected="" @endif>MM</option>
               </select>
             </div> 
             </p>      
@@ -124,13 +124,13 @@
                     <tr>
                       <td>{{$dia_semana}}</td>
                       <td scope="row" class="text-center">
-                        <input type="radio" name="nome_hora_monitoria[{{$dia_semana}}]" id="radio_hora_monitoria" value="{{$dia_semana}}_{{$array_horarios_disponiveis[0]}}">
+                        <input type="radio" name="nome_hora_monitoria[{{$dia_semana}}]" value="{{$dia_semana}}_{{$array_horarios_disponiveis[0]}}" @if(is_array(Request::old('nome_hora_monitoria')) && in_array($dia_semana."_".$array_horarios_disponiveis[0],Request::old('nome_hora_monitoria'))) checked @endif>
                       </td>
                       <td class="text-center">
-                        <input type="radio" name="nome_hora_monitoria[{{$dia_semana}}]" id="radio_hora_monitoria" value="{{$dia_semana}}_{{$array_horarios_disponiveis[1]}}">
+                        <input type="radio" name="nome_hora_monitoria[{{$dia_semana}}]" value="{{$dia_semana}}_{{$array_horarios_disponiveis[1]}}" @if(is_array(Request::old('nome_hora_monitoria')) && in_array($dia_semana."_".$array_horarios_disponiveis[1],Request::old('nome_hora_monitoria'))) checked @endif>
                       </td>
                       <td class="text-center">
-                        <input type="radio" name="nome_hora_monitoria[{{$dia_semana}}]" id="checkbox_hora_monitoria" value="{{$dia_semana}}_{{$array_horarios_disponiveis[2]}}">
+                        <input type="radio" name="nome_hora_monitoria[{{$dia_semana}}]" value="{{$dia_semana}}_{{$array_horarios_disponiveis[2]}}" @if(is_array(Request::old('nome_hora_monitoria')) && in_array($dia_semana."_".$array_horarios_disponiveis[2],Request::old('nome_hora_monitoria'))) checked @endif>
                       </td>
                     </tr>
                     @endforeach
@@ -145,7 +145,7 @@
         <legend class="scheduler-border">Declaração de conhecimento das regras da Monitoria da UnB:</legend>
           <div class="row">
             <p>
-              <input type="checkbox" name="concordatermos" id="concordatermos" value="1" required="">
+              <input type="checkbox" name="concordatermos" id="concordatermos" value="1" required="" @if(Request::old('concordatermos')=="1") checked @endif>
               Declaro conhecer os critérios de participação do Programa de Monitoria de Graduação, estabelecidos pela Resolução CEPE no 008/90 de 26.10.1990 (disponível online em <a href="http://tinyurl.com/hg3ch99" target="_blank">http://tinyurl.com/hg3ch99</a>), e ser conhecedor que a participação no Programa não estabelece nenhum vínculo empregatício meu junto a Fundação Universidade de Brasília – UnB.
             </p>
           </div>
