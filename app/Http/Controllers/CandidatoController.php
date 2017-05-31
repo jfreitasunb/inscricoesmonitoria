@@ -6,6 +6,7 @@ use Auth;
 use DB;
 use Mail;
 use Session;
+use Validator;
 use Carbon\Carbon;
 use Monitoriamat\Models\User;
 use Monitoriamat\Models\ConfiguraInscricao;
@@ -275,10 +276,12 @@ class CandidatoController extends BaseController
 	{
 		$this->validate($request, [
 			'escolha_aluno_1' => 'required',
-			'mencao_aluno_1' => 'mencao_aluno_1',
-			'monitor_projeto' => 'monitor_projeto',
-			'escolha_aluno' => 'required',
+			'mencao_aluno_1' => 'required',
+			'monitor_projeto' => 'required',
 			'nome_hora_monitoria' => 'required',
+			'nome_professor' => 'required_if:monitor_projeto,==,sim',
+			'tipo_monitoria' => 'required|is_voluntario:monitor_projeto',
+
 		]);
 
 		// 	$user = Auth::user();
