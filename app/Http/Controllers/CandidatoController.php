@@ -275,9 +275,12 @@ class CandidatoController extends BaseController
 		$disable[] = 'disabled="disabled"';
 
 		if (count($fez_escolhas)==3) {
+			return redirect()->back()->with('erro','Você já fez suas três escolhas possíveis.');
 			return view('templates.partials.candidato.escolha_monitoria')->with(compact('disable','escolhas','array_horarios_disponiveis','array_dias_semana'));
 		}else{
-			return view('templates.partials.candidato.escolha_monitoria')->with(compact('escolhas','array_horarios_disponiveis','array_dias_semana'));
+			$disable=[];
+			$disable[] = '';
+			return view('templates.partials.candidato.escolha_monitoria')->with(compact('disable','escolhas','array_horarios_disponiveis','array_dias_semana'));
 		}
 		
 	}
@@ -314,6 +317,24 @@ class CandidatoController extends BaseController
 				$grava_escolhas->escolha_aluno = $request->escolha_aluno_1;
 				$grava_escolhas->mencao_aluno = $request->mencao_aluno_1;
 				$grava_escolhas->save();
+
+				if (isset($request->escolha_aluno_2) and isset($request->mencao_aluno_2)) {
+					$grava_escolhas = new EscolhaMonitoria();
+					$grava_escolhas->id_user = $id_user;
+					$grava_escolhas->id_monitoria = $id_monitoria;
+					$grava_escolhas->escolha_aluno = $request->escolha_aluno_2;
+					$grava_escolhas->mencao_aluno = $request->mencao_aluno_2;
+					$grava_escolhas->save();
+				}
+
+				if (isset($request->escolha_aluno_3) and isset($request->mencao_aluno_3)) {
+					$grava_escolhas = new EscolhaMonitoria();
+					$grava_escolhas->id_user = $id_user;
+					$grava_escolhas->id_monitoria = $id_monitoria;
+					$grava_escolhas->escolha_aluno = $request->escolha_aluno_3;
+					$grava_escolhas->mencao_aluno = $request->mencao_aluno_3;
+					$grava_escolhas->save();
+				}
 			}
 		// }
 		
