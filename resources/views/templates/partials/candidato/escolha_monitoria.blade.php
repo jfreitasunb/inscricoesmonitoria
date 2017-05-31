@@ -155,7 +155,7 @@
         <div class="form-group">
           <div class="row">
             <div class="col-md-6 col-md-offset-3 text-center">
-              <input type="submit" name="registrar" id="register-submit" class="btn btn-primary btn-lg" tabindex="4" value="Enviar" {{$disable}}>
+              <input type="submit" name="registrar" id="register-submit" class="btn btn-primary btn-lg" tabindex="4" value="Enviar" {!! $disable[0] !!}>
             </div>
           </div>
         </div>
