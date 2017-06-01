@@ -145,7 +145,7 @@
         <legend class="scheduler-border">Declaração de conhecimento das regras da Monitoria da UnB:</legend>
           <div class="row">
             <p>
-              <input type="checkbox" name="concordatermos" id="concordatermos" value="1" required="" @if(Request::old('concordatermos')=="1") checked @endif>
+              <input type="checkbox" name="concorda_termos" id="concorda_termos" value="1" required="" @if(Request::old('concorda_termos')=="1") checked @endif>
               Declaro conhecer os critérios de participação do Programa de Monitoria de Graduação, estabelecidos pela Resolução CEPE no 008/90 de 26.10.1990 (disponível online em <a href="http://tinyurl.com/hg3ch99" target="_blank">http://tinyurl.com/hg3ch99</a>), e ser conhecedor que a participação no Programa não estabelece nenhum vínculo empregatício meu junto a Fundação Universidade de Brasília – UnB.
             </p>
           </div>
