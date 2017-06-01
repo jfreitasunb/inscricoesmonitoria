@@ -16,7 +16,6 @@ class CreateFinalizaEscolhasTable extends Migration
         Schema::create('finaliza_escolhas', function (Blueprint $table){
             $table->increments('id');
             $table->integer('id_user');
-            $table->string('escolha_aluno',20);
             $table->string('tipo_monitoria',32);
             $table->boolean('concordatermos');
             $table->integer('id_monitoria');
