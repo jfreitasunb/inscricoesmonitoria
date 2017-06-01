@@ -318,7 +318,9 @@ class CandidatoController extends BaseController
 				$grava_escolhas->mencao_aluno = $request->mencao_aluno_1;
 				$grava_escolhas->save();
 
-				if (isset($request->escolha_aluno_2) and isset($request->mencao_aluno_2)) {
+				$fez_escolhas = $escolhas->retorna_escolha_monitoria($id_user,$id_monitoria);
+
+				if (isset($request->escolha_aluno_2) and isset($request->mencao_aluno_2) and count($fez_escolhas) < 3) {
 					$grava_escolhas = new EscolhaMonitoria();
 					$grava_escolhas->id_user = $id_user;
 					$grava_escolhas->id_monitoria = $id_monitoria;
@@ -327,7 +329,9 @@ class CandidatoController extends BaseController
 					$grava_escolhas->save();
 				}
 
-				if (isset($request->escolha_aluno_3) and isset($request->mencao_aluno_3)) {
+				$fez_escolhas = $escolhas->retorna_escolha_monitoria($id_user,$id_monitoria);
+
+				if (isset($request->escolha_aluno_3) and isset($request->mencao_aluno_3) and count($fez_escolhas) < 3) {
 					$grava_escolhas = new EscolhaMonitoria();
 					$grava_escolhas->id_user = $id_user;
 					$grava_escolhas->id_monitoria = $id_monitoria;
