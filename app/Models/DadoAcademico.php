@@ -15,7 +15,8 @@ class DadoAcademico extends Model
 
     protected $fillable = [
         'ira',
-        'monitor_convidade', 
+        'monitor_convidado',
+        'nome_professor' ,
         'curso_graduacao',
     ];
 
@@ -26,5 +27,4 @@ public function retorna_dados_academicos($id_user)
         return $dados_academicos;
 
     }
-
 }
