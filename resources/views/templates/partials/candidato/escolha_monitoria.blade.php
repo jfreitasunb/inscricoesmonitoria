@@ -83,8 +83,8 @@
           <h4>Atenção: Apenas marque SIM se você foi convidado por um professor.</h4>
           <div class="form-horizontal">
               <p>
-                <input type="radio" name="monitor_projeto" id="monitor_projeto" value="nao" required="" @if(Request::old('monitor_projeto')=="nao") checked @endif> Não<br>
-                <input type="radio" name="monitor_projeto" id="monitor_projeto" value="sim" @if(Request::old('monitor_projeto')=="sim") checked @endif> Sim. Por favor, digite abaixo o nome do professor que será responsável por sua monitoria. Neste caso, apenas será possível matrícula na opção de monitoria voluntária.<br>
+                <input type="radio" name="monitor_convidado" id="monitor_convidado" value="0" required="" @if(Request::old('monitor_convidado')=="0") checked @endif> Não<br>
+                <input type="radio" name="monitor_convidado" id="monitor_convidado" value="1" @if(Request::old('monitor_convidado')=="1") checked @endif> Sim. Por favor, digite abaixo o nome do professor que será responsável por sua monitoria. Neste caso, apenas será possível matrícula na opção de monitoria voluntária.<br>
               </p>
               <h4>Caso tenha respondido "SIM" à questão anterior, escreva o nome do professor que será responsável por sua monitoria.</h4>
               <div class="col-md-6">
