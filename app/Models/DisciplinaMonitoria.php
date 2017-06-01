@@ -31,7 +31,7 @@ class DisciplinaMonitoria extends Model
         $disciplinas = DB::table('disciplinas_mat')
             ->select('codigo', 'nome')
             ->join('disciplinas_monitoria', 'codigo', '=', 'codigo_disciplina')
-            ->where('id_monitoria', $id_monitoria)
+            ->where('id_monitoria', $id_monitoria)->orderBy('nome')
             ->get();
             
         return $disciplinas;
