@@ -11,7 +11,7 @@ class HorarioEscolhido extends Model
 {
     protected $primaryKey = 'id_user';
 
-    protected $table = 'Horario_escolhido';
+    protected $table = 'horario_escolhido';
 
     protected $fillable = [
         'horario_monitoria',
