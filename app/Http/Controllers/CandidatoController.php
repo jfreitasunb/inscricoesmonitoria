@@ -17,6 +17,7 @@ use Monitoriamat\Models\DadoBancario;
 use Monitoriamat\Models\DadoAcademico;
 use Monitoriamat\Models\AtuacaoMonitoria;
 use Monitoriamat\Models\EscolhaMonitoria;
+use Monitoriamat\Models\HorarioEscolhido;
 use Monitoriamat\Models\Documento;
 use Illuminate\Http\Request;
 use Monitoriamat\Mail\EmailVerification;
@@ -303,54 +304,70 @@ class CandidatoController extends BaseController
 		$id_monitoria = $monitoria_ativa->retorna_inscricao_ativa()->id_monitoria;
 
 
-		$escolhas = new EscolhaMonitoria();
-		$fez_escolhas = $escolhas->retorna_escolha_monitoria($id_user,$id_monitoria);
+		// $escolhas = new EscolhaMonitoria();
+		// $fez_escolhas = $escolhas->retorna_escolha_monitoria($id_user,$id_monitoria);
 
 		
-		if (count($fez_escolhas)==0 or count($fez_escolhas)<=3) {
-			$grava_escolhas = new EscolhaMonitoria();
-			$grava_escolhas->id_user = $id_user;
-			$grava_escolhas->id_monitoria = $id_monitoria;
-			$grava_escolhas->escolha_aluno = $request->input('escolha_aluno_1');
-			$grava_escolhas->mencao_aluno = $request->input('mencao_aluno_1');
-			$grava_escolhas->save();
+		// if (count($fez_escolhas)==0 or count($fez_escolhas)<=3) {
+		// 	$grava_escolhas = new EscolhaMonitoria();
+		// 	$grava_escolhas->id_user = $id_user;
+		// 	$grava_escolhas->id_monitoria = $id_monitoria;
+		// 	$grava_escolhas->escolha_aluno = $request->input('escolha_aluno_1');
+		// 	$grava_escolhas->mencao_aluno = $request->input('mencao_aluno_1');
+		// 	$grava_escolhas->save();
 
-			$fez_escolhas = $escolhas->retorna_escolha_monitoria($id_user,$id_monitoria);
+		// 	$fez_escolhas = $escolhas->retorna_escolha_monitoria($id_user,$id_monitoria);
 
-			if (isset($request->escolha_aluno_2) and isset($request->mencao_aluno_2) and count($fez_escolhas) < 3) {
-				$grava_escolhas = new EscolhaMonitoria();
-				$grava_escolhas->id_user = $id_user;
-				$grava_escolhas->id_monitoria = $id_monitoria;
-				$grava_escolhas->escolha_aluno = $request->input('escolha_aluno_2');
-				$grava_escolhas->mencao_aluno = $request->input('mencao_aluno_2');
-				$grava_escolhas->save();
-			}
+		// 	if (isset($request->escolha_aluno_2) and isset($request->mencao_aluno_2) and count($fez_escolhas) < 3) {
+		// 		$grava_escolhas = new EscolhaMonitoria();
+		// 		$grava_escolhas->id_user = $id_user;
+		// 		$grava_escolhas->id_monitoria = $id_monitoria;
+		// 		$grava_escolhas->escolha_aluno = $request->input('escolha_aluno_2');
+		// 		$grava_escolhas->mencao_aluno = $request->input('mencao_aluno_2');
+		// 		$grava_escolhas->save();
+		// 	}
 
-			$fez_escolhas = $escolhas->retorna_escolha_monitoria($id_user,$id_monitoria);
+		// 	$fez_escolhas = $escolhas->retorna_escolha_monitoria($id_user,$id_monitoria);
 
-			if (isset($request->escolha_aluno_3) and isset($request->mencao_aluno_3) and count($fez_escolhas) < 3) {
-				$grava_escolhas = new EscolhaMonitoria();
-				$grava_escolhas->id_user = $id_user;
-				$grava_escolhas->id_monitoria = $id_monitoria;
-				$grava_escolhas->escolha_aluno = $request->input('escolha_aluno_3');
-				$grava_escolhas->mencao_aluno = $request->input('mencao_aluno_3');
-				$grava_escolhas->save();
-			}
+		// 	if (isset($request->escolha_aluno_3) and isset($request->mencao_aluno_3) and count($fez_escolhas) < 3) {
+		// 		$grava_escolhas = new EscolhaMonitoria();
+		// 		$grava_escolhas->id_user = $id_user;
+		// 		$grava_escolhas->id_monitoria = $id_monitoria;
+		// 		$grava_escolhas->escolha_aluno = $request->input('escolha_aluno_3');
+		// 		$grava_escolhas->mencao_aluno = $request->input('mencao_aluno_3');
+		// 		$grava_escolhas->save();
+		// 	}
+		// }
+
+		// $cria_dados_academicos = DadoAcademico::where('id_user', '=', $id_user)->where('id_monitoria', '=', $id_monitoria)->first();
+		// if (isset($request->nome_professor)) {
+		// 	$monitor_projeto = [
+		// 		'monitor_convidado' => $request->input('monitor_convidado'),
+		// 		'nome_professor' => $request->input('nome_professor'),
+		// 	];
+		// }else{
+		// 	$monitor_projeto = [
+		// 		'monitor_convidado' => $request->input('monitor_convidado'),
+		// 	];
+		// }
+
+		// $cria_dados_academicos->update($monitor_projeto);
+		// 
+		
+		
+
+		$horario = $request->input('nome_hora_monitoria');
+
+		foreach ($horario as $key) {
+			$temp = explode('_', $key);
+			$horario_escolhido = new HorarioEscolhido();
+			$horario_escolhido->id_user = $id_user;
+			$horario_escolhido->horario_monitoria = $temp[1];
+			$horario_escolhido->dia_semana = $temp[0];
+			$horario_escolhido->id_monitoria = $id_monitoria;
+
+			$horario_escolhido->save();
 		}
-
-		$cria_dados_academicos = DadoAcademico::where('id_user', '=', $id_user)->where('id_monitoria', '=', $id_monitoria)->first();
-		if (isset($request->nome_professor)) {
-			$monitor_projeto = [
-				'monitor_convidado' => $request->input('monitor_convidado'),
-				'nome_professor' => $request->input('nome_professor'),
-			];
-		}else{
-			$monitor_projeto = [
-				'monitor_convidado' => $request->input('monitor_convidado'),
-			];
-		}
-
-		$cria_dados_academicos->update($monitor_projeto);
 		
 
 
