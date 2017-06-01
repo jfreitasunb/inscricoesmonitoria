@@ -294,6 +294,7 @@ class CandidatoController extends BaseController
 			'nome_hora_monitoria' => 'required',
 			'nome_professor' => 'required_if:monitor_convidado,==,sim',
 			'tipo_monitoria' => 'required|is_voluntario:monitor_convidado',
+			'concorda_termos' => 'required',
 
 		]);
 
