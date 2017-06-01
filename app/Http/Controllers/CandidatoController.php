@@ -289,10 +289,10 @@ class CandidatoController extends BaseController
 		$this->validate($request, [
 			'escolha_aluno_1' => 'required',
 			'mencao_aluno_1' => 'required',
-			'monitor_projeto' => 'required',
+			'monitor_convidado' => 'required',
 			'nome_hora_monitoria' => 'required',
-			'nome_professor' => 'required_if:monitor_projeto,==,sim',
-			'tipo_monitoria' => 'required|is_voluntario:monitor_projeto',
+			'nome_professor' => 'required_if:monitor_convidado,==,sim',
+			'tipo_monitoria' => 'required|is_voluntario:monitor_convidado',
 
 		]);
 
@@ -311,8 +311,8 @@ class CandidatoController extends BaseController
 			$grava_escolhas = new EscolhaMonitoria();
 			$grava_escolhas->id_user = $id_user;
 			$grava_escolhas->id_monitoria = $id_monitoria;
-			$grava_escolhas->escolha_aluno = $request->escolha_aluno_1;
-			$grava_escolhas->mencao_aluno = $request->mencao_aluno_1;
+			$grava_escolhas->escolha_aluno = $request->input('escolha_aluno_1');
+			$grava_escolhas->mencao_aluno = $request->input('mencao_aluno_1');
 			$grava_escolhas->save();
 
 			$fez_escolhas = $escolhas->retorna_escolha_monitoria($id_user,$id_monitoria);
@@ -321,8 +321,8 @@ class CandidatoController extends BaseController
 				$grava_escolhas = new EscolhaMonitoria();
 				$grava_escolhas->id_user = $id_user;
 				$grava_escolhas->id_monitoria = $id_monitoria;
-				$grava_escolhas->escolha_aluno = $request->escolha_aluno_2;
-				$grava_escolhas->mencao_aluno = $request->mencao_aluno_2;
+				$grava_escolhas->escolha_aluno = $request->input('escolha_aluno_2');
+				$grava_escolhas->mencao_aluno = $request->input('mencao_aluno_2');
 				$grava_escolhas->save();
 			}
 
@@ -332,21 +332,25 @@ class CandidatoController extends BaseController
 				$grava_escolhas = new EscolhaMonitoria();
 				$grava_escolhas->id_user = $id_user;
 				$grava_escolhas->id_monitoria = $id_monitoria;
-				$grava_escolhas->escolha_aluno = $request->escolha_aluno_3;
-				$grava_escolhas->mencao_aluno = $request->mencao_aluno_3;
+				$grava_escolhas->escolha_aluno = $request->input('escolha_aluno_3');
+				$grava_escolhas->mencao_aluno = $request->input('mencao_aluno_3');
 				$grava_escolhas->save();
 			}
 		}
 
-		$cria_dados_academicos = new DadoAcademico();
-		$cria_dados_academicos->id_user = $id_user;
-		$cria_dados_academicos->monitor_convidado = $request->input('monitor_convidado');
+		$cria_dados_academicos = DadoAcademico::where('id_user', '=', $id_user)->where('id_monitoria', '=', $id_monitoria)->first();
 		if (isset($request->nome_professor)) {
-			$cria_dados_academicos->nome_professor = $request->input('nome_professor');
+			$monitor_projeto = [
+				'monitor_convidado' => $request->input('monitor_convidado'),
+				'nome_professor' => $request->input('nome_professor'),
+			];
+		}else{
+			$monitor_projeto = [
+				'monitor_convidado' => $request->input('monitor_convidado'),
+			];
 		}
-		$cria_dados_academicos->id_monitoria = $id_monitoria;
-		$cria_dados_academicos->update();
-		
+
+		$cria_dados_academicos->update($monitor_projeto);
 		
 
 
