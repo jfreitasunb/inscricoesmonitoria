@@ -17,7 +17,7 @@ class CreateFinalizaEscolhasTable extends Migration
             $table->increments('id');
             $table->integer('id_user');
             $table->string('tipo_monitoria',32);
-            $table->boolean('concordatermos');
+            $table->boolean('concorda_termos');
             $table->integer('id_monitoria');
             $table->boolean('finalizar');
             $table->timestamps();

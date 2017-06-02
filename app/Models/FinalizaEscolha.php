@@ -22,7 +22,7 @@ class FinalizaEscolha extends Model
     {
         $finalizou_inscricao = $this->select('finalizar')->where("id_user", $id_user)->where("id_monitoria", $id_monitoria)->get();
 
-        if ($finalizou_inscricao[0]['finalizar']) {
+        if (count($finalizou_inscricao)>0 and $finalizou_inscricao[0]['finalizar']) {
         	return TRUE;
         }else{
         	return FALSE;

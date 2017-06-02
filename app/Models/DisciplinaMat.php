@@ -30,7 +30,7 @@ class DisciplinaMat extends Model
     public function pega_disciplinas_monitoria()
     {
     
-        $disciplinas_para_monitoria = $this->select('codigo', 'nome')->orderBy('codigo','nome')->get();
+        $disciplinas_para_monitoria = $this->select('codigo', 'nome')->orderBy('nome')->get();
 
         return $disciplinas_para_monitoria;
     }
