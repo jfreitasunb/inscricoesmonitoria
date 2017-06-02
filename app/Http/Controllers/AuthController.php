@@ -51,7 +51,7 @@ class AuthController extends BaseController
 
         Mail::to($user->email)->send($email);
 
-		return redirect()->route('home')->with('info','Conta criada com sucesso.');
+		return redirect()->route('home')->with('info','Conta criada com sucesso. Foi enviado para o e-mail informado um link de ativação da sua conta. Somente após ativação você conseguirá fazer login no sistema.');
 
 	}
 
