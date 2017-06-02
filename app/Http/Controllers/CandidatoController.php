@@ -126,7 +126,7 @@ class CandidatoController extends BaseController
 				$candidato->update($dados_pessoais);
 			}
 
-			return redirect()->route('home')->with('success','Seus dados foram atualizados.');
+			return redirect()->route('dados.bancarios')->with('info','Caso você esteja se candidantando à monitoria voluntária não é necessário informar os dados bancários.')->with('success','Seus dados pessoais foram atualizados.');
 	}
 
 /*
@@ -190,7 +190,7 @@ class CandidatoController extends BaseController
 				$banco->update($dados_bancarios);
 			}
 
-			return redirect()->route('home')->with('success','Seus dados foram atualizados.');
+			return redirect()->route('dados.academicos')->with('info','Agora você deve informar seus dados acadêmicos.')->with('success','Seus dados bancários foram atualizados.');
 	}
 
 /*
@@ -263,7 +263,7 @@ class CandidatoController extends BaseController
 			$arquivo->nome_arquivo = $filename;
 			$arquivo->save();
 			
-			return redirect()->route('home')->with('success','Seus dados foram atualizados.');
+			return redirect()->route('dados.escolhas')->with('info','Agora você pode fazer as escolhas das disciplinas para as quais irá se candidatar à Monitoria do MAT.')->with('success','Seus dados foram atualizados.');
 	}
 
 
