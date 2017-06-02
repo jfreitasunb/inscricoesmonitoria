@@ -2,7 +2,7 @@
 
 namespace Monitoriamat\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Monitoriamat\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
 class ForgotPasswordController extends Controller
@@ -17,6 +17,8 @@ class ForgotPasswordController extends Controller
     | your application to your users. Feel free to explore this trait.
     |
     */
+   
+   protected $redirectTo = '/';
 
     use SendsPasswordResetEmails;
 

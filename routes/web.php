@@ -154,21 +154,27 @@ Route::post('/registrar', [
 *Password Reset Routes
  */
 
-Route::get('password/reset/{token?}', [
-		'uses'	=> '\Monitoriamat\Http\Controllers\ResetPassordController@showResetForm',
-		'as'	=> 'password.link',
+Route::get('esqueci/senha', [
+		'uses'	=> '\Monitoriamat\Http\Controllers\ForgotPasswordController@showLinkRequestForm',
+		'as'	=> 'password.email',
 		'middleware' => ['guest'],
 ]);
 
-Route::post('password/email', [
-		'uses'	=> '\Monitoriamat\Http\Controllers\ResetPassordController@sendResetLinkEmail',
-		'as'	=> 'password.reset',
+Route::post('esqueci/senha', [
+		'uses'	=> '\Monitoriamat\Http\Controllers\ForgotPasswordController@sendResetLinkEmail',
+		'as' => 'password.link',
 		'middleware' => ['guest'],
 ]);
 
-Route::post('password/reset', [
-		'uses'	=> '\Monitoriamat\Http\Controllers\ResetPassordController@reset',
-		'as'	=> 'password.resetar',
+Route::get('mudar/senha/{token?}', [
+		'uses'	=> '\Monitoriamat\Http\Controllers\ResetPasswordController@showResetForm',
+		'as' => 'password.reset',
+		'middleware' => ['guest'],
+]);
+
+Route::post('mudar/senha', [
+		'uses'	=> '\Monitoriamat\Http\Controllers\ResetPasswordController@reset',
+		'as' => 'password.reset',
 		'middleware' => ['guest'],
 ]);
 
