@@ -150,6 +150,28 @@ Route::post('/registrar', [
 		'uses'	=> '\Monitoriamat\Http\Controllers\AuthController@postSignup',
 ]);
 
+/*
+*Password Reset Routes
+ */
+
+Route::get('password/reset/{token?}', [
+		'uses'	=> '\Monitoriamat\Http\Controllers\ResetPassordController@showResetForm',
+		'as'	=> 'password.link',
+		'middleware' => ['guest'],
+]);
+
+Route::post('password/email', [
+		'uses'	=> '\Monitoriamat\Http\Controllers\ResetPassordController@sendResetLinkEmail',
+		'as'	=> 'password.reset',
+		'middleware' => ['guest'],
+]);
+
+Route::post('password/reset', [
+		'uses'	=> '\Monitoriamat\Http\Controllers\ResetPassordController@reset',
+		'as'	=> 'password.resetar',
+		'middleware' => ['guest'],
+]);
+
 /**
 * Alertas
  */
