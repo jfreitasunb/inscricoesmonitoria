@@ -261,6 +261,7 @@ class CandidatoController extends BaseController
 		
 		$monitoria_ativa = new ConfiguraInscricao();
 		$id_monitoria = $monitoria_ativa->retorna_inscricao_ativa()->id_monitoria;
+		$autoriza_inscricao = $monitoria_ativa->autoriza_inscricao();
 		
 		$disciplinas_escolhas = new DisciplinaMonitoria();
 		$escolhas = $disciplinas_escolhas->pega_disciplinas_monitoria($id_monitoria);	
@@ -275,12 +276,26 @@ class CandidatoController extends BaseController
 
 		$disable[] = 'disabled="disabled"';
 
+		$finaliza_inscricao = new FinalizaEscolha();
+
+		$status_inscricao = $finaliza_inscricao->retorna_inscricao_finalizada($id_user,$id_monitoria);
+
+		if (!$autoriza_inscricao) {
+			return redirect()->route('home')->with('info','O período de inscrição já está encerrado ou ainda não começou.');
+		}
+
+		if ($status_inscricao) {
+			return redirect()->back()->with('info','Você já finalizou sua inscrição. Não é possível fazer novas escolhas de disciplinas para candidatura à Monitoria do MAT.');
+		}
+
 		if (count($fez_escolhas)==3) {
-			return redirect()->back()->with('erro','Você já fez suas três escolhas possíveis.');
+			
 			return view('templates.partials.candidato.escolha_monitoria')->with(compact('disable','escolhas','array_horarios_disponiveis','array_dias_semana'));
 		}else{
+
 			$disable=[];
 			$disable[] = '';
+			
 			return view('templates.partials.candidato.escolha_monitoria')->with(compact('disable','escolhas','array_horarios_disponiveis','array_dias_semana'));
 		}
 		
@@ -302,9 +317,25 @@ class CandidatoController extends BaseController
 
 		$user = Auth::user();
 		$id_user = $user->id_user;
+		
 		$monitoria_ativa = new ConfiguraInscricao();
 		$id_monitoria = $monitoria_ativa->retorna_inscricao_ativa()->id_monitoria;
+		$autoriza_inscricao = $monitoria_ativa->autoriza_inscricao();
 
+		$finaliza_inscricao = new FinalizaEscolha();
+
+		$status_inscricao = $finaliza_inscricao->retorna_inscricao_finalizada($id_user,$id_monitoria);
+
+
+
+		if ($status_inscricao) {
+			
+			return redirect()->route('home')->with('info','Você já finalizou sua inscrição. Não é possível fazer novas escolhas de disciplinas para candidatura à Monitoria do MAT.');
+		}
+
+		if (!$autoriza_inscricao) {
+			return redirect()->route('home')->with('info','O período de inscrição já está encerrado ou ainda não começou.');
+		}
 
 		$escolhas = new EscolhaMonitoria();
 		$fez_escolhas = $escolhas->retorna_escolha_monitoria($id_user,$id_monitoria);
