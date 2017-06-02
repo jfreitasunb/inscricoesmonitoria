@@ -17,4 +17,16 @@ class FinalizaEscolha extends Model
         'tipo_monitoria',
         'concorda_termos',
     ];
+
+    public function retorna_inscricao_finalizada($id_user,$id_monitoria)
+    {
+        $finalizou_inscricao = $this->select('finalizar')->where("id_user", $id_user)->where("id_monitoria", $id_monitoria)->get();
+
+        if ($finalizou_inscricao[0]['finalizar']) {
+        	return TRUE;
+        }else{
+        	return FALSE;
+        }
+
+    }
 }
