@@ -23,14 +23,14 @@
         <legend class="scheduler-border">Curso de Graduação</legend>
         <div class="form-horizontal{{ $errors->has('nome') ? ' has-error' : '' }}">
           <p>
-            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="matematica" required="" @if($dados['curso_graduacao'] == "matematica" or  Request::old('curso_graduacao')=="matematica") checked @endif> Matemática (Bacharelado/Licenciatura)<br>
-            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="computacao" @if($dados['curso_graduacao'] == "computacao" or Request::old('curso_graduacao')=="computacao") checked @endif> Ciências da Computação (Bacharelado/Licenciatura)<br>
-            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="estatistica" @if($dados['curso_graduacao'] == "estatistica" or Request::old('curso_graduacao')=="estatistica") checked @endif> Estatística<br>
-            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="fisica" @if($dados['curso_graduacao'] == "fisica" or Request::old('curso_graduacao')=="fisica") checked @endif> Física (Bacharelado/Licenciatura)<br>
-            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="quimica" @if($dados['curso_graduacao'] == "quimica" or Request::old('curso_graduacao')=="quimica") checked @endif> Química (Bacharelado/Licenciatura)<br>
-            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="geologia_geofisica" @if($dados['curso_graduacao'] == "geologia_geofisica" or Request::old('curso_graduacao')=="geologia_geofisica") checked @endif> Geologia/Geofísica<br>
-            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="engenharia" @if($dados['curso_graduacao'] == "engenharia" or Request::old('curso_graduacao')=="engenharia") checked @endif> Engenharia (Mecânica/Elétrica/Civil/Redes/Mecatrônica/Química/Produção)<br>
-            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="outros" @if($dados['curso_graduacao'] == "outros" or Request::old('curso_graduacao')=="outros") checked @endif> Outros<br>
+            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="matematica" required="" @if((array_key_exists('curso_graduacao',$dados) AND $dados['curso_graduacao'] == "matematica") or  Request::old('curso_graduacao')=="matematica") checked @endif> Matemática (Bacharelado/Licenciatura)<br>
+            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="computacao" @if((array_key_exists('curso_graduacao',$dados) AND $dados['curso_graduacao'] == "computacao") or Request::old('curso_graduacao')=="computacao") checked @endif> Ciências da Computação (Bacharelado/Licenciatura)<br>
+            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="estatistica" @if((array_key_exists('curso_graduacao',$dados) AND $dados['curso_graduacao'] == "estatistica") or Request::old('curso_graduacao')=="estatistica") checked @endif> Estatística<br>
+            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="fisica" @if((array_key_exists('curso_graduacao',$dados) AND $dados['curso_graduacao'] == "fisica") or Request::old('curso_graduacao')=="fisica") checked @endif> Física (Bacharelado/Licenciatura)<br>
+            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="quimica" @if((array_key_exists('curso_graduacao',$dados) AND $dados['curso_graduacao'] == "quimica") or Request::old('curso_graduacao')=="quimica") checked @endif> Química (Bacharelado/Licenciatura)<br>
+            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="geologia_geofisica" @if((array_key_exists('curso_graduacao',$dados) AND $dados['curso_graduacao'] == "geologia_geofisica") or Request::old('curso_graduacao')=="geologia_geofisica") checked @endif> Geologia/Geofísica<br>
+            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="engenharia" @if((array_key_exists('curso_graduacao',$dados) AND $dados['curso_graduacao'] == "engenharia") or Request::old('curso_graduacao')=="engenharia") checked @endif> Engenharia (Mecânica/Elétrica/Civil/Redes/Mecatrônica/Química/Produção)<br>
+            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="outros" @if((array_key_exists('curso_graduacao',$dados) AND $dados['curso_graduacao'] == "outros") or Request::old('curso_graduacao')=="outros") checked @endif> Outros<br>
           </p>
         </div>
         @if ($errors->has('nome'))

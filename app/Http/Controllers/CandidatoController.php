@@ -208,15 +208,15 @@ class CandidatoController extends BaseController
 
 		$dados_academicos_candidato = $dados_academicos->retorna_dados_academicos($id_user);
 
-		$dados = [
-			'ira' => str_replace('.', ',', $dados_academicos_candidato->ira),
-			'curso_graduacao' => $dados_academicos_candidato->curso_graduacao,
-		];
-
 		if (is_null($dados_academicos_candidato)) {
 			$dados = [];
 			return view('templates.partials.candidato.dados_academicos')->with(compact('ano_semestre_ira', 'dados'));
 		}else{
+			
+			$dados = [
+				'ira' => str_replace('.', ',', $dados_academicos_candidato->ira),
+				'curso_graduacao' => $dados_academicos_candidato->curso_graduacao,
+			];
 			return view('templates.partials.candidato.dados_academicos')->with(compact('ano_semestre_ira', 'dados'));
 		}
 
