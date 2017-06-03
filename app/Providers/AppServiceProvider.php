@@ -3,6 +3,7 @@
 namespace Monitoriamat\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Monitoriamat\Models\ConfiguraInscricao;
 use Validator;
 use Illuminate\Http\Request;
 
@@ -18,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
                 return true;
         });
     }
+
     public function register()
     {
     }

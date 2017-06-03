@@ -156,26 +156,31 @@ Route::post('/registrar', [
 
 Route::get('esqueci/senha', [
 		'uses'	=> '\Monitoriamat\Http\Controllers\ForgotPasswordController@showLinkRequestForm',
-		'as'	=> 'password.email',
+		'as'	=> 'password.request',
 		'middleware' => ['guest'],
 ]);
 
-Route::post('esqueci/senha', [
+Route::post('esqueci/senha/link', [
 		'uses'	=> '\Monitoriamat\Http\Controllers\ForgotPasswordController@sendResetLinkEmail',
-		'as' => 'password.link',
+		'as' => 'password.email',
 		'middleware' => ['guest'],
 ]);
 
-Route::get('mudar/senha/{token?}', [
+Route::get('/esqueci/senha/{token}', [
 		'uses'	=> '\Monitoriamat\Http\Controllers\ResetPasswordController@showResetForm',
 		'as' => 'password.reset',
 		'middleware' => ['guest'],
 ]);
 
-Route::post('mudar/senha', [
+Route::post('/esqueci/senha/{token}', [
 		'uses'	=> '\Monitoriamat\Http\Controllers\ResetPasswordController@reset',
 		'as' => 'password.reset',
 		'middleware' => ['guest'],
+]);
+
+Route::get('/mudousenha', [
+		'uses'	=> '\Monitoriamat\Http\Controllers\AuthController@getMudouSenha',
+		'as'	=> 'mudou.senha',
 ]);
 
 /**

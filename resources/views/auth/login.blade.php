@@ -40,7 +40,7 @@
                       <div class="row">
                         <div class="col-lg-12">
                           <div class="text-center">
-                            <a href="{{ route('password.email') }}" tabindex="5" class="forgot-password">Esqueceu a senha?</a>
+                            <a href="{{ route('password.request') }}" tabindex="5" class="forgot-password">Esqueceu a senha?</a>
                           </div>
                         </div>
                       </div>

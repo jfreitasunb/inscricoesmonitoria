@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Laravel',
+    'name' => 'Inscrições Monitoria Mat',
 
     /*
     |--------------------------------------------------------------------------
@@ -163,6 +163,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+
         /*
          * Package Service Providers...
          */
@@ -176,7 +177,8 @@ return [
         // Monitoriamat\Providers\BroadcastServiceProvider::class,
         Monitoriamat\Providers\EventServiceProvider::class,
         Monitoriamat\Providers\RouteServiceProvider::class,
-        ValidadorCpf\CpfServiceProvider54::class
+        ValidadorCpf\CpfServiceProvider54::class,
+        Monitoriamat\Providers\ViewComposerServiceProvider::class,
 
     ],
 

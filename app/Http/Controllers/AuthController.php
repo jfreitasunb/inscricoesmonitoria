@@ -99,6 +99,13 @@ class AuthController extends BaseController
 		return redirect()->route('home')->with('info','Você saiu da sua conta');
 	}
 
+	public function getMudouSenha()
+	{
+		Auth::logout();
+
+		return redirect()->route('home')->with('success','Senha alterada com sucesso!');
+	}
+
 	public function verify($token)
 	{
 	    // The verified method has been added to the user model and chained here
