@@ -1,6 +1,6 @@
 <?php
 
-namespace Monitoriamat\Http\Controllers;
+namespace Monitoriamat\Http\Controllers\Auth;
 
 use Auth;
 use DB;
@@ -11,6 +11,7 @@ use Monitoriamat\Models\Monitoria;
 use Illuminate\Http\Request;
 use Monitoriamat\Mail\EmailVerification;
 use Monitoriamat\Http\Controllers\Controller;
+use Monitoriamat\Http\Controllers\BaseController;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 /**
