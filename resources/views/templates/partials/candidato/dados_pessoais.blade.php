@@ -98,7 +98,7 @@
         <div class="row">
           <label class="col-md-4 control-label" for="estado">Estado</label>  
           <div class="col-md-4">
-            <input id="estado" name="estado" type="text" placeholder="" class="form-control input-md" required="" data-parsley-maxlength="3" value="{{$dados['estado'] or Request::old('estado') ?: '' }}">
+            <input id="estado" name="estado" type="text" placeholder="Sigla" class="form-control input-md" required="" data-parsley-maxlength="3" value="{{$dados['estado'] or Request::old('estado') ?: '' }}">
           </div>
         </div>
         @if ($errors->has('estado'))
