@@ -110,12 +110,12 @@ Route::get('/coordenador', [
  */
 
 Route::get('/logout', [
-		'uses'	=> '\Monitoriamat\Http\Controllers\AuthController@getLogout',
+		'uses'	=> '\Monitoriamat\Http\Controllers\Auth\AuthController@getLogout',
 		'as'	=> 'auth.logout',
 ]);
 
 Route::post('/login', [
-		'uses'	=> '\Monitoriamat\Http\Controllers\AuthController@postLogin',
+		'uses'	=> '\Monitoriamat\Http\Controllers\Auth\AuthController@postLogin',
 ]);
 
 /**
@@ -123,17 +123,17 @@ Route::post('/login', [
  */
 
 Route::get('/login', [
-		'uses'	=> '\Monitoriamat\Http\Controllers\AuthController@getLogin',
+		'uses'	=> '\Monitoriamat\Http\Controllers\Auth\AuthController@getLogin',
 		'as'	=> 'auth.login',
 		'middleware' => ['guest'],
 ]);
 
 Route::post('/login', [
-		'uses'	=> '\Monitoriamat\Http\Controllers\AuthController@postLogin',
+		'uses'	=> '\Monitoriamat\Http\Controllers\Auth\AuthController@postLogin',
 ]);
 
 Route::get('register/verify/{token}',[
-	'uses' => '\Monitoriamat\Http\Controllers\AuthController@verify',
+	'uses' => '\Monitoriamat\Http\Controllers\Auth\AuthController@verify',
 	'middleware' => ['guest'],
 ]);
 
@@ -141,13 +141,13 @@ Route::get('register/verify/{token}',[
 * Registrar
  */
 Route::get('/registrar', [
-		'uses'	=> '\Monitoriamat\Http\Controllers\AuthController@getSignup',
+		'uses'	=> '\Monitoriamat\Http\Controllers\Auth\AuthController@getSignup',
 		'as'	=> 'auth.registrar',
 		'middleware' => ['guest','autoriza.inscricao']
 ]);
 
 Route::post('/registrar', [
-		'uses'	=> '\Monitoriamat\Http\Controllers\AuthController@postSignup',
+		'uses'	=> '\Monitoriamat\Http\Controllers\Auth\AuthController@postSignup',
 ]);
 
 /*
@@ -155,31 +155,31 @@ Route::post('/registrar', [
  */
 
 Route::get('esqueci/senha', [
-		'uses'	=> '\Monitoriamat\Http\Controllers\ForgotPasswordController@showLinkRequestForm',
+		'uses'	=> '\Monitoriamat\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm',
 		'as'	=> 'password.request',
 		'middleware' => ['guest'],
 ]);
 
 Route::post('esqueci/senha/link', [
-		'uses'	=> '\Monitoriamat\Http\Controllers\ForgotPasswordController@sendResetLinkEmail',
+		'uses'	=> '\Monitoriamat\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail',
 		'as' => 'password.email',
 		'middleware' => ['guest'],
 ]);
 
 Route::get('/esqueci/senha/{token}', [
-		'uses'	=> '\Monitoriamat\Http\Controllers\ResetPasswordController@showResetForm',
+		'uses'	=> '\Monitoriamat\Http\Controllers\Auth\ResetPasswordController@showResetForm',
 		'as' => 'password.reset',
 		'middleware' => ['guest'],
 ]);
 
 Route::post('/esqueci/senha/{token}', [
-		'uses'	=> '\Monitoriamat\Http\Controllers\ResetPasswordController@reset',
+		'uses'	=> '\Monitoriamat\Http\Controllers\Auth\ResetPasswordController@reset',
 		'as' => 'password.reset',
 		'middleware' => ['guest'],
 ]);
 
 Route::get('/mudousenha', [
-		'uses'	=> '\Monitoriamat\Http\Controllers\AuthController@getMudouSenha',
+		'uses'	=> '\Monitoriamat\Http\Controllers\Auth\AuthController@getMudouSenha',
 		'as'	=> 'mudou.senha',
 ]);
 
