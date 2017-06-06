@@ -1,6 +1,6 @@
 <?php
 
-namespace Monitoriamat\Http\Controllers;
+namespace Monitoriamat\Http\Controllers\Auth;
 
 use Monitoriamat\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
