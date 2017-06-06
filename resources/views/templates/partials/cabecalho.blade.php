@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="row-fluid">
           <div class="span6">
-            <div id="logo"><img src="{{ asset('imagens/logo/logo_unb.jpg') }}" class="img-responsive" alt="unb"></div>
+            <div id="logo"><img src="{{ asset('imagens/logo/logo_unb.png') }}" class="img-responsive" alt="unb"></div>
           </div>
           <div class="span6">
             <div class="clearfix"></div>
@@ -27,7 +27,7 @@
     </div>
 </div> --}}
 
-<div class="col-sm-6 col-md-6 col-xs-6">
+{{-- <div class="col-sm-6 col-md-6 col-xs-6">
 
               <div class="thumbnail" style="border:none; background:white;">
 
@@ -42,4 +42,4 @@
               </div>
               </div>
 
- </div>
+ </div> --}}
