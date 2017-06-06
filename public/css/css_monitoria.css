@@ -1,6 +1,6 @@
-body {
+/*body {
     padding-top: 40px;
-}
+}*/
 .jumbotron h1{
     color: #0000ff;
     text-align: center;
@@ -12,6 +12,23 @@ body {
 }
 .jumbotron p{
     color: #fff;
+}
+.header-main-content {
+        padding: 15px 0 0;
+        background: #009fe5;
+}
+#footer {
+        background: #fff;
+        border-top: 5px solid #009fe5;
+        margin: 30px 0 0;
+}
+#footer .footer-main {}
+#footer .footer-main h5 {
+        color: #4e4e4e;
+        text-transform: uppercase;
+}
+#footer .footer-foot {
+        text-align: center;
 }
 .panel-login {
     border-color: #ccc;
