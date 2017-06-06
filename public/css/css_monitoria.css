@@ -1,17 +1,20 @@
 /*body {
     padding-top: 40px;
 }*/
-.jumbotron h1{
-    color: #0000ff;
+h1{
+    color: #ffffff;
     text-align: center;
-    font-size: 55px;
+    font-size: 50px;
 }
-.jumbotron h2{
-    color: #029f5b;
+h2{
+    color: #ffffff;
     text-align: center;
+    font-size: 40px;
 }
-.jumbotron p{
-    color: #fff;
+h3{
+    color: #ffffff;
+    text-align: center;
+    font-size: 30px;
 }
 .header-main-content {
         padding: 15px 0 0;
