@@ -11,9 +11,9 @@
     </div>
     <div class="collapse navbar-collapse" id="bar1">
       <ul class="nav navbar-nav">
-        <li><a href="{{ route('configura.monitoria') }}">Configurar Inscrição</a></li>
-        <li><a href="{{ route('relatorio.monitoria') }}">Relatórios</a></li>
-        <li><a href="{{ route('auth.logout') }}">Sair</a></li>
+        <li class="{{ Route::currentRouteNamed('configura.monitoria') ? 'active' : '' }}"><a href="{{ route('configura.monitoria') }}">Configurar Inscrição</a></li>
+        <li class="{{ Route::currentRouteNamed('relatorio.monitoria') ? 'active' : '' }}"><a href="{{ route('relatorio.monitoria') }}">Relatórios</a></li>
+        <li class="{{ Route::currentRouteNamed('auth.logout') ? 'active' : '' }}><a href="{{ route('auth.logout') }}">Sair</a></li>
       </ul>
     </div>
   </nav>
