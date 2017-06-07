@@ -35,6 +35,15 @@ h3{
         text-align: center;
 }
 .image-container{text-align:center}
+.navbar{
+    margin-top:20px;
+    border-color: #ccc;
+}
+.navbar-default{
+    background-color: #D8D8D8;
+  border-color: #63b6ec;
+}
+
 .panel-default {
     margin-top:20px;
     border-color: #ccc;
