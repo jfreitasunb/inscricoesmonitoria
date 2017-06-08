@@ -17,8 +17,10 @@ h3{
         padding: 15px 0 0;
         background: #009fe5;
 }
+.bottom-three {
+     margin-bottom: 9cm;
+  }
 #footer {
-        position:absolute;
         bottom:0;
         width:100%;
         height:60px;
