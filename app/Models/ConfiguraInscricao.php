@@ -28,6 +28,14 @@ class ConfiguraInscricao extends Model
         'fim_inscricao',
     ];
 
+    public function retorna_lista_para_relatorio()
+    {
+        $lista_relatorio = $this->take(5)->get()->sortByDesc('id_monitoria');
+
+        return $lista_relatorio;
+
+    }
+
     public function retorna_inscricao_ativa()
     {
         $monitoria_ativa = $this->get()->sortByDesc('id_monitoria')->first();
