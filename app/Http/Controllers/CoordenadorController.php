@@ -11,6 +11,7 @@ use Monitoriamat\Models\User;
 use Monitoriamat\Models\ConfiguraInscricao;
 use Monitoriamat\Models\DisciplinaMat;
 use Monitoriamat\Models\DisciplinaMonitoria;
+use Monitoriamat\Models\RelatorioController;
 use Illuminate\Http\Request;
 use Monitoriamat\Mail\EmailVerification;
 use Monitoriamat\Http\Controllers\Controller;
