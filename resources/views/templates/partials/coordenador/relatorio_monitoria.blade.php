@@ -16,11 +16,11 @@
 		  	<tbody>
 		  		@foreach($relatorio_disponivel as $relatorio)
 			    	<tr>
-			      	<th scope="row"><a href="{{ route('gera.monitoria') }}">{{$relatorio->id_monitoria}}</a></th>
-			      	<td><a href="{{ route('gera.monitoria') }}">{{$relatorio->ano_monitoria}}</a></td>
-			      	<td><a href="{{ route('gera.monitoria') }}">{{$relatorio->semestre_monitoria}}</a></td>
-			      	<td><a href="{{ route('gera.monitoria') }}">{{$relatorio->inicio_inscricao}}</a></td>
-			      	<td><a href="{{ route('gera.monitoria') }}">{{$relatorio->fim_inscricao}}</a></td>
+			      	<th scope="row"><a href="{!! route('gera.relatorio', ['id_monitoria' => $relatorio->id_monitoria]) !!}">{{$relatorio->id_monitoria}}</a></th>
+			      	<td><a href="{!! route('gera.relatorio', ['id_monitoria' => $relatorio->id_monitoria]) !!}">{{$relatorio->ano_monitoria}}</a></td>
+			      	<td><a href="{!! route('gera.relatorio', ['id_monitoria' => $relatorio->id_monitoria]) !!}">{{$relatorio->semestre_monitoria}}</a></td>
+			      	<td><a href="{!! route('gera.relatorio', ['id_monitoria' => $relatorio->id_monitoria]) !!}">{{$relatorio->inicio_inscricao}}</a></td>
+			      	<td><a href="{!! route('gera.relatorio', ['id_monitoria' => $relatorio->id_monitoria]) !!}">{{$relatorio->fim_inscricao}}</a></td>
 			    	</tr>
 		    	@endforeach
 		  	</tbody>
