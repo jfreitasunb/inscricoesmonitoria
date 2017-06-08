@@ -245,5 +245,8 @@ legend.scheduler-border {
 .has-error .form-control {
     border-color: #a94442;
 }
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+   background-color: #bdc3c7;
+}
 
 /* Required field END */
