@@ -23,21 +23,14 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 class RelatorioController extends BaseController
 {
 
-	public function getMenu()
-	{	
-		return view('home');
-	}
-
-	public function getConfiguraMonitoria()
+	public function getListaRelatorios()
 	{
 
-		$monitoria = new ConfiguraInscricao();
+		$relatorio = new ConfiguraInscricao();
 
-		$disciplina = new DisciplinaMat();
+		$relatorio_disponivel = $relatorio->retorna_lista_para_relatorio();
 
-		$disciplinas = $disciplina->pega_disciplinas_monitoria();
-
-		return view('templates.partials.coordenador.configurar_monitoria')->with('disciplinas', $disciplinas);
+		return view('templates.partials.coordenador.relatorio_monitoria')->with('relatorio_disponivel', $relatorio_disponivel);
 	}
 
 	public function postConfiguraMonitoria(Request $request)
