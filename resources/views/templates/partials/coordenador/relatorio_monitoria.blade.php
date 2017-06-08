@@ -17,11 +17,11 @@
   <tbody>
   	@foreach($relatorio_disponivel as $relatorio)
     <tr>
-      <th scope="row">{{$relatorio->id_monitoria}}</th>
-      <td>{{$relatorio->ano_monitoria}}</td>
-      <td>{{$relatorio->semestre_monitoria}}</td>
-      <td>{{$relatorio->inicio_inscricao}}</td>
-      <td>{{$relatorio->fim_inscricao}}</td>
+      <th scope="row"><a href="{{ route('gera.monitoria') }}">{{$relatorio->id_monitoria}}</a></th>
+      <td><a href="{{ route('gera.monitoria') }}">{{$relatorio->ano_monitoria}}</a></td>
+      <td><a href="{{ route('gera.monitoria') }}">{{$relatorio->semestre_monitoria}}</a></td>
+      <td><a href="{{ route('gera.monitoria') }}">{{$relatorio->inicio_inscricao}}</a></td>
+      <td><a href="{{ route('gera.monitoria') }}">{{$relatorio->fim_inscricao}}</a></td>
     </tr>
     @endforeach
   </tbody>
