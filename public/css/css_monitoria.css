@@ -43,7 +43,16 @@ h3{
     background-color: #D8D8D8;
     border-color: #63b6ec;
 }
-
+.navbar-default .navbar-nav > .active{
+    color: #000;
+   background: #3498db;
+ }
+ .navbar-default .navbar-nav > .active > a, 
+ .navbar-default .navbar-nav > .active > a:hover, 
+ .navbar-default .navbar-nav > .active > a:focus {
+      color: #000;
+      background: #3498db;
+ }
 .panel-default {
     margin-top:20px;
     border-color: #ccc;
