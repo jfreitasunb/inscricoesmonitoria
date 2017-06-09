@@ -8,6 +8,7 @@ use Mail;
 use Session;
 use Monitoriamat\Models\User;
 use Monitoriamat\Models\Monitoria;
+use Monitoriamat\Models\DadoPessoal;
 use Illuminate\Http\Request;
 use Monitoriamat\Mail\EmailVerification;
 use Monitoriamat\Http\Controllers\Controller;
@@ -41,12 +42,26 @@ class AuthController extends BaseController
 		]);
 
 		$user = User::create([
-			'nome' => $request->input('nome'),
 			'login' => $request->input('login'),
         	'email' => $request->input('email'),
         	'password' => bcrypt($request->input('password')),
         	'validation_code' =>  md5($STRING_VALIDA_EMAIL.$request->input('email').date("d-m-Y H:i:s:u")),
 		]);
+
+		$candidato =  DadoPessoal::find($user->$id_user);
+
+		$dados_pessoais = [
+			'nome' => $request->input('nome');
+		];
+		if (is_null($candidato)) {
+			$cria_candidato = new DadoPessoal();
+			$cria_candidato->id_user = $id_user;
+			$cria_candidato->nome = $request->input('nome');
+			$cria_candidato->save($dados_pessoais);
+		}else{
+			
+			$candidato->update($dados_pessoais);
+		}
 
 		$email = new EmailVerification(new User(['validation_code' => $user->validation_code, 'nome' => $user->nome]));
 
