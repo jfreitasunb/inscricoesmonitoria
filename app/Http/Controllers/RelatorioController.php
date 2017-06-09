@@ -9,8 +9,10 @@ use Session;
 use Carbon\Carbon;
 use Monitoriamat\Models\User;
 use Monitoriamat\Models\ConfiguraInscricao;
+use Monitoriamat\Models\DadoPessoal;
 use Monitoriamat\Models\DisciplinaMat;
 use Monitoriamat\Models\DisciplinaMonitoria;
+use Monitoriamat\Models\FinalizaEscolha;
 use Illuminate\Http\Request;
 use Monitoriamat\Mail\EmailVerification;
 use Monitoriamat\Http\Controllers\Controller;
@@ -34,7 +36,16 @@ class RelatorioController extends BaseController
 	}
 
 	public function geraRelatorio($id_monitoria){
-       echo $id_monitoria;
+       $relatorio = new FinalizaEscolha();
+       $usuarios_finalizados = $relatorio->retorna_usuarios_relatorios($id_monitoria);
+
+       foreach ($usuarios_finalizados as $usuario) {
+
+       		$dado_pessoal = new DadoPessoal();
+       		$dados_pessoais = $dado_pessoal->retorna_dados_pessoais($usuario->id_user);
+       		dd($dados_pessoais);
+       }
+       
     }
 
 	public function postConfiguraMonitoria(Request $request)
