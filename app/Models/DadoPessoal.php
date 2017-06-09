@@ -14,6 +14,7 @@ class DadoPessoal extends Model
     protected $table = 'dados_pessoais';
 
     protected $fillable = [
+        'nome',
         'numerorg',
         'emissorrg', 
         'cpf',

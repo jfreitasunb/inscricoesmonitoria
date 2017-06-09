@@ -16,6 +16,7 @@ class CreateDadosPessoaisTable extends Migration
         Schema::create('dados_pessoais', function (Blueprint $table){
             $table->increments('id');
             $table->integer('id_user');
+            $table->string('nome');
             $table->string('numerorg',20);
             $table->string('emissorrg',200);
             $table->string('cpf',11);
