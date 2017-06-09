@@ -29,4 +29,12 @@ class FinalizaEscolha extends Model
         }
 
     }
+
+    public function retorna_usuarios_relatorios($id_monitoria)
+    {
+        $usarios_relatorios = $this->get()->where("id_monitoria", $id_monitoria)->where('finalizar',TRUE);
+
+        return $usarios_relatorios;
+
+    }
 }
