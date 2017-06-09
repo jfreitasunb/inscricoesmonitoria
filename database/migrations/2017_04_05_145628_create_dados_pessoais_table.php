@@ -17,15 +17,15 @@ class CreateDadosPessoaisTable extends Migration
             $table->increments('id');
             $table->integer('id_user');
             $table->string('nome');
-            $table->string('numerorg',20);
-            $table->string('emissorrg',200);
-            $table->string('cpf',11);
-            $table->string('endereco',255);
-            $table->string('cidade',100);
-            $table->string('cep',11);
-            $table->string('estado',3);
-            $table->string('telefone',20);
-            $table->string('celular',20);
+            $table->string('numerorg',20)->nullable();
+            $table->string('emissorrg',200)->nullable();
+            $table->string('cpf',11)->nullable();
+            $table->string('endereco',255)->nullable();
+            $table->string('cidade',100)->nullable();
+            $table->string('cep',11)->nullable();
+            $table->string('estado',3)->nullable();
+            $table->string('telefone',20)->nullable();
+            $table->string('celular',20)->nullable();
             $table->timestamps();
         });
     }

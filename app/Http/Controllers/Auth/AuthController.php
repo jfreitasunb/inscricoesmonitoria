@@ -41,31 +41,26 @@ class AuthController extends BaseController
 
 		]);
 
-		$user = User::create([
-			'login' => $request->input('login'),
-        	'email' => $request->input('email'),
-        	'password' => bcrypt($request->input('password')),
-        	'validation_code' =>  md5($STRING_VALIDA_EMAIL.$request->input('email').date("d-m-Y H:i:s:u")),
-		]);
+		$novo_usuario = new User();
 
-		$candidato =  DadoPessoal::find($user->$id_user);
 
-		$dados_pessoais = [
-			'nome' => $request->input('nome');
-		];
-		if (is_null($candidato)) {
-			$cria_candidato = new DadoPessoal();
-			$cria_candidato->id_user = $id_user;
-			$cria_candidato->nome = $request->input('nome');
-			$cria_candidato->save($dados_pessoais);
-		}else{
-			
-			$candidato->update($dados_pessoais);
-		}
+		$novo_usuario->login = $request->input('login');
+        $novo_usuario->email = $request->input('email');
+        $novo_usuario->password = bcrypt($request->input('password'));
+        $novo_usuario->validation_code =  md5($STRING_VALIDA_EMAIL.$request->input('email').date("d-m-Y H:i:s:u"));
 
-		$email = new EmailVerification(new User(['validation_code' => $user->validation_code, 'nome' => $user->nome]));
+        $novo_usuario->save();
+		
+		$id_user = $novo_usuario->id_user;
 
-        Mail::to($user->email)->send($email);
+		$cria_candidato = new DadoPessoal();
+		$cria_candidato->id_user = $id_user;
+		$cria_candidato->nome = $request->input('nome');
+		$cria_candidato->save();
+
+		$email = new EmailVerification(new User(['validation_code' => $novo_usuario->validation_code, 'nome' => $novo_usuario->nome]));
+
+        Mail::to($novo_usuario->email)->send($email);
 
 		return redirect()->route('home')->with('info','Conta criada com sucesso. Foi enviado para o e-mail informado um link de ativação da sua conta. Somente após ativação você conseguirá fazer login no sistema.');
 
