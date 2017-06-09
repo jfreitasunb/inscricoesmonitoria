@@ -11,12 +11,45 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $user = ['nome' => 'Jota','login' => 'javx', 'email' => 'jfreitas@mat.unb.br', 'password' => bcrypt('1'), 'user_type' => 'admin' , 'ativo' => '1', 'created_at' => date("Y-m-d H:i:s"), 'updated_at' => date("Y-m-d H:i:s")];
+        $user = ['login' => 'javx', 'email' => 'jfreitas@mat.unb.br', 'password' => bcrypt('1'), 'user_type' => 'admin' , 'ativo' => '1', 'created_at' => date("Y-m-d H:i:s"), 'updated_at' => date("Y-m-d H:i:s")];
         $db_user = DB::table('users')->insert($user);
 
-    	$user = ['nome' => 'Coordenador','login' => 'coord', 'email' => 'coord@mat.unb.br', 'password' => bcrypt('1'), 'user_type' => 'coordenador' , 'ativo' => '1', 'created_at' => date("Y-m-d H:i:s"), 'updated_at' => date("Y-m-d H:i:s")];
+    	$user = ['login' => 'coord', 'email' => 'coord@mat.unb.br', 'password' => bcrypt('1'), 'user_type' => 'coordenador' , 'ativo' => '1', 'created_at' => date("Y-m-d H:i:s"), 'updated_at' => date("Y-m-d H:i:s")];
         $db_user = DB::table('users')->insert($user);
 
+        $dados_jota = [
+            'id_user' => '1',
+            'nome' => 'Jota',
+            'numerorg' => '1',
+            'emissorrg' => '1', 
+            'cpf' => '1',
+            'endereco' => '1',
+            'cidade' => '1',
+            'cep' => '1',
+            'estado' => '1',
+            'telefone' => '1',
+            'celular' => '1',
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s"),
+        ];
+        $db_dados_pessoais = DB::table('dados_pessoais')->insert($dados_jota);
+
+        $dados_coord = [
+            'id_user' => '2',
+            'nome' => 'Coordenação de Graduação',
+            'numerorg' => '2',
+            'emissorrg' => '2', 
+            'cpf' => '2',
+            'endereco' => '2',
+            'cidade' => '2',
+            'cep' => '2',
+            'estado' => '2',
+            'telefone' => '2',
+            'celular' => '2',
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s"),
+        ];
+        $db_dados_coord = DB::table('dados_pessoais')->insert($dados_coord);
 
         $configura_monitoria = ['ano_monitoria' => '2016','semestre_monitoria' => '1', 'inicio_inscricao' => '2017-01-01', 'fim_inscricao' => '2017-01-02', 'created_at' => date("Y-m-d H:i:s"), 'updated_at' => date("Y-m-d H:i:s")];
         $db_configura_monitoria = DB::table('configura_monitoria')->insert($configura_monitoria);
