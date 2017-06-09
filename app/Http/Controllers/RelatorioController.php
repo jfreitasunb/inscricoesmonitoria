@@ -33,6 +33,10 @@ class RelatorioController extends BaseController
 		return view('templates.partials.coordenador.relatorio_monitoria')->with('relatorio_disponivel', $relatorio_disponivel);
 	}
 
+	public function geraRelatorio($id_monitoria){
+       echo $id_monitoria;
+    }
+
 	public function postConfiguraMonitoria(Request $request)
 	{
 
