@@ -51,7 +51,7 @@ class CandidatoController extends BaseController
 		$dados_pessoais = $candidato->retorna_dados_pessoais($id_user);
 
 		$dados = [
-			'nome' => $nome,
+			'nome' => $dados_pessoais->nome,
 			'numerorg' => $dados_pessoais->numerorg,
 			'emissorrg' => $dados_pessoais->emissorrg,
 			'cpf' => $dados_pessoais->cpf,
@@ -84,9 +84,6 @@ class CandidatoController extends BaseController
 
 			$user = Auth::user();
 			$id_user = $user->id_user;
-			
-			$user->nome = $request->input('nome');
-			$user->save();
 			
 			$dados_pessoais = [
 				'id_user' => $id_user,
