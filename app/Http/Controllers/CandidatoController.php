@@ -50,32 +50,27 @@ class CandidatoController extends BaseController
 		$candidato = new DadoPessoal();
 		$dados_pessoais = $candidato->retorna_dados_pessoais($id_user);
 
-		if (is_null($dados_pessoais)) {
-			$dados = [
-				'nome' => $nome,
-			];
-			return view('templates.partials.candidato.dados_pessoais')->with('dados', $dados);	
-		}else{
-			$dados = [
-				'nome' => $nome,
-				'numerorg' => $dados_pessoais->numerorg,
-				'emissorrg' => $dados_pessoais->emissorrg,
-				'cpf' => $dados_pessoais->cpf,
-				'endereco' => $dados_pessoais->endereco,
-				'cidade' => $dados_pessoais->cidade,
-				'cep' => $dados_pessoais->cep,
-				'estado' => $dados_pessoais->estado,
-				'telefone' => $dados_pessoais->telefone,
-				'celular' => $dados_pessoais->celular,
-			];
-			return view('templates.partials.candidato.dados_pessoais')->with('dados', $dados);	
-		}
+		$dados = [
+			'nome' => $nome,
+			'numerorg' => $dados_pessoais->numerorg,
+			'emissorrg' => $dados_pessoais->emissorrg,
+			'cpf' => $dados_pessoais->cpf,
+			'endereco' => $dados_pessoais->endereco,
+			'cidade' => $dados_pessoais->cidade,
+			'cep' => $dados_pessoais->cep,
+			'estado' => $dados_pessoais->estado,
+			'telefone' => $dados_pessoais->telefone,
+			'celular' => $dados_pessoais->celular,
+		];
+
+		return view('templates.partials.candidato.dados_pessoais')->with('dados', $dados);
 		
 	}
 
 	public function postDadosPessoais(Request $request)
 	{
 		$this->validate($request, [
+			'nome' => 'max:256',
 			'numerorg' => 'required|max:21',
 			'emissorrg' => 'required|max:201',
 			'cpf' => 'required|cpf|numeric',
@@ -111,6 +106,7 @@ class CandidatoController extends BaseController
 			if (is_null($candidato)) {
 				$cria_candidato = new DadoPessoal();
 				$cria_candidato->id_user = $id_user;
+				$cria_candidato->nome = $request->input('nome');
 				$cria_candidato->numerorg = $request->input('numerorg');
 				$cria_candidato->emissorrg = $request->input('emissorrg');
 				$cria_candidato->cpf = $request->input('cpf');
