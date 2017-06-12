@@ -17,4 +17,13 @@ class HorarioEscolhido extends Model
         'horario_monitoria',
         'dia_semana',
     ];
+
+    public function retorna_horarios_escolhidos($id_user,$id_monitoria)
+    {
+        $horarios = $this->where("id_user", $id_user)->where("id_monitoria", $id_monitoria)->get();
+
+        return $horarios;
+
+    }
+
 }
