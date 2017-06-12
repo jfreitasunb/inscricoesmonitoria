@@ -51,6 +51,25 @@ class RelatorioController extends BaseController
        		$dado_academico = new DadoAcademico();
 
        		$dados_academicos = $dado_academico->retorna_dados_academicos($id_user);
+
+       		$escolheu = new EscolhaMonitoria();
+
+       		$escolhas_candidato = $escolheu->retorna_escolha_monitoria($id_user,$id_monitoria);
+
+       		$disciplina = new DisciplinaMat();
+
+
+       		for ($i=0; $i < sizeof($escolhas_candidato); $i++) { 
+       			
+       			$codigo = $escolhas_candidato[$i]->escolha_aluno;
+
+       			$nome_disciplina = $disciplina->retorna_nome_pelo_codigo($codigo);
+
+       			$nome = $nome_disciplina[0]->nome;
+
+       			$linha_escolhas[] = $nome.";".$escolhas_candidato[$i]->mencao_aluno;
+       		}
+
        }
        
     }
