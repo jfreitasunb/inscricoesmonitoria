@@ -32,6 +32,7 @@ return array(
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'Monitoriamat\\' => array($baseDir . '/app'),
     'League\\Flysystem\\' => array($vendorDir . '/league/flysystem/src'),
+    'League\\Csv\\' => array($vendorDir . '/league/csv/src'),
     'Laravel\\Tinker\\' => array($vendorDir . '/laravel/tinker/src'),
     'Illuminate\\' => array($vendorDir . '/laravel/framework/src/Illuminate'),
     'Faker\\' => array($vendorDir . '/fzaninotto/faker/src/Faker'),
