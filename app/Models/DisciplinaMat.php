@@ -34,4 +34,12 @@ class DisciplinaMat extends Model
 
         return $disciplinas_para_monitoria;
     }
+
+    public function retorna_nome_pelo_codigo($codigo)
+    {
+        $nome_disciplina = $this->select('nome')->where('codigo',"=",$codigo)->get();
+
+        return $nome_disciplina;
+
+    }
 }
