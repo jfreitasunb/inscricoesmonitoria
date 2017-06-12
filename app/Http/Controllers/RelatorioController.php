@@ -21,6 +21,7 @@ use Monitoriamat\Mail\EmailVerification;
 use Monitoriamat\Http\Controllers\Controller;
 use Monitoriamat\Http\Controllers\AuthController;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use \League\Csv\Writer;
 
 /**
 * Classe para visualização da página inicial.
@@ -79,6 +80,8 @@ class RelatorioController extends BaseController
        			
        			$linha_horario_escolhidos[] = $horarios_escolhidos[$j]->dia_semana.";".$horarios_escolhidos[$j]->horario_monitoria;
        		}
+
+
 
        }
        
