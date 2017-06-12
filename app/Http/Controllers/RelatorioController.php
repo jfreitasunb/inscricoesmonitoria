@@ -40,6 +40,9 @@ class RelatorioController extends BaseController
 	}
 
 	public function geraRelatorio($id_monitoria){
+
+	   Storage::disk('csv')->put('file.csv', $content);
+	   $content = Storage::disk('csv')->get('file.csv');
        $relatorio = new FinalizaEscolha();
        $usuarios_finalizados = $relatorio->retorna_usuarios_relatorios($id_monitoria);
 
