@@ -21,7 +21,7 @@ use Monitoriamat\Mail\EmailVerification;
 use Monitoriamat\Http\Controllers\Controller;
 use Monitoriamat\Http\Controllers\AuthController;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use \League\Csv\Writer;
+use League\Csv\Writer;
 
 /**
 * Classe para visualização da página inicial.
