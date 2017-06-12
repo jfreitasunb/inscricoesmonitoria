@@ -14,6 +14,7 @@ use Monitoriamat\Models\DadoAcademico;
 use Monitoriamat\Models\DisciplinaMat;
 use Monitoriamat\Models\DisciplinaMonitoria;
 use Monitoriamat\Models\EscolhaMonitoria;
+use Monitoriamat\Models\HorarioEscolhido;
 use Monitoriamat\Models\FinalizaEscolha;
 use Illuminate\Http\Request;
 use Monitoriamat\Mail\EmailVerification;
@@ -68,6 +69,15 @@ class RelatorioController extends BaseController
        			$nome = $nome_disciplina[0]->nome;
 
        			$linha_escolhas[] = $nome.";".$escolhas_candidato[$i]->mencao_aluno;
+       		}
+
+       		$horario = new HorarioEscolhido();
+
+       		$horarios_escolhidos = $horario->retorna_horarios_escolhidos($id_user,$id_monitoria);
+
+       		for ($j=0; $j < sizeof($horarios_escolhidos); $j++) { 
+       			
+       			$linha_horario_escolhidos[] = $horarios_escolhidos[$j]->dia_semana.";".$horarios_escolhidos[$j]->horario_monitoria;
        		}
 
        }
