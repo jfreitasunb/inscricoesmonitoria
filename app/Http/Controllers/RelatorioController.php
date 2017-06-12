@@ -10,8 +10,10 @@ use Carbon\Carbon;
 use Monitoriamat\Models\User;
 use Monitoriamat\Models\ConfiguraInscricao;
 use Monitoriamat\Models\DadoPessoal;
+use Monitoriamat\Models\DadoAcademico;
 use Monitoriamat\Models\DisciplinaMat;
 use Monitoriamat\Models\DisciplinaMonitoria;
+use Monitoriamat\Models\EscolhaMonitoria;
 use Monitoriamat\Models\FinalizaEscolha;
 use Illuminate\Http\Request;
 use Monitoriamat\Mail\EmailVerification;
@@ -41,9 +43,14 @@ class RelatorioController extends BaseController
 
        foreach ($usuarios_finalizados as $usuario) {
 
+       		$id_user = $usuario->id_user;
+
        		$dado_pessoal = new DadoPessoal();
-       		$dados_pessoais = $dado_pessoal->retorna_dados_pessoais($usuario->id_user);
-       		dd($dados_pessoais);
+       		$dados_pessoais = $dado_pessoal->retorna_dados_pessoais($id_user);
+       		
+       		$dado_academico = new DadoAcademico();
+
+       		$dados_academicos = $dado_academico->retorna_dados_academicos($id_user);
        }
        
     }
