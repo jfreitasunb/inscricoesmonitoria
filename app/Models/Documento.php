@@ -17,4 +17,8 @@ class Documento extends Model
         'nome_arquivo',
     ];
 
+    public function retorna_arquivo_enviado($id_user)
+    {
+    	return $this->select('nome_arquivo')->where('id_user',"=",$id_user)->orderBy('created_at','desc')->first();
+    }
 }
