@@ -37,16 +37,31 @@ class RelatorioController extends BaseController
 
 		$relatorio_disponivel = $relatorio->retorna_lista_para_relatorio();
 
-		return view('templates.partials.coordenador.relatorio_monitoria')->with('relatorio_disponivel', $relatorio_disponivel);
+              $arquivo_relatorio = "";
+
+		return view('templates.partials.coordenador.relatorio_monitoria')->with(compact('relatorio_disponivel', 'arquivo_relatorio'));
 	}
+
+
+       public function getRelatorios($arquivo_relatorio)
+       {
+
+              $relatorio = new ConfiguraInscricao();
+
+              $relatorio_disponivel = $relatorio->retorna_lista_para_relatorio();
+
+              return view('templates.partials.coordenador.relatorio_monitoria')->with(compact('relatorio_disponivel','arquivo_relatorio'));
+       }
+
 
 	public function geraRelatorio($id_monitoria)
        {
 
        	$arquivo_relatorio = "Relatorio_inscritos_".$id_monitoria.".csv";
 
+              Storage::put('relatorios/'.$arquivo_relatorio, "");
 
-              $file_path = storage_path()."/csv/";
+              $file_path = storage_path()."/app/relatorios/";
 
               $csv_relatorio = Writer::createFromPath($file_path.$arquivo_relatorio, 'w+');
 
@@ -131,10 +146,10 @@ class RelatorioController extends BaseController
 
 
                      $csv_relatorio->insertOne($linha_arquivo);
-
-
-
               }
+
+              return $this->getRelatorios($arquivo_relatorio);
+
        
     }
 

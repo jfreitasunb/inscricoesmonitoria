@@ -11,6 +11,8 @@
 			      <th>Semestre</th>
 			      <th>Início</th>
 			      <th>Fim</th>
+			      <th>Relatório de Inscritos</th>
+			      <th>Documentos</th>
 			    </tr>
 		  	</thead>
 		  	<tbody>
@@ -20,6 +22,8 @@
 			      	<td><a href="{!! route('gera.relatorio', ['id_monitoria' => $relatorio->id_monitoria]) !!}">{{$relatorio->ano_monitoria}}</a></td>
 			      	<td><a href="{!! route('gera.relatorio', ['id_monitoria' => $relatorio->id_monitoria]) !!}">{{$relatorio->semestre_monitoria}}</a></td>
 			      	<td><a href="{!! route('gera.relatorio', ['id_monitoria' => $relatorio->id_monitoria]) !!}">{{$relatorio->inicio_inscricao}}</a></td>
+			      	<td><a href="{!! route('gera.relatorio', ['id_monitoria' => $relatorio->id_monitoria]) !!}">{{$relatorio->fim_inscricao}}</a></td>
+			      	<td><a target="_blank" href="{{asset('relatorios/'.$arquivo_relatorio)}}">{{$arquivo_relatorio}}</a></td>
 			      	<td><a href="{!! route('gera.relatorio', ['id_monitoria' => $relatorio->id_monitoria]) !!}">{{$relatorio->fim_inscricao}}</a></td>
 			    	</tr>
 		    	@endforeach
