@@ -6,10 +6,13 @@ use Auth;
 use DB;
 use Mail;
 use Session;
+use File;
+use ZipArchive;
 use Carbon\Carbon;
 use Monitoriamat\Models\User;
 use Monitoriamat\Models\ConfiguraInscricao;
 use Monitoriamat\Models\DadoPessoal;
+use Monitoriamat\Models\Documento;
 use Monitoriamat\Models\DadoAcademico;
 use Monitoriamat\Models\DisciplinaMat;
 use Monitoriamat\Models\DisciplinaMonitoria;
@@ -39,18 +42,22 @@ class RelatorioController extends BaseController
 
               $arquivo_relatorio = "";
 
-		return view('templates.partials.coordenador.relatorio_monitoria')->with(compact('relatorio_disponivel', 'arquivo_relatorio'));
+              $documentos_zipados = "";
+
+		return view('templates.partials.coordenador.relatorio_monitoria')->with(compact('relatorio_disponivel', 'arquivo_relatorio','documentos_zipados'));
 	}
 
 
-       public function getRelatorios($arquivo_relatorio)
+       public function getArquivosRelatorios($id_monitoria,$arquivo_relatorio,$documentos_zipados)
        {
 
               $relatorio = new ConfiguraInscricao();
 
               $relatorio_disponivel = $relatorio->retorna_lista_para_relatorio();
 
-              return view('templates.partials.coordenador.relatorio_monitoria')->with(compact('relatorio_disponivel','arquivo_relatorio'));
+              $monitoria = $id_monitoria;
+
+              return view('templates.partials.coordenador.relatorio_monitoria')->with(compact('monitoria','relatorio_disponivel','arquivo_relatorio','documentos_zipados'));
        }
 
 
@@ -58,10 +65,11 @@ class RelatorioController extends BaseController
        {
 
        	$arquivo_relatorio = "Relatorio_inscritos_".$id_monitoria.".csv";
+              $local_relatorios = "/app/relatorios/csv/";
 
-              Storage::put('relatorios/'.$arquivo_relatorio, "");
+              Storage::put($local_relatorios.$arquivo_relatorio, "");
 
-              $file_path = storage_path()."/app/relatorios/";
+              $file_path = storage_path().$local_relatorios;
 
               $csv_relatorio = Writer::createFromPath($file_path.$arquivo_relatorio, 'w+');
 
@@ -146,9 +154,39 @@ class RelatorioController extends BaseController
 
 
                      $csv_relatorio->insertOne($linha_arquivo);
+
+                     $documento = new Documento();
+
+                     $nome_historico_banco = $documento->retorna_arquivo_enviado($id_user)->nome_arquivo;
+
+                     $nome_historico = storage_path()."/app/relatorios/temporario/".str_replace(' ', '_', $dados_pessoais->nome).".".File::extension($nome_historico_banco);
+
+                     File::copy(storage_path('app/').$nome_historico_banco,$nome_historico);
               }
 
-              return $this->getRelatorios($arquivo_relatorio);
+              $dirName = storage_path().'/app/relatorios/temporario/';
+
+              // Choose a name for the archive.
+              $documentos_zipados = 'Documentos_'.$id_monitoria.'.zip';
+
+              // Create "MyCoolName.zip" file in public directory of project.
+              $zip = new ZipArchive;
+
+              if ( $zip->open( storage_path().'/app/relatorios/zip/'.$documentos_zipados, ZipArchive::CREATE ) === true )
+              {
+                     // Copy all the files from the folder and place them in the archive.
+                     foreach (glob( $dirName.'/*') as $fileName )
+                     {
+                            $file = basename( $fileName );
+                            $zip->addFile( $fileName, $file );
+                     }
+
+                     $zip->close();
+              }
+
+              File::cleanDirectory($dirName);
+
+              return $this->getArquivosRelatorios($id_monitoria,$arquivo_relatorio,$documentos_zipados);
 
        
     }
