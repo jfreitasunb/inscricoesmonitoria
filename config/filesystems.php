@@ -63,13 +63,6 @@ return [
             'bucket' => env('AWS_BUCKET'),
         ],
 
-        '/relatorios/csv' => [
-            'driver' => 'local',
-            'root'   => storage_path('/relatorios/csv'),
-            'url' => env('APP_URL').'/storage',
-            'visibility' => 'public',
-        ],
-
     ],
 
 ];
