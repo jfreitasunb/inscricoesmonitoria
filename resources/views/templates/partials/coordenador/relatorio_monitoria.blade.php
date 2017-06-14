@@ -23,8 +23,8 @@
 			      	<td><a href="{!! route('gera.relatorio', ['id_monitoria' => $relatorio->id_monitoria]) !!}">{{$relatorio->semestre_monitoria}}</a></td>
 			      	<td><a href="{!! route('gera.relatorio', ['id_monitoria' => $relatorio->id_monitoria]) !!}">{{$relatorio->inicio_inscricao}}</a></td>
 			      	<td><a href="{!! route('gera.relatorio', ['id_monitoria' => $relatorio->id_monitoria]) !!}">{{$relatorio->fim_inscricao}}</a></td>
-			      	<td>@if($monitoria == $relatorio->id_monitoria) <a target="_blank" href="{{asset('relatorios/'.$arquivo_relatorio)}}" >{{$arquivo_relatorio}}</a> @endif</td>
-			      	<td>@if($monitoria == $relatorio->id_monitoria) <a target="_blank" href="{{asset('relatorios/'.$documentos_zipados)}}">{{$documentos_zipados}}</a> @endif</td>
+			      	<td>@if($monitoria == $relatorio->id_monitoria) <a target="_blank" href="{{asset('relatorios/csv/'.$arquivo_relatorio)}}" >{{$arquivo_relatorio}}</a> @endif</td>
+			      	<td>@if($monitoria == $relatorio->id_monitoria) <a target="_blank" href="{{asset('relatorios/zip/'.$documentos_zipados)}}">{{$documentos_zipados}}</a> @endif</td>
 			    	</tr>
 		    	@endforeach
 		  	</tbody>
