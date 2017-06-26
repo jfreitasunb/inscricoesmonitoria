@@ -124,13 +124,13 @@
                     <tr>
                       <td>{{$dia_semana}}</td>
                       <td scope="row" class="text-center">
-                        <input type="radio" name="nome_hora_monitoria[{{$dia_semana}}]" value="{{$dia_semana}}_{{$array_horarios_disponiveis[0]}}" @if(is_array(Request::old('nome_hora_monitoria')) && in_array($dia_semana."_".$array_horarios_disponiveis[0],Request::old('nome_hora_monitoria'))) checked @endif>
+                        <input type="checkbox" name="nome_hora_monitoria[]" value="{{$dia_semana}}_{{$array_horarios_disponiveis[0]}}" @if(is_array(Request::old('nome_hora_monitoria')) && in_array($dia_semana."_".$array_horarios_disponiveis[0],Request::old('nome_hora_monitoria'))) checked @endif>
                       </td>
                       <td class="text-center">
-                        <input type="radio" name="nome_hora_monitoria[{{$dia_semana}}]" value="{{$dia_semana}}_{{$array_horarios_disponiveis[1]}}" @if(is_array(Request::old('nome_hora_monitoria')) && in_array($dia_semana."_".$array_horarios_disponiveis[1],Request::old('nome_hora_monitoria'))) checked @endif>
+                        <input type="checkbox" name="nome_hora_monitoria[]" value="{{$dia_semana}}_{{$array_horarios_disponiveis[1]}}" @if(is_array(Request::old('nome_hora_monitoria')) && in_array($dia_semana."_".$array_horarios_disponiveis[1],Request::old('nome_hora_monitoria'))) checked @endif>
                       </td>
                       <td class="text-center">
-                        <input type="radio" name="nome_hora_monitoria[{{$dia_semana}}]" value="{{$dia_semana}}_{{$array_horarios_disponiveis[2]}}" @if(is_array(Request::old('nome_hora_monitoria')) && in_array($dia_semana."_".$array_horarios_disponiveis[2],Request::old('nome_hora_monitoria'))) checked @endif>
+                        <input type="checkbox" name="nome_hora_monitoria[]" value="{{$dia_semana}}_{{$array_horarios_disponiveis[2]}}" @if(is_array(Request::old('nome_hora_monitoria')) && in_array($dia_semana."_".$array_horarios_disponiveis[2],Request::old('nome_hora_monitoria'))) checked @endif>
                       </td>
                     </tr>
                     @endforeach
