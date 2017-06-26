@@ -18,6 +18,7 @@ use Monitoriamat\Models\DisciplinaMat;
 use Monitoriamat\Models\DisciplinaMonitoria;
 use Monitoriamat\Models\EscolhaMonitoria;
 use Monitoriamat\Models\HorarioEscolhido;
+use Monitoriamat\Models\AtuacaoMonitoria;
 use Monitoriamat\Models\FinalizaEscolha;
 use Illuminate\Http\Request;
 use Monitoriamat\Mail\EmailVerification;
@@ -115,7 +116,7 @@ class RelatorioController extends BaseController
                      $linha_arquivo['tipo_monitoria'] = $usuario->tipo_monitoria;
 
                      if ($dados_academicos->monitor_convidado) {
-                            $linha_arquivo['monitor_convidado'] = $dados_academicos->monitor_convidado;
+                            $linha_arquivo['monitor_convidado'] = "Sim";
 
                             $linha_arquivo['nome_professor'] = $dados_academicos->nome_professor;
 
@@ -156,6 +157,12 @@ class RelatorioController extends BaseController
        			$linha_arquivo['horario'.($j+1)] = $horarios_escolhidos[$j]->dia_semana.",".$horarios_escolhidos[$j]->horario_monitoria;
        		}
 
+                     $atuacoes = new AtuacaoMonitoria();
+                     $lista_de_atuacoes = $atuacoes->retorna_atuacao_monitoria($id_user);
+
+                     for ($l=0; $l < sizeof($lista_de_atuacoes); $l++) { 
+                            $linha_arquivo['atuou_monitoria'.($l+1)] = $lista_de_atuacoes[$l]->atuou_monitoria;
+                     }
 
                      $csv_relatorio->insertOne($linha_arquivo);
 

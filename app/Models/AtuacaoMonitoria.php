@@ -19,7 +19,7 @@ class AtuacaoMonitoria extends Model
 
 public function retorna_atuacao_monitoria($id_user)
     {
-        $atuacao_monitoria = $this->find($id_user);
+        $atuacao_monitoria = $this->select('atuou_monitoria')->where("id_user", $id_user)->get();
 
         return $atuacao_monitoria;
 
