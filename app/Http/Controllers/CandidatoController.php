@@ -393,6 +393,10 @@ class CandidatoController extends BaseController
 			];
 		}
 
+		if (is_null($atualiza_dados_academicos)) {
+			return redirect()->route('dados.academicos')->with('erro','Por favor atualize seus dados acadêmicos antes de fazer suas escolhas para a monitoria.');
+		}
+
 		$atualiza_dados_academicos->update($monitor_projeto);
 		
 		$horario = $request->input('nome_hora_monitoria');
