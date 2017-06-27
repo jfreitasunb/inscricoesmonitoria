@@ -14,6 +14,11 @@ use Monitoriamat\Mail\EmailVerification;
 use Monitoriamat\Http\Controllers\Controller;
 use Monitoriamat\Http\Controllers\BaseController;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Notification;
+use Illuminate\Notifications\Messages\MailMessage;
+use Monitoriamat\Notifications\AtivaConta;
+
+
 
 /**
 * Classe para visualização da página inicial.
@@ -58,9 +63,14 @@ class AuthController extends BaseController
 		$cria_candidato->nome = $request->input('nome');
 		$cria_candidato->save();
 
-		$email = new EmailVerification(new User(['validation_code' => $novo_usuario->validation_code, 'nome' => $novo_usuario->nome]));
+		
 
-        Mail::to($novo_usuario->email)->send($email);
+
+		Notification::send(User::find($id_user), new AtivaConta($novo_usuario->validation_code));
+
+		// $email = new EmailVerification(new User(['validation_code' => $novo_usuario->validation_code, 'nome' => $novo_usuario->nome]));
+
+  //       Mail::to($novo_usuario->email)->send($email);
 
 		return redirect()->route('home')->with('info','Conta criada com sucesso. Foi enviado para o e-mail informado um link de ativação da sua conta. Somente após ativação você conseguirá fazer login no sistema.');
 
