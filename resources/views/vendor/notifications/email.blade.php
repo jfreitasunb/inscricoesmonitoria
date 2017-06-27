@@ -51,7 +51,7 @@ Atenciosamente, <br>{{ config('app.name') }}
 <!-- Subcopy -->
 @if (isset($actionText))
 @component('mail::subcopy')
-Se o botão de mudança se denha não aparecer "{{ $actionText }}", clique no link abaixo: [{{ $actionUrl }}]({{ $actionUrl }})
+Se o botão não aparecer "{{ $actionText }}", clique no link abaixo: [{{ $actionUrl }}]({{ $actionUrl }})
 @endcomponent
 @endif
 @endcomponent
