@@ -231,5 +231,17 @@ class DatabaseSeeder extends Seeder
 
         $db_disciplina_mat = DB::table('disciplinas_mat')->insert($d41);
 
+        $d42 = ['codigo' => 113603, 'nome' => 'História da Matemática', 'creditos' => 4, 'created_at' => date("Y-m-d H:i:s"), 'updated_at' => date("Y-m-d H:i:s")];
+
+        $db_disciplina_mat = DB::table('disciplinas_mat')->insert($d42);
+
+        $d43 = ['codigo' => 113930, 'nome' => 'Introdução à Teoria dos Grafos', 'creditos' => 4, 'created_at' => date("Y-m-d H:i:s"), 'updated_at' => date("Y-m-d H:i:s")];
+
+        $db_disciplina_mat = DB::table('disciplinas_mat')->insert($d43);
+
+        $d44 = ['codigo' => 117307, 'nome' => 'Seminário de Tópicos em Matemática Aplicada', 'creditos' => 4, 'created_at' => date("Y-m-d H:i:s"), 'updated_at' => date("Y-m-d H:i:s")];
+
+        $db_disciplina_mat = DB::table('disciplinas_mat')->insert($d44);
+
     }
 }
