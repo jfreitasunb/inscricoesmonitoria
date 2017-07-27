@@ -6,55 +6,43 @@
 
 @section('cadastra_disciplina')
   <div class="row">
-    <form data-parsley-validate="" class="form-horizontal" action="" method="post">
+    <form action="{{ route('configura.monitoria') }}" method="POST" data-parsley-validate="" class="form-horizontal">
       <fieldset class="scheduler-border">
-        <legend class="scheduler-border">Dados Bancários</legend>
+        <legend class="scheduler-border">Cadastrar nova disciplina</legend>
         
-        <div class="form-group" {{ $errors->has('nome_banco') ? ' has-error' : '' }}>
+        <div class="form-group" {{ $errors->has('codigo_disciplina') ? ' has-error' : '' }}>
           <div class="row">
-            <label class="col-md-4 control-label" for="nome_banco">Banco</label>  
-            <div class="col-md-4">
-              <input id="nome_banco" name="nome_banco" type="text" class="form-control input-md" required="" value="{{$dados['nome_banco'] or Request::old('nome_banco') ?: '' }}">
+            <label class="col-md-4 control-label" for="codigo_disciplina">Código disciplina</label>  
+            <div class="col-md-2">
+              <input id="codigo_disciplina" name="codigo_disciplina" type="text" class="form-control input-md" required="" value="{{$dados['codigo_disciplina'] or Request::old('codigo_disciplina') ?: '' }}">
             </div>
           </div>
-          @if ($errors->has('nome_banco'))
-            <span class="help-block">{{ $errors->first('nome_banco') }}</span>
+          @if ($errors->has('codigo_disciplina'))
+            <span class="help-block">{{ $errors->first('codigo_disciplina') }}</span>
           @endif
         </div>
 
-        <div class="form-group" {{ $errors->has('numero_banco') ? ' has-error' : '' }}>
+        <div class="form-group" {{ $errors->has('nome_disciplina') ? ' has-error' : '' }}>
           <div class="row">
-            <label class="col-md-4 control-label" for="numero_banco">Número do banco</label>  
+            <label class="col-md-4 control-label" for="nome_disciplina">Nome da disciplina</label>  
             <div class="col-md-4">
-              <input id="numero_banco" name="numero_banco" type="text" class="form-control input-md" required="" value="{{$dados['numero_banco'] or Request::old('numero_banco') ?: '' }}">
+              <input id="nome_disciplina" name="nome_disciplina" type="text" class="form-control input-md" required="" value="{{$dados['nome_disciplina'] or Request::old('nome_disciplina') ?: '' }}">
             </div>
           </div>
-          @if ($errors->has('numero_banco'))
-            <span class="help-block">{{ $errors->first('numero_banco') }}</span>
+          @if ($errors->has('nome_disciplina'))
+            <span class="help-block">{{ $errors->first('nome_disciplina') }}</span>
           @endif
         </div>
 
-        <div class="form-group" {{ $errors->has('agencia_bancaria') ? ' has-error' : '' }}>
+        <div class="form-group" {{ $errors->has('creditos_disciplina') ? ' has-error' : '' }}>
           <div class="row">
-            <label class="col-md-4 control-label" for="agencia_bancaria">Agência</label>  
-            <div class="col-md-4">
-              <input id="agencia_bancaria" name="agencia_bancaria" type="text" placeholder="" class="form-control input-md" required="" value="{{$dados['agencia_bancaria'] or Request::old('agencia_bancaria') ?: '' }}">
+            <label class="col-md-4 control-label" for="creditos_disciplina">Créditos</label>  
+            <div class="col-md-1">
+              <input id="creditos_disciplina" name="creditos_disciplina" type="text" placeholder="" class="form-control input-md" required="" value="{{$dados['creditos_disciplina'] or Request::old('creditos_disciplina') ?: '' }}">
             </div>
           </div>
-          @if ($errors->has('agencia_bancaria'))
-            <span class="help-block">{{ $errors->first('agencia_bancaria') }}</span>
-          @endif
-        </div>
-
-        <div class="form-group" {{ $errors->has('numero_conta_corrente') ? ' has-error' : '' }}>
-          <div class="row">
-            <label class="col-md-4 control-label" for="numero_conta_corrente">Conta corrente</label>  
-            <div class="col-md-4">
-              <input id="numero_conta_corrente" name="numero_conta_corrente" type="text" placeholder="" class="form-control input-md" required="" value="{{$dados['numero_conta_corrente'] or Request::old('numero_conta_corrente') ?: '' }}">
-            </div>
-          </div>
-          @if ($errors->has('numero_conta_corrente'))
-            <span class="help-block">{{ $errors->first('numero_conta_corrente') }}</span>
+          @if ($errors->has('creditos_disciplina'))
+            <span class="help-block">{{ $errors->first('creditos_disciplina') }}</span>
           @endif
         </div>
 
