@@ -11,7 +11,7 @@
     </div>
     <div class="collapse navbar-collapse" id="bar1">
       <ul class="nav navbar-nav">
-        <li><a href="">Configurar Inscrição</a></li>
+        <li><a href="{{ route('cadastra.disciplina') }}">Cadastrar disciplina</a></li>
         <li><a href="">Relatórios</a></li>
         <li><a href="{{ route('auth.logout') }}">Sair</a></li>
       </ul>

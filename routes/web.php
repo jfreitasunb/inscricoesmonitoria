@@ -97,13 +97,13 @@ Route::post('/coordenador/cadastrar/disciplina',[
 Route::get('/coordenador/relatorio/{id_monitoria}',[
     'uses' => '\Monitoriamat\Http\Controllers\RelatorioController@geraRelatorio',
     'as'   => 'gera.relatorio',
-    'middleware' => ['user.role:coordenador'],
+    'middleware' => ['user.role:coordenador,admin'],
 ]);
 
 Route::get('/coordenador/relatorio', [
 	'uses' => '\Monitoriamat\Http\Controllers\RelatorioController@getListaRelatorios',
 	'as' => 'relatorio.monitoria',
-	'middleware' => ['user.role:coordenador'],
+	'middleware' => ['user.role:coordenador,admin'],
 ]);
 
 Route::get('/coordenador/configura/monitoria', [
