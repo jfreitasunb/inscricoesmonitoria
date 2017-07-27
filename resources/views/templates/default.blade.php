@@ -24,6 +24,7 @@
       @endif
       @if (Session::has('user_type') && Session::get('user_type')==='coordenador')
         @include('templates.partials.coordenador.menu_coordenador')
+        @yield('cadastra_disciplina')
         @yield('configura_monitoria')
         @yield('relatorio_monitoria')
       @endif
