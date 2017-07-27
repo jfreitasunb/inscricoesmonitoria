@@ -29,6 +29,12 @@ class CoordenadorController extends BaseController
 		return view('home');
 	}
 
+	public function getCadastraDisciplina()
+	{
+
+		return view('templates.partials.coordenador.cadastra_disciplina');
+	}
+
 	public function getConfiguraMonitoria()
 	{
 
