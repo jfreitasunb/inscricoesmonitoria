@@ -29,7 +29,7 @@
         @yield('relatorio_monitoria')
       @endif
       @if (Session::has('user_type') && Session::get('user_type')==='admin')
-        @include('templates.partials.menu_admin')
+        @include('templates.partials.admin.menu_admin')
       @endif
     @else
       @yield('inicio')
