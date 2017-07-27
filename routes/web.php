@@ -82,6 +82,12 @@ Route::post('/aluno/dados/escolhas', [
 *Área do coordenador
  */
 
+Route::get('/coordenador/cadastrar/disciplina',[
+    'uses' => '\Monitoriamat\Http\Controllers\CoordenadorController@getCadastraDisciplina',
+    'as'   => 'cadastra.disciplia',
+    'middleware' => ['user.role:coordenador'],
+]);
+
 Route::get('/coordenador/relatorio/{id_monitoria}',[
     'uses' => '\Monitoriamat\Http\Controllers\RelatorioController@geraRelatorio',
     'as'   => 'gera.relatorio',
