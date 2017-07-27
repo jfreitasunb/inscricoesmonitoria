@@ -1,5 +1,5 @@
 <div class="row">
-  <nav class="navbar navbar-default col-md-4 col-md-offset-4" role="navigation">
+  <nav class="navbar navbar-default col-md-3 col-md-offset-3" role="navigation">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bar1">
           <span class="sr-only">Toggle navigation</span>
