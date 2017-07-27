@@ -84,7 +84,7 @@ Route::post('/aluno/dados/escolhas', [
 
 Route::get('/coordenador/cadastrar/disciplina',[
     'uses' => '\Monitoriamat\Http\Controllers\CoordenadorController@getCadastraDisciplina',
-    'as'   => 'cadastra.disciplia',
+    'as'   => 'cadastra.disciplina',
     'middleware' => ['user.role:coordenador'],
 ]);
 
