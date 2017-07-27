@@ -4,7 +4,7 @@
   <link href="{{ asset('css/parsley.css') }}" rel="stylesheet">
 @endsection
 
-@section('dados_bancarios')
+@section('cadastra_disciplina')
   <div class="row">
     <form data-parsley-validate="" class="form-horizontal" action="" method="post">
       <fieldset class="scheduler-border">
