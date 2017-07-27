@@ -440,7 +440,7 @@ class CandidatoController extends BaseController
 
 		$finalizar->save();
 
-		return redirect()->route('home')->with('success','Seus escolhas foram gravadas com sucesso.');
+		return redirect()->route('home')->with('success','Suas escolhas foram gravadas com sucesso.');
 
 	}
 
