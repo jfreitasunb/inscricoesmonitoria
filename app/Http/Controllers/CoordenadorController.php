@@ -39,24 +39,20 @@ class CoordenadorController extends BaseController
 	{
 
 		$this->validate($request, [
-			'codigo_disciplina' => 'required|numeric',
+			'codigo' => 'required|unique:disciplinas_mat|numeric',
 			'nome_disciplina' => 'required|max:256',
 			'creditos_disciplina' => 'required|numeric',
 		]);
     
-    	
-
     	$nova_disciplina = new DisciplinaMat();
 
-		$nova_disciplina->codigo = $request->codigo_disciplina;
+		$nova_disciplina->codigo = $request->codigo;
 		$nova_disciplina->nome = $request->nome_disciplina;
-		$nova_disciplina->creditos = $request->creditos_disciplina
+		$nova_disciplina->creditos = $request->creditos_disciplina;
 		
 		$nova_disciplina->save();
 
-		return redirect()->route('cadastra.disciplina')->with('success','Disciplina cadastrada com sucesso!');
-
-		
+		return redirect()->route('cadastra.disciplina')->with('success','Disciplina cadastrada com sucesso!');	
 
 	}
 
