@@ -10,15 +10,15 @@
       <fieldset class="scheduler-border">
         <legend class="scheduler-border">Cadastrar nova disciplina</legend>
         
-        <div class="form-group" {{ $errors->has('codigo_disciplina') ? ' has-error' : '' }}>
+        <div class="form-group" {{ $errors->has('codigo') ? ' has-error' : '' }}>
           <div class="row">
-            <label class="col-md-4 control-label" for="codigo_disciplina">Código disciplina</label>  
+            <label class="col-md-4 control-label" for="codigo">Código disciplina</label>  
             <div class="col-md-2">
-              <input id="codigo_disciplina" name="codigo_disciplina" type="text" class="form-control input-md" required="" data-parsley-type="number" value="{{Request::old('codigo_disciplina') ?: '' }}">
+              <input id="codigo" name="codigo" type="text" class="form-control input-md" required="" data-parsley-type="number" value="{{Request::old('codigo') ?: '' }}">
             </div>
           </div>
-          @if ($errors->has('codigo_disciplina'))
-            <span class="help-block">{{ $errors->first('codigo_disciplina') }}</span>
+          @if ($errors->has('codigo'))
+            <span class="help-block">{{ $errors->first('codigo') }}</span>
           @endif
         </div>
 
