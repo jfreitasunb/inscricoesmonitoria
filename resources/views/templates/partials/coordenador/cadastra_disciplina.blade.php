@@ -6,7 +6,7 @@
 
 @section('cadastra_disciplina')
   <div class="row">
-    <form action="{{ route('configura.monitoria') }}" method="POST" data-parsley-validate="" class="form-horizontal">
+    <form action="{{ route('cadastra.disciplina') }}" method="POST" data-parsley-validate class="form-horizontal">
       <fieldset class="scheduler-border">
         <legend class="scheduler-border">Cadastrar nova disciplina</legend>
         
@@ -14,7 +14,7 @@
           <div class="row">
             <label class="col-md-4 control-label" for="codigo_disciplina">Código disciplina</label>  
             <div class="col-md-2">
-              <input id="codigo_disciplina" name="codigo_disciplina" type="text" class="form-control input-md" required="" value="{{$dados['codigo_disciplina'] or Request::old('codigo_disciplina') ?: '' }}">
+              <input id="codigo_disciplina" name="codigo_disciplina" type="text" class="form-control input-md" required="" data-parsley-type="number" value="{{Request::old('codigo_disciplina') ?: '' }}">
             </div>
           </div>
           @if ($errors->has('codigo_disciplina'))
@@ -26,7 +26,7 @@
           <div class="row">
             <label class="col-md-4 control-label" for="nome_disciplina">Nome da disciplina</label>  
             <div class="col-md-4">
-              <input id="nome_disciplina" name="nome_disciplina" type="text" class="form-control input-md" required="" value="{{$dados['nome_disciplina'] or Request::old('nome_disciplina') ?: '' }}">
+              <input id="nome_disciplina" name="nome_disciplina" type="text" class="form-control input-md" required="" value="{{Request::old('nome_disciplina') ?: '' }}">
             </div>
           </div>
           @if ($errors->has('nome_disciplina'))
@@ -38,7 +38,7 @@
           <div class="row">
             <label class="col-md-4 control-label" for="creditos_disciplina">Créditos</label>  
             <div class="col-md-1">
-              <input id="creditos_disciplina" name="creditos_disciplina" type="text" placeholder="" class="form-control input-md" required="" value="{{$dados['creditos_disciplina'] or Request::old('creditos_disciplina') ?: '' }}">
+              <input id="creditos_disciplina" name="creditos_disciplina" type="text" placeholder="" class="form-control input-md" required="" data-parsley-type="number" value="{{Request::old('creditos_disciplina') ?: '' }}">
             </div>
           </div>
           @if ($errors->has('creditos_disciplina'))
