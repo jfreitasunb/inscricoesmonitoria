@@ -335,6 +335,12 @@ class CandidatoController extends BaseController
 
 		$status_inscricao = $finaliza_inscricao->retorna_inscricao_finalizada($id_user,$id_monitoria);
 
+		$informou_dados_academicos = DadoAcademico::find($id_user);
+
+		if (is_null($informou_dados_academicos)) {
+			
+			return redirect()->route('dados.academicos')->with('erro','Por favor informe seus dados acadêmicos antes de efetuar suas escolhas.');
+		}
 
 
 		if ($status_inscricao) {
@@ -427,14 +433,6 @@ class CandidatoController extends BaseController
 			}
 
 		}
-
-		$informou_dados_academicos = DadoAcademico::find($id_user);
-
-		if (is_null($informou_dados_academicos)) {
-			
-			return redirect()->route('dados.academicos')->with('erro','Por favor informe seus dados acadêmicos antes de efetuar suas escolhas.');
-		}
-
 
 		$finalizar->finalizar = 1;
 
