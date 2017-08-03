@@ -30,4 +30,11 @@ class AdminController extends CoordenadorController
 		return view('home');
 	}
 
+
+	public function getAtivaConta()
+	{
+		
+		return view('templates.partials.admin.ativa_conta');
+	}
+
 }
