@@ -101,30 +101,30 @@ Route::get('/coordenador/cadastrar/disciplina',[
 Route::post('/coordenador/cadastrar/disciplina',[
     'uses' => '\Monitoriamat\Http\Controllers\CoordenadorController@PostCadastraDisciplina',
     'as'   => 'cadastra.disciplina',
-    'middleware' => ['user.role:coordenador'],
+    'middleware' => ['user.role:coordenador,admin'],
 ]);
 
 Route::get('/coordenador/relatorio/{id_monitoria}',[
     'uses' => '\Monitoriamat\Http\Controllers\RelatorioController@geraRelatorio',
     'as'   => 'gera.relatorio',
-    'middleware' => ['user.role:coordenador'],
+    'middleware' => ['user.role:coordenador,admin'],
 ]);
 
 Route::get('/coordenador/relatorio', [
 	'uses' => '\Monitoriamat\Http\Controllers\RelatorioController@getListaRelatorios',
 	'as' => 'relatorio.monitoria',
-	'middleware' => ['user.role:coordenador'],
+	'middleware' => ['user.role:coordenador,admin'],
 ]);
 
 Route::get('/coordenador/configura/monitoria', [
 	'uses' => '\Monitoriamat\Http\Controllers\CoordenadorController@getConfiguraMonitoria',
 	'as' => 'configura.monitoria',
-	'middleware' => ['user.role:coordenador'],
+	'middleware' => ['user.role:coordenador,admin'],
 ]);
 
 Route::post('/coordenador/configura/monitoria', [
 	'uses' => '\Monitoriamat\Http\Controllers\CoordenadorController@postConfiguraMonitoria',
-	'middleware' => ['user.role:coordenador'],
+	'middleware' => ['user.role:coordenador,admin'],
 ]);
 
 Route::get('/coordenador', [

@@ -16,12 +16,13 @@ use Illuminate\Http\Request;
 use Monitoriamat\Mail\EmailVerification;
 use Monitoriamat\Http\Controllers\Controller;
 use Monitoriamat\Http\Controllers\AuthController;
+use Monitoriamat\Http\Controllers\CoordenadorController;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 /**
 * Classe para visualização da página inicial.
 */
-class AdminController extends BaseController
+class AdminController extends CoordenadorController
 {
 
 	public function getMenu()

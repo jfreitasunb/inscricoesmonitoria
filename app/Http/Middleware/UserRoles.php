@@ -28,7 +28,7 @@ class UserRoles
         }else{
             return redirect('/');
         }
-
+        
         if (!$libera_acesso) {
             return redirect('/');
         }
