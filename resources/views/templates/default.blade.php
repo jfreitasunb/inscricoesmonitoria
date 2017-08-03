@@ -30,6 +30,7 @@
       @endif
       @if (Session::has('user_type') && Session::get('user_type')==='admin')
         @include('templates.partials.admin.menu_admin')
+        @yield('ativa_conta')
         @yield('cadastra_disciplina')
         @yield('configura_monitoria')
         @yield('relatorio_monitoria')
