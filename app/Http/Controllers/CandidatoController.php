@@ -282,6 +282,7 @@ class CandidatoController extends BaseController
 
     	$escolhas_candidato = new EscolhaMonitoria();
 		$fez_escolhas = $escolhas_candidato->retorna_escolha_monitoria($id_user,$id_monitoria);
+		
 
 		$disable[] = 'disabled="disabled"';
 
@@ -299,7 +300,7 @@ class CandidatoController extends BaseController
 
 		if (count($fez_escolhas)==3) {
 			
-			return view('templates.partials.candidato.escolha_monitoria')->with(compact('disable','escolhas','array_horarios_disponiveis','array_dias_semana'));
+			return redirect()->back()->with('erro','Você já realizou as 03 (três) escolhas possíveis. Não é possível escolher mais nenhuma disciplina.');
 		}else{
 
 			$disable=[];
@@ -356,7 +357,7 @@ class CandidatoController extends BaseController
 		$fez_escolhas = $escolhas->retorna_escolha_monitoria($id_user,$id_monitoria);
 
 		
-		if (count($fez_escolhas)==0 or count($fez_escolhas)<=3) {
+		if (count($fez_escolhas)==0 or count($fez_escolhas)<3) {
 			$grava_escolhas = new EscolhaMonitoria();
 			$grava_escolhas->id_user = $id_user;
 			$grava_escolhas->id_monitoria = $id_monitoria;
