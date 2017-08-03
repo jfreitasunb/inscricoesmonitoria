@@ -1,5 +1,5 @@
 <div class="row">
-  <nav class="navbar navbar-default col-md-6 col-md-offset-3" role="navigation">
+  <nav class="navbar navbar-default-admin col-md-7 col-md-offset-3" role="navigation">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bar1">
           <span class="sr-only">Toggle navigation</span>
@@ -11,6 +11,7 @@
     </div>
     <div class="collapse navbar-collapse" id="bar1">
       <ul class="nav navbar-nav">
+        <li class="{{ Route::currentRouteNamed('ativa.conta') ? 'active' : '' }}"><a href="{{ route('ativa.conta') }}">Ativar Conta</a></li>
         <li class="{{ Route::currentRouteNamed('cadastra.disciplina') ? 'active' : '' }}"><a href="{{ route('cadastra.disciplina') }}">Cadastrar Disciplina</a></li>
         <li class="{{ Route::currentRouteNamed('configura.monitoria') ? 'active' : '' }}"><a href="{{ route('configura.monitoria') }}">Configurar Inscrição</a></li>
         <li class="{{ Route::currentRouteNamed('relatorio.monitoria') ? 'active' : '' }}"><a href="{{ route('relatorio.monitoria') }}">Relatórios</a></li>
