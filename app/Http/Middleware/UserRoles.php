@@ -14,11 +14,20 @@ class UserRoles
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next, $role)
+    public function handle($request, Closure $next, ...$roles)
     {
-        if (!Auth::check() ||  Auth::user()->user_type <> $role) {
-            return redirect('/');
+        
+        foreach ($roles as $role ) {
+            if (!Auth::check()){
+                if (Auth::user()->user_type <> $role) {
+                     return redirect('/');
+                }
+            } 
+               
+            }
+            return $next($request);
         }
-        return $next($request);
+
+        
     }
 }

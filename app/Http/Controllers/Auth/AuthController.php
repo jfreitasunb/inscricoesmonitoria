@@ -108,7 +108,7 @@ class AuthController extends BaseController
 		}
 		
 		if ($user_type === 'admin') {
-			return redirect()->intended('/');
+			return redirect()->intended('admin');
 		}
 
 		if ($user_type === 'aluno') {
