@@ -12,7 +12,7 @@
         
         <div class="form-group" {{ $errors->has('codigo') ? ' has-error' : '' }}>
           <div class="row">
-            <label class="col-md-4 control-label" for="codigo">E-mail</label>  
+            <label class="col-md-2 control-label" for="codigo">E-mail</label>  
             <div class="col-md-2">
               <input id="email" name="email" type="text" class="form-control input-md" required="" data-parsley-type="email" value="{{Request::old('email') ?: '' }}">
             </div>
@@ -21,6 +21,14 @@
             <span class="help-block">{{ $errors->first('email') }}</span>
           @endif
         </div>
+
+        
+        <div class="form-group form-inline{{ $errors->has('ativar') ? ' has-error' : '' }}">
+          <label class="col-md-2 control-label" for="ativar">Ativar?</label>  
+          <input type="radio" name="ativar" id="ativar" class="radio" value="1" @if(Request::old('ativar')==1) checked @endif> Sim
+          <input type="radio" name="ativar" id="ativar" class="radio" value="0" @if(Request::old('ativar')==2) checked @endif> Não
+        </div>
+      
 
         <div class="col-xs-12" style="height:35px;"></div>
         <div class="form-group">
