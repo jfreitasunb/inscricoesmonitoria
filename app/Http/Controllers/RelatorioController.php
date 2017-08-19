@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use Monitoriamat\Models\User;
 use Monitoriamat\Models\ConfiguraInscricao;
 use Monitoriamat\Models\DadoPessoal;
+use Monitoriamat\Models\DadoBancario;
 use Monitoriamat\Models\Documento;
 use Monitoriamat\Models\DadoAcademico;
 use Monitoriamat\Models\DisciplinaMat;
@@ -86,7 +87,7 @@ class RelatorioController extends BaseController
 
               $cabecalho = ["Nome","E-mail","Celular","Curso de Graduação", "IRA", "Tipo de Monitoria", "Monitor Convidado", "Nome do Professor", "Escolhas", "Horários", "Atuações Anteoriores"];
 
-              $cabecalho_dados_pessoais_bancario = ["Nome","E-mail","Matrícula","Celular","CPF", "Banco", "Agência", "Conta Corrente"];
+              $cabecalho_dados_pessoais_bancario = ["Nome","E-mail","Matrícula","Celular","CPF", "Banco", "Número", "Agência", "Conta Corrente"];
 
               $csv_relatorio->insertOne($cabecalho);
               $csv_dados_pessoais_bancarios->insertOne($cabecalho_dados_pessoais_bancario);
@@ -118,6 +119,15 @@ class RelatorioController extends BaseController
 
                      $linha_arquivo_DPB['celular'] = $dados_pessoais->celular;
                      $linha_arquivo_DPB['CPF'] = $dados_pessoais->cpf;
+
+                     $dado_bancario = new DadoBancario();
+
+                     $dados_bancarios = $dado_bancario->retorna_dados_bancarios($id_user);
+
+                     $linha_arquivo_DPB['nome_banco'] = $dados_bancarios->nome_banco;
+                     $linha_arquivo_DPB['numero_banco'] = $dados_bancarios->numero_banco;
+                     $linha_arquivo_DPB['agencia_bancaria'] = $dados_bancarios->agencia_bancaria;
+                     $linha_arquivo_DPB['numero_conta_corrente'] = $dados_bancarios->numero_conta_corrente;
 
        		$dado_academico = new DadoAcademico();
 
@@ -179,6 +189,7 @@ class RelatorioController extends BaseController
                      }
 
                      $csv_relatorio->insertOne($linha_arquivo);
+                     $csv_dados_pessoais_bancarios->insertOne($linha_arquivo_DPB);
 
                      $documento = new Documento();
 
