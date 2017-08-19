@@ -68,6 +68,7 @@ class RelatorioController extends BaseController
        {
 
        	$arquivo_relatorio = "Relatorio_inscritos_".$id_monitoria.".csv";
+              $arquivo_dados_pessoais_bancario = "Dados_pessoais-bancarios_".$id_monitoria.".csv";
               $local_relatorios = 'relatorios/csv/';
               $local_documentos = storage_path('app/');
               $arquivos_temporarios = public_path("/relatorios/temporario");
@@ -77,6 +78,7 @@ class RelatorioController extends BaseController
 
 
               $csv_relatorio = Writer::createFromPath($local_relatorios.$arquivo_relatorio, 'w+');
+              $csv_dados_pessoais_bancarios = Writer::createFromPath($local_relatorios.$arquivo_dados_pessoais_bancario, 'w+');
 
 
               $relatorio = new FinalizaEscolha();
@@ -84,7 +86,10 @@ class RelatorioController extends BaseController
 
               $cabecalho = ["Nome","E-mail","Celular","Curso de Graduação", "IRA", "Tipo de Monitoria", "Monitor Convidado", "Nome do Professor", "Escolhas", "Horários", "Atuações Anteoriores"];
 
+              $cabecalho_dados_pessoais_bancario = ["Nome","E-mail","Matrícula","Celular","CPF", "Banco", "Agência", "Conta Corrente"];
+
               $csv_relatorio->insertOne($cabecalho);
+              $csv_dados_pessoais_bancarios->insertOne($cabecalho_dados_pessoais_bancario);
 
 
               foreach ($usuarios_finalizados as $usuario) {
