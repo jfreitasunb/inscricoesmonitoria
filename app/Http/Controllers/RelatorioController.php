@@ -100,15 +100,24 @@ class RelatorioController extends BaseController
                      $user = New User();
 
                      $email = $user->find($id_user)->email;
+                     $matricula = $user->find($id_user)->login;
 
        		$dado_pessoal = new DadoPessoal();
        		$dados_pessoais = $dado_pessoal->retorna_dados_pessoais($id_user);
 
                      $linha_arquivo['nome'] = $dados_pessoais->nome;
+
+                     $linha_arquivo_DPB['nome'] = $dados_pessoais->nome;
                      
                      $linha_arquivo['email'] = $email;
 
+                     $linha_arquivo_DPB['email'] = $email;
+                     $linha_arquivo_DPB['matricula'] = $matricula;
+
                      $linha_arquivo['celular'] = $dados_pessoais->celular;
+
+                     $linha_arquivo_DPB['celular'] = $dados_pessoais->celular;
+                     $linha_arquivo_DPB['CPF'] = $dados_pessoais->cpf;
 
        		$dado_academico = new DadoAcademico();
 
