@@ -52,7 +52,7 @@ class RelatorioController extends BaseController
 	}
 
 
-       public function getArquivosRelatorios($id_monitoria,$arquivo_relatorio,$documentos_zipados)
+       public function getArquivosRelatorios($id_monitoria,$arquivo_relatorio,$documentos_zipados,$arquivo_dados_pessoais_bancario)
        {
 
               $relatorio = new ConfiguraInscricao();
@@ -61,7 +61,7 @@ class RelatorioController extends BaseController
 
               $monitoria = $id_monitoria;
 
-              return view('templates.partials.coordenador.relatorio_monitoria')->with(compact('monitoria','relatorio_disponivel','arquivo_relatorio','documentos_zipados'));
+              return view('templates.partials.coordenador.relatorio_monitoria')->with(compact('monitoria','relatorio_disponivel','arquivo_relatorio','documentos_zipados','arquivo_dados_pessoais_bancario'));
        }
 
 
@@ -218,7 +218,7 @@ class RelatorioController extends BaseController
 
               // File::cleanDirectory($arquivos_temporarios);
 
-              return $this->getArquivosRelatorios($id_monitoria,$arquivo_relatorio,$documentos_zipados);
+              return $this->getArquivosRelatorios($id_monitoria,$arquivo_relatorio,$documentos_zipados,$arquivo_dados_pessoais_bancario);
 
        
     }
