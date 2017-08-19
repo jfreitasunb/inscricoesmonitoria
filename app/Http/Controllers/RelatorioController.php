@@ -124,10 +124,13 @@ class RelatorioController extends BaseController
 
                      $dados_bancarios = $dado_bancario->retorna_dados_bancarios($id_user);
 
-                     $linha_arquivo_DPB['nome_banco'] = $dados_bancarios->nome_banco;
-                     $linha_arquivo_DPB['numero_banco'] = $dados_bancarios->numero_banco;
-                     $linha_arquivo_DPB['agencia_bancaria'] = $dados_bancarios->agencia_bancaria;
-                     $linha_arquivo_DPB['numero_conta_corrente'] = $dados_bancarios->numero_conta_corrente;
+                     if (!is_null($dados_bancarios)) {
+                            $linha_arquivo_DPB['nome_banco'] = $dados_bancarios->nome_banco;
+                            $linha_arquivo_DPB['numero_banco'] = $dados_bancarios->numero_banco;
+                            $linha_arquivo_DPB['agencia_bancaria'] = $dados_bancarios->agencia_bancaria;
+                            $linha_arquivo_DPB['numero_conta_corrente'] = $dados_bancarios->numero_conta_corrente;
+                     }
+                     
 
        		$dado_academico = new DadoAcademico();
 
