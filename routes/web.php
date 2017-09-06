@@ -117,6 +117,19 @@ Route::post('/admin/atribuir/papel', [
 	'as'   => 'atribuir.papel',
 	'middleware' => ['user.role:admin'],
 ]);
+
+Route::get('/admin/cria/coordenador', [
+	'uses' => '\Monitoriamat\Http\Controllers\AdminController@getCriaCoordenador',
+	'as'   => 'criar.coordenador',
+	'middleware' => ['user.role:admin'],
+]);
+
+Route::post('/admin/cria/coordenador', [
+	'uses' => '\Monitoriamat\Http\Controllers\AdminController@postCriaCoordenador',
+	'as'   => 'criar.coordenador',
+	'middleware' => ['user.role:admin'],
+]);
+
 /*
 *Área do coordenador
  */
