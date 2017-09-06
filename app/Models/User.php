@@ -23,6 +23,7 @@ class User extends Authenticatable
         'email', 
         'password',
         'validation_code',
+        'ativo',
     ];
 
     /**
@@ -49,7 +50,7 @@ class User extends Authenticatable
 
     public function retorna_user_por_email($email)
     {
-        return $this->select('ativo')->where('email',"=",$email)->first();
+        return $this->get()->where('email',"=",$email)->first();
 
     }
 }
