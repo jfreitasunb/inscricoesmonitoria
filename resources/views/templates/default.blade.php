@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('css/css_monitoria.css') }}" rel="stylesheet">
+  <link href="{{ asset('bower_components/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
 
   @yield('stylesheets')
 </head>
@@ -52,7 +53,7 @@
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="{{ asset('js/bootstrap.min.js') }}"></script>
   <script src="{{ asset('js/monitoria.js') }}"></script>
-  <script src="{{ asset('js/sweetalert.min.js') }}"></script>
+  <script src="{{ asset('bower_components/sweetalert2/dist/sweetalert2.min.js') }}"></script>
   
 
   @yield('scripts')
