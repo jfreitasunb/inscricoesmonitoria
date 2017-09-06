@@ -46,4 +46,10 @@ class User extends Authenticatable
         // Your your own implementation.
         $this->notify(new ResetPasswordNotification($token));
     }
+
+    public function retorna_user_por_email($email)
+    {
+        return $this->select('ativo')->where('email',"=",$email)->first();
+
+    }
 }
