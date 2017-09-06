@@ -147,4 +147,9 @@ class AdminController extends CoordenadorController
 
 	}
 
+	public function getCriaCoordenador()
+	{
+		return view('templates.partials.admin.criar_coordenador');	
+	}
+
 }
