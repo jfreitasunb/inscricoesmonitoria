@@ -13,12 +13,6 @@
 <body>
   @include('templates.partials.cabecalho')
   <div class="container">
-    @include('templates.partials.alerts')
-    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-    @endif
     @if (Auth::check())
       {{-- @include($templatemenu) --}}
       @if (Session::has('user_type') && Session::get('user_type')==='aluno')
@@ -55,6 +49,14 @@
   <script src="{{ asset('js/monitoria.js') }}"></script>
   <script src="{{ asset('bower_components/sweetalert2/dist/sweetalert2.min.js') }}"></script>
   
+  <script>
+    @if (notify()->ready())
+      swal({
+        title: "{!! notify()->message() !!}",
+        type: "{!! notify()->type() !!}"
+      });
+    @endif
+  </script>
 
   @yield('scripts')
 
