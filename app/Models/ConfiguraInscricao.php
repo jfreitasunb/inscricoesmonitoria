@@ -26,6 +26,7 @@ class ConfiguraInscricao extends Model
         'semestre_monitoria', 
         'inicio_inscricao', 
         'fim_inscricao',
+        'id_coordenador',
     ];
 
     public function retorna_lista_para_relatorio()

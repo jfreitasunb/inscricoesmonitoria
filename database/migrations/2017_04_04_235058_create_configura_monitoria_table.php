@@ -19,6 +19,7 @@ class CreateConfiguraMonitoriaTable extends Migration
             $table->string('semestre_monitoria',2);
             $table->date('inicio_inscricao');
             $table->date('fim_inscricao');
+            $table->integer('id_coordenador');
             $table->timestamps();
         });
     }
