@@ -73,13 +73,13 @@ class AdminController extends CoordenadorController
 		}
 	}
 
-	public function getAtribuirPapel()
+	public function getPesquisarPapelAtual()
 	{
 		$dados = null;
 		return view('templates.partials.admin.atribuir_papel')->with('dados_usuario', $dados);
 	}
 
-	public function postAtribuirPapel(Request $request)
+	public function postPesquisarPapelAtual(Request $request)
 	{
 
 		$this->validate($request, [
@@ -103,7 +103,41 @@ class AdminController extends CoordenadorController
 			return view('templates.partials.admin.atribuir_papel')->with(compact('dados_usuario', 'papeis_disponiveis'));
 			
 		}else{
-			return redirect()->route('atribuir.papel')->with('erro','Não existe nenhuma conta registrada com o e-mail: '.$email.'!');
+			return redirect()->route('pesquisar.papel')->with('erro','Não existe nenhuma conta registrada com o e-mail: '.$email.'!');
+		}
+
+	}
+
+	public function postAtribuirPapel(Request $request)
+	{
+
+		$this->validate($request, [
+			'novo_papel' => 'required',
+		]);
+
+
+		$email = $request->email;
+
+		$novo_papel = $request->novo_papel;
+
+		dd($novo_papel);
+		
+		$usuario = new User();
+		$user = $usuario->retorna_user_por_email($email);
+
+		if (!is_null($user)) {
+
+			$papeis_disponiveis = $usuario->retorna_papeis();
+
+			$papel_corrente_usuario = $user->user_type;
+
+			$dados_usuario['email'] = $email;
+			$dados_usuario['papel_atual'] = $papel_corrente_usuario;
+
+			return view('templates.partials.admin.atribuir_papel')->with(compact('dados_usuario', 'papeis_disponiveis'));
+			
+		}else{
+			return redirect()->route('pesquisar.papel')->with('erro','Não existe nenhuma conta registrada com o e-mail: '.$email.'!');
 		}
 
 	}
