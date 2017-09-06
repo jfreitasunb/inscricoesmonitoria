@@ -152,4 +152,28 @@ class AdminController extends CoordenadorController
 		return view('templates.partials.admin.criar_coordenador');	
 	}
 
+	public function postCriaCoordenador(Request $request)
+	{
+
+		$this->validate($request, [
+			'email' => 'required|unique:users|email',
+			'login' => 'required|unique:users',
+		]);
+
+		$novo_usuario = new User();
+
+		$novo_usuario->login = $request->input('login');
+        $novo_usuario->email = $request->input('email');
+        $novo_usuario->password = bcrypt('SenhaTEmporaria'.date("d-m-Y H:i:s:u"));
+        $novo_usuario->validation_code =  NULL;
+        $novo_usuario->user_type = "coordenador";
+        $novo_usuario->ativo = TRUE;
+
+        $novo_usuario->save();
+
+        return redirect()->route('criar.coordenador')->with('success','A conta de coordenador para o e-mail: '.$novo_usuario->email.' foi criada com sucesso!');
+		
+
+	}
+
 }
