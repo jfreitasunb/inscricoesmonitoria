@@ -73,4 +73,10 @@ class AdminController extends CoordenadorController
 		}
 	}
 
+	public function getAtribuirPapel()
+	{
+		
+		return view('templates.partials.admin.atribuir_papel');
+	}
+
 }
