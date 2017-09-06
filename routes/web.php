@@ -100,9 +100,15 @@ Route::post('/admin/ativa/conta', [
 	'middleware' => ['user.role:admin'],
 ]);
 
-Route::get('/admin/atribuir/papel', [
+Route::get('/admin/pesquisar/papel', [
 	'uses' => '\Monitoriamat\Http\Controllers\AdminController@getAtribuirPapel',
-	'as'   => 'atribuir.papel',
+	'as'   => 'pesquisar.papel',
+	'middleware' => ['user.role:admin'],
+]);
+
+Route::post('/admin/pesquisar/papel', [
+	'uses' => '\Monitoriamat\Http\Controllers\AdminController@postPesquisarPapelAtual',
+	'as'   => 'pesquisar.papel',
 	'middleware' => ['user.role:admin'],
 ]);
 
