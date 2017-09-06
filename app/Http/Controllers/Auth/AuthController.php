@@ -95,7 +95,8 @@ class AuthController extends BaseController
 			return redirect()->back()->with('info', 'Você não ativou sua conta ainda.');
 		}else{
 			if (!Auth::attempt($request->only(['login', 'password']))) {
-				return redirect()->back()->with('erro', 'Usuário ou senha não conferem.');
+				notify()->flash('Usuário ou senha não conferem!', 'danger');
+				return redirect()->back();
 			}
 		}
 
