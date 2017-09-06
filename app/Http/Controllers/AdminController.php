@@ -164,7 +164,7 @@ class AdminController extends CoordenadorController
 
 		$novo_usuario->login = $request->input('login');
         $novo_usuario->email = $request->input('email');
-        $novo_usuario->password = bcrypt('SenhaTEmporaria'.date("d-m-Y H:i:s:u"));
+        $novo_usuario->password = bcrypt(str_random());
         $novo_usuario->validation_code =  NULL;
         $novo_usuario->user_type = "coordenador";
         $novo_usuario->ativo = TRUE;
