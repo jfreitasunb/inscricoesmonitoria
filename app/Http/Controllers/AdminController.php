@@ -37,4 +37,13 @@ class AdminController extends CoordenadorController
 		return view('templates.partials.admin.ativa_conta');
 	}
 
+	public function postAtivaConta(Request $request)
+	{
+		
+		$this->validate($request, [
+			'email' => 'email|max:256',
+			'ativar' => 'required',
+		]);
+	}
+
 }
