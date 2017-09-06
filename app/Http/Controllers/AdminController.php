@@ -60,7 +60,12 @@ class AdminController extends CoordenadorController
 				return redirect()->route('ativa.conta')->with('info','A conta registrada com o e-mail: '.$email.' já foi ativada!');
 			}else{
 
-				
+				if ($ativar_conta) {
+					$user->ativo = TRUE;
+					$user->save();
+
+					return redirect()->route('ativa.conta')->with('success','A conta registrada com o e-mail: '.$email.' foi ativada com sucesso!');
+				}
 
 			}
 		}else{
