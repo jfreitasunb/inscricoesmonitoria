@@ -44,6 +44,19 @@ class AdminController extends CoordenadorController
 			'email' => 'email|max:256',
 			'ativar' => 'required',
 		]);
+
+		$email = $request->email;
+		$ativar_conta = $request->ativar;
+
+		$usuario = new User();
+		$user = $usuario->retorna_user_por_email($email);
+
+		if (!is_null($user)) {
+			
+			
+		}else{
+			return redirect()->route('ativa.conta')->with('erro','Não existe nenhuma conta registrada com o e-mail: '.$email.'!');
+		}
 	}
 
 }
