@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="row-fluid">
               <div class="col-sm-4 col-md-3 col-xs-12 image-container">
-                <img src="{{ asset('imagens/logo/logo_unb.png') }}" class="img-responsive" style="height:120px" />
+                <a href="{{URL::to('/')}}"> <img src="{{ asset('imagens/logo/logo_unb.png') }}" class="img-responsive" style="height:120px" /></a>
               </div>
               <div class="col-sm-8 col-md-7 col-xs-12">  
               <h1>Departamento de Matemática</h1>
