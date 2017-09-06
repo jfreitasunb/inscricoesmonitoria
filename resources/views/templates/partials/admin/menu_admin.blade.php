@@ -13,6 +13,7 @@
       <ul class="nav navbar-nav">
         <li class="{{ Route::currentRouteNamed('ativa.conta') ? 'active' : '' }}"><a href="{{ route('ativa.conta') }}">Ativar Conta</a></li>
         <li class="{{ Route::currentRouteNamed('pesquisar.papel') ? 'active' : '' }}"><a href="{{ route('pesquisar.papel') }}">Atribuir Papel</a></li>
+        <li class="{{ Route::currentRouteNamed('criar.coordenador') ? 'active' : '' }}"><a href="{{ route('criar.coordenador') }}">Cria Coordenador</a></li>
         <li class="{{ Route::currentRouteNamed('cadastra.disciplina') ? 'active' : '' }}"><a href="{{ route('cadastra.disciplina') }}">Cadastrar Disciplina</a></li>
         <li class="{{ Route::currentRouteNamed('configura.monitoria') ? 'active' : '' }}"><a href="{{ route('configura.monitoria') }}">Configurar Inscrição</a></li>
         <li class="{{ Route::currentRouteNamed('relatorio.monitoria') ? 'active' : '' }}"><a href="{{ route('relatorio.monitoria') }}">Relatórios</a></li>
