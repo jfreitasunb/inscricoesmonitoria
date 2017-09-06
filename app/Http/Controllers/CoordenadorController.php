@@ -77,6 +77,8 @@ class CoordenadorController extends BaseController
 			'semestre' => 'required',
 			'escolhas_coordenador' => 'required',
 		]);
+
+		$user = Auth::user();
     
     	$inicio = Carbon::createFromFormat('d/m/Y', $request->inicio_inscricao);
     	$fim = Carbon::createFromFormat('d/m/Y', $request->fim_inscricao);
@@ -92,6 +94,7 @@ class CoordenadorController extends BaseController
 		$monitoria->semestre_monitoria = $request->semestre;
 		$monitoria->inicio_inscricao = $data_inicio;
 		$monitoria->fim_inscricao = $data_fim;
+		$monitoria->id_coordenador = $user->id_user;
 
 		$monitoria->save();
 
