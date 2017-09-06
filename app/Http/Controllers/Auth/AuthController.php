@@ -92,10 +92,13 @@ class AuthController extends BaseController
 		$user = DB::table('users')->where('login', $request->input('login'))->value('ativo');
 
 		if (!$user) {
-			return redirect()->back()->with('info', 'Você não ativou sua conta ainda.');
+			notify()->flash('Você não ativou sua conta ainda. Você deve clicar no link de ativação que foi enviado para seu e-mail.','info');
+			return redirect()->back();
 		}else{
 			if (!Auth::attempt($request->only(['login', 'password']))) {
-				notify()->flash('Usuário ou senha não conferem!', 'danger');
+				notify()->flash('Usuário ou senha não conferem!', 'error',[
+					'timer' => 3000,
+				]);
 				return redirect()->back();
 			}
 		}
