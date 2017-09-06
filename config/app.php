@@ -179,6 +179,7 @@ return [
         Monitoriamat\Providers\RouteServiceProvider::class,
         ValidadorCpf\CpfServiceProvider54::class,
         Monitoriamat\Providers\ViewComposerServiceProvider::class,
+        Codecourse\Notify\NotifyServiceProvider::class,
 
     ],
 
