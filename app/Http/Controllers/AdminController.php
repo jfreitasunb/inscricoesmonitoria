@@ -53,7 +53,16 @@ class AdminController extends CoordenadorController
 
 		if (!is_null($user)) {
 			
-			
+			$status_usuario = $user->ativo;
+
+			if ($status_usuario) {
+				
+				return redirect()->route('ativa.conta')->with('info','A conta registrada com o e-mail: '.$email.' já foi ativada!');
+			}else{
+
+				
+
+			}
 		}else{
 			return redirect()->route('ativa.conta')->with('erro','Não existe nenhuma conta registrada com o e-mail: '.$email.'!');
 		}
