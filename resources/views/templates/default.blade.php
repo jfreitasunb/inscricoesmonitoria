@@ -52,6 +52,7 @@
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="{{ asset('js/bootstrap.min.js') }}"></script>
   <script src="{{ asset('js/monitoria.js') }}"></script>
+  <script src="{{ asset('js/sweetalert.min.js') }}"></script>
   
 
   @yield('scripts')
