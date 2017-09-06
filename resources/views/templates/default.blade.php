@@ -55,9 +55,28 @@
         title: "{!! notify()->message() !!}",
         type: "{!! notify()->type() !!}",
         @if (notify()->option('timer'))
-            timer: {{ notify()->option('timer') }}
+            timer: {{ notify()->option('timer') }},
         @endif
-      });
+        @if (notify()->option('showCancelButton'))
+            showCancelButton: {!! notify()->option('showCancelButton') !!},
+        @endif
+        @if (notify()->option('confirmButtonColor'))
+            confirmButtonColor: "{!! notify()->option('confirmButtonColor') !!}",
+        @endif
+        @if (notify()->option('cancelButtonColor'))
+            cancelButtonColor: "{!! notify()->option('cancelButtonColor') !!}",
+        @endif
+        @if (notify()->option('confirmButtonText'))
+            confirmButtonText: "{!! notify()->option('confirmButtonText') !!}",
+        @endif
+        @if (notify()->option('cancelButtonText'))
+            cancelButtonText: "{!! notify()->option('cancelButtonText') !!}",
+        @endif
+      })
+      @if (notify()->option('confirmacao'))
+            .then(function () {swal('Deleted!','Your file has been deleted.','success')})
+      @endif
+        ;
     @endif
   </script>
 
