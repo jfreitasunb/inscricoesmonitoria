@@ -56,20 +56,24 @@ class AdminController extends CoordenadorController
 			$status_usuario = $user->ativo;
 
 			if ($status_usuario) {
-				
-				return redirect()->route('ativa.conta')->with('info','A conta registrada com o e-mail: '.$email.' já foi ativada!');
+				notify()->flash('A conta registrada com o e-mail: '.$email.' já foi ativada!','info');
+
+				return redirect()->route('ativa.conta');
 			}else{
 
 				if ($ativar_conta) {
 					$user->ativo = TRUE;
 					$user->save();
 
+					notify()->flash('A conta registrada com o e-mail: '.$email.' foi ativada com sucesso!','success');
+
 					return redirect()->route('ativa.conta')->with('success','A conta registrada com o e-mail: '.$email.' foi ativada com sucesso!');
 				}
 
 			}
 		}else{
-			return redirect()->route('ativa.conta')->with('erro','Não existe nenhuma conta registrada com o e-mail: '.$email.'!');
+			notify()->flash('Não existe nenhuma conta registrada com o e-mail: '.$email.'!','error');
+			return redirect()->route('ativa.conta');
 		}
 	}
 
@@ -103,7 +107,10 @@ class AdminController extends CoordenadorController
 			return view('templates.partials.admin.atribuir_papel')->with(compact('dados_usuario', 'papeis_disponiveis'));
 			
 		}else{
-			return redirect()->route('pesquisar.papel')->with('erro','Não existe nenhuma conta registrada com o e-mail: '.$email.'!');
+
+			notify()->flash('Não existe nenhuma conta registrada com o e-mail: '.$email.'!','error');
+
+			return redirect()->route('pesquisar.papel');
 		}
 
 	}
@@ -129,11 +136,26 @@ class AdminController extends CoordenadorController
 
 			if ($novo_papel == "admin") {
 				$user->user_type = "admin";
+
+				notify()->flash('Você tem certeza que deseja transformar o usuário: '.$email.' em Administrador?','warning',[
+					'showCancelButton'=> true,
+  					'confirmButtonColor'=> '#3085d6',
+  					'cancelButtonColor'=> '#d33',
+  					'confirmButtonText' => 'Sim',
+  					'cancelButon' => true,
+  					'cancelButtonText' => 'Não',
+  					'confirmacao' => true,
+				]);
+
+
 				$user->save();
-				return redirect()->route('pesquisar.papel')->with('erro','Não existe nenhuma conta registrada com o e-mail: '.$email.'!');
+
+				return redirect()->route('pesquisar.papel');
+
 			}elseif ($novo_papel=="coordenador") {
 				$user->user_type = "coordenador";
 				$user->save();
+				notify()->flash('Você tem certeza que deseja transformar o usuário: '.$email.' em Administrador?','warning');
 				return redirect()->route('pesquisar.papel')->with('erro','Não existe nenhuma conta registrada com o e-mail: '.$email.'!');
 			}elseif ($novo_papel=="aluno") {
 				$user->user_type = "aluno";
