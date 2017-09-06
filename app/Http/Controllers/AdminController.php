@@ -79,4 +79,24 @@ class AdminController extends CoordenadorController
 		return view('templates.partials.admin.atribuir_papel');
 	}
 
+	public function postAtribuirPapel(Request $request)
+	{
+
+		$this->validate($request, [
+			'email' => 'email|max:256',
+		]);
+
+		$email = $request->email;
+		
+		$usuario = new User();
+		$user = $usuario->retorna_user_por_email($email);
+
+		if (!is_null($user)) {
+			
+		}else{
+			return redirect()->route('atribuir.papel')->with('erro','Não existe nenhuma conta registrada com o e-mail: '.$email.'!');
+		}
+
+	}
+
 }
