@@ -93,6 +93,12 @@ Route::get('/admin/ativa/conta', [
 	'as'   => 'ativa.conta',
 	'middleware' => ['user.role:admin'],
 ]);
+
+Route::post('/admin/ativa/conta', [
+	'uses' => '\Monitoriamat\Http\Controllers\AdminController@postAtivaConta',
+	'as'   => 'ativa.conta',
+	'middleware' => ['user.role:admin'],
+]);
 /*
 *Área do coordenador
  */
