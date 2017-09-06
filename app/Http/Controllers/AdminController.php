@@ -120,21 +120,26 @@ class AdminController extends CoordenadorController
 
 		$novo_papel = $request->novo_papel;
 
-		dd($novo_papel);
-		
 		$usuario = new User();
 		$user = $usuario->retorna_user_por_email($email);
 
+		$dados_usuario = null;
+		
 		if (!is_null($user)) {
 
-			$papeis_disponiveis = $usuario->retorna_papeis();
-
-			$papel_corrente_usuario = $user->user_type;
-
-			$dados_usuario['email'] = $email;
-			$dados_usuario['papel_atual'] = $papel_corrente_usuario;
-
-			return view('templates.partials.admin.atribuir_papel')->with(compact('dados_usuario', 'papeis_disponiveis'));
+			if ($novo_papel == "admin") {
+				$user->user_type = "admin";
+				$user->save();
+				return redirect()->route('pesquisar.papel')->with('erro','Não existe nenhuma conta registrada com o e-mail: '.$email.'!');
+			}elseif ($novo_papel=="coordenador") {
+				$user->user_type = "coordenador";
+				$user->save();
+				return redirect()->route('pesquisar.papel')->with('erro','Não existe nenhuma conta registrada com o e-mail: '.$email.'!');
+			}elseif ($novo_papel=="aluno") {
+				$user->user_type = "aluno";
+				$user->save();
+				return redirect()->route('pesquisar.papel')->with('erro','Não existe nenhuma conta registrada com o e-mail: '.$email.'!');
+			}
 			
 		}else{
 			return redirect()->route('pesquisar.papel')->with('erro','Não existe nenhuma conta registrada com o e-mail: '.$email.'!');
