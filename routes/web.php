@@ -99,6 +99,18 @@ Route::post('/admin/ativa/conta', [
 	'as'   => 'ativa.conta',
 	'middleware' => ['user.role:admin'],
 ]);
+
+Route::get('/admin/atribuir/papel', [
+	'uses' => '\Monitoriamat\Http\Controllers\AdminController@getAtribuirPapel',
+	'as'   => 'atribuir.papel',
+	'middleware' => ['user.role:admin'],
+]);
+
+Route::post('/admin/atribuir/papel', [
+	'uses' => '\Monitoriamat\Http\Controllers\AdminController@postAtribuirPapel',
+	'as'   => 'atribuir.papel',
+	'middleware' => ['user.role:admin'],
+]);
 /*
 *Área do coordenador
  */
