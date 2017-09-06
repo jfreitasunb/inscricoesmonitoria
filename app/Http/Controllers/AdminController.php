@@ -75,8 +75,8 @@ class AdminController extends CoordenadorController
 
 	public function getAtribuirPapel()
 	{
-		
-		return view('templates.partials.admin.atribuir_papel');
+		$dados = null;
+		return view('templates.partials.admin.atribuir_papel')->with('dados_usuario', $dados);
 	}
 
 	public function postAtribuirPapel(Request $request)
@@ -92,6 +92,15 @@ class AdminController extends CoordenadorController
 		$user = $usuario->retorna_user_por_email($email);
 
 		if (!is_null($user)) {
+
+			$papeis_disponiveis = $usuario->retorna_papeis();
+
+			$papel_corrente_usuario = $user->user_type;
+
+			$dados_usuario['email'] = $email;
+			$dados_usuario['papel_atual'] = $papel_corrente_usuario;
+
+			return view('templates.partials.admin.atribuir_papel')->with(compact('dados_usuario', 'papeis_disponiveis'));
 			
 		}else{
 			return redirect()->route('atribuir.papel')->with('erro','Não existe nenhuma conta registrada com o e-mail: '.$email.'!');
