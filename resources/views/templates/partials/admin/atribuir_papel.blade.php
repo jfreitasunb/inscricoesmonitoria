@@ -6,8 +6,8 @@
 
 @section('ativa_conta')
   <div class="row">
-    <form action="{{ route('atribuir.papel') }}" method="POST" data-parsley-validate class="form-horizontal">
     @if(count($dados_usuario))
+    <form action="{{ route('atribuir.papel') }}" method="POST" data-parsley-validate class="form-horizontal">
       <fieldset class="scheduler-border">
         <legend class="scheduler-border">Mudar Papel</legend>
         
@@ -49,6 +49,7 @@
         </div>
       </fieldset>
     @else
+    <form action="{{ route('pesquisar.papel') }}" method="POST" data-parsley-validate class="form-horizontal">
       <fieldset class="scheduler-border">
         <legend class="scheduler-border">Pesquisar usuário</legend>
         
