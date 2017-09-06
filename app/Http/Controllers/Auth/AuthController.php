@@ -68,11 +68,10 @@ class AuthController extends BaseController
 
 		Notification::send(User::find($id_user), new AtivaConta($novo_usuario->validation_code));
 
-		// $email = new EmailVerification(new User(['validation_code' => $novo_usuario->validation_code, 'nome' => $novo_usuario->nome]));
 
-  //       Mail::to($novo_usuario->email)->send($email);
+		notify()->flash('Conta criada com sucesso. Foi enviado para o e-mail: '.$novo_usuario->email.' um link de ativação da sua conta. Somente após ativação você conseguirá fazer login no sistema.','info');
 
-		return redirect()->route('home')->with('info','Conta criada com sucesso. Foi enviado para o e-mail informado um link de ativação da sua conta. Somente após ativação você conseguirá fazer login no sistema.');
+		return redirect()->route('home');
 
 	}
 
@@ -108,31 +107,52 @@ class AuthController extends BaseController
 		Session::put('user_type', $user_type);
 
 		if ($user_type === 'coordenador') {
+			notify()->flash('Bem vindo!','success',[
+				'timer' => 1500,
+			]);
 			return redirect()->intended('coordenador');
 		}
 		
 		if ($user_type === 'admin') {
+			notify()->flash('Bem vindo!','success',[
+				'timer' => 1500,
+			]);
 			return redirect()->intended('admin');
 		}
 
 		if ($user_type === 'aluno') {
+			notify()->flash('Bem vindo!','success',[
+				'timer' => 1500,
+			]);
 			return redirect()->intended('aluno');
 		}
-		return redirect()->route('home')->with('info','Bem vindo');
+
+		notify()->flash('Você não se identificou ainda.','warning',[
+				'timer' => 1500,
+			]);
+		return redirect()->route('home');
 	}
 
 	public function getLogout()
 	{
 		Auth::logout();
 
-		return redirect()->route('home')->with('info','Você saiu da sua conta');
+		notify()->flash('Você saiu da sua conta.','info',[
+				'timer' => 1500,
+			]);
+
+		return redirect()->route('home');
 	}
 
 	public function getMudouSenha()
 	{
 		Auth::logout();
 
-		return redirect()->route('home')->with('success','Senha alterada com sucesso!');
+		notify()->flash('Senha alterada com sucesso!','success',[
+				'timer' => 1500,
+			]);
+
+		return redirect()->route('home');
 	}
 
 	public function verify($token)
@@ -140,7 +160,12 @@ class AuthController extends BaseController
 	    // The verified method has been added to the user model and chained here
 	    // for better readability
 	    User::where('validation_code',$token)->firstOrFail()->verified();
-	    return redirect()->route('home')->with('success','Conta ativada com sucesso.');
+
+	    notify()->flash('Conta ativada com sucesso!','success',[
+				'timer' => 1500,
+			]);
+
+	    return redirect()->route('home');
 	}
 
 	
