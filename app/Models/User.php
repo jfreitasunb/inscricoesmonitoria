@@ -53,4 +53,9 @@ class User extends Authenticatable
         return $this->get()->where('email',"=",$email)->first();
 
     }
+
+    public function retorna_papeis()
+    {
+        return $this->groupBy('user_type')->orderBy('user_type')->pluck('user_type');
+    }
 }
