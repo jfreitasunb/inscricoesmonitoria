@@ -18,6 +18,7 @@ use Monitoriamat\Http\Controllers\Controller;
 use Monitoriamat\Http\Controllers\AuthController;
 use Monitoriamat\Http\Controllers\CoordenadorController;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Route;
 
 /**
 * Classe para visualização da página inicial.
@@ -124,7 +125,7 @@ class AdminController extends CoordenadorController
 
 
 		$email = $request->email;
-
+		
 		$novo_papel = $request->novo_papel;
 
 		$usuario = new User();
@@ -135,39 +136,47 @@ class AdminController extends CoordenadorController
 		if (!is_null($user)) {
 
 			if ($novo_papel == "admin") {
+				
 				$user->user_type = "admin";
 
-				notify()->flash('Você tem certeza que deseja transformar o usuário: '.$email.' em Administrador?','warning',[
-					'showCancelButton'=> true,
-  					'confirmButtonColor'=> '#3085d6',
-  					'cancelButtonColor'=> '#d33',
-  					'confirmButtonText' => 'Sim',
-  					'cancelButon' => true,
-  					'cancelButtonText' => 'Não',
-  					'confirmacao' => true,
-				]);
-
-
 				$user->save();
+
+				notify()->flash('O usuário: '.$email.' agora é um: '.$novo_papel.'!','warning');
 
 				return redirect()->route('pesquisar.papel');
 
+
 			}elseif ($novo_papel=="coordenador") {
+				
 				$user->user_type = "coordenador";
+				
 				$user->save();
-				notify()->flash('Você tem certeza que deseja transformar o usuário: '.$email.' em Administrador?','warning');
-				return redirect()->route('pesquisar.papel')->with('erro','Não existe nenhuma conta registrada com o e-mail: '.$email.'!');
+
+				notify()->flash('O usuário: '.$email.' agora é um: '.$novo_papel.'!','warning');
+
+				return redirect()->route('pesquisar.papel');
+
 			}elseif ($novo_papel=="aluno") {
+				
 				$user->user_type = "aluno";
+				
 				$user->save();
-				return redirect()->route('pesquisar.papel')->with('erro','Não existe nenhuma conta registrada com o e-mail: '.$email.'!');
+
+				notify()->flash('O usuário: '.$email.' agora é um: '.$novo_papel.'!','warning');
+
+				return redirect()->route('pesquisar.papel');
 			}
 			
 		}else{
-			return redirect()->route('pesquisar.papel')->with('erro','Não existe nenhuma conta registrada com o e-mail: '.$email.'!');
+
+			notify()->flash('Não existe nenhuma conta registrada com o e-mail: '.$email.'!','error');
+			
+			return redirect()->route('pesquisar.papel');
 		}
 
 	}
+
+
 
 	public function getCriaCoordenador()
 	{
@@ -193,7 +202,9 @@ class AdminController extends CoordenadorController
 
         $novo_usuario->save();
 
-        return redirect()->route('criar.coordenador')->with('success','A conta de coordenador para o e-mail: '.$novo_usuario->email.' foi criada com sucesso!');
+        notify()->flash('A conta de coordenador para o e-mail: '.$novo_usuario->email.' foi criada com sucesso!','success');
+
+        return redirect()->route('criar.coordenador');
 		
 
 	}
