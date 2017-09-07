@@ -69,18 +69,18 @@ class CandidatoController extends BaseController
 
 	public function postDadosPessoais(Request $request)
 	{
-		$this->validate($request, [
-			'nome' => 'max:256',
-			'numerorg' => 'required|max:21',
-			'emissorrg' => 'required|max:201',
-			'cpf' => 'required|cpf|numeric',
-			'endereco' => 'required|max:256',
-			'cidade' => 'required|max:101',
-			'cep' => 'required|max:12',
-			'estado' => 'required|max:3',
-			'telefone' => 'required|max:21',
-			'celular' => 'required|max:21',
-		]);
+			$this->validate($request, [
+				'nome' => 'max:256',
+				'numerorg' => 'required|max:21',
+				'emissorrg' => 'required|max:201',
+				'cpf' => 'required|cpf|numeric',
+				'endereco' => 'required|max:256',
+				'cidade' => 'required|max:101',
+				'cep' => 'required|max:12',
+				'estado' => 'required|max:3',
+				'telefone' => 'required|max:21',
+				'celular' => 'required|max:21',
+			]);
 
 			$user = Auth::user();
 			$id_user = $user->id_user;
@@ -398,6 +398,47 @@ class CandidatoController extends BaseController
 			return redirect()->route('home');
 		}
 
+		if ($request->input('tipo_monitoria')!== "somentevoluntaria") {
+			$informou_banco =  DadoBancario::find($id_user);
+
+			if (is_null($informou_banco)) {
+
+				notify()->flash('Por favor informe seus dados bancários antes de efetuar suas escolhas.','error');
+
+				return redirect()->route('dados.bancarios');
+			}
+
+		}
+
+
+		if (isset($request->nome_professor)) {
+			$monitor_projeto = [
+				'monitor_convidado' => $request->input('monitor_convidado'),
+				'nome_professor' => $request->input('nome_professor'),
+			];
+		}else{
+			$monitor_projeto = [
+				'monitor_convidado' => $request->input('monitor_convidado'),
+			];
+		}
+
+		if (($monitor_projeto['monitor_convidado']) AND ($request->input('tipo_monitoria') != "somentevoluntaria")) {
+
+			notify()->flash('Como você atua em projeto, somente é possível solicitar monitoria voluntária.','warning');
+			return redirect()->back();
+
+		}
+
+		$atualiza_dados_academicos = DadoAcademico::where('id_user', '=', $id_user)->where('id_monitoria', '=', $id_monitoria)->first();
+
+		if (is_null($atualiza_dados_academicos)) {
+
+			notify()->flash('Por favor atualize seus dados acadêmicos antes de fazer suas escolhas para a monitoria.','error');
+
+			return redirect()->route('dados.academicos');
+		}
+
+
 		$escolhas = new EscolhaMonitoria();
 		$fez_escolhas = $escolhas->retorna_escolha_monitoria($id_user,$id_monitoria);
 
@@ -433,25 +474,6 @@ class CandidatoController extends BaseController
 			}
 		}
 
-		$atualiza_dados_academicos = DadoAcademico::where('id_user', '=', $id_user)->where('id_monitoria', '=', $id_monitoria)->first();
-		if (isset($request->nome_professor)) {
-			$monitor_projeto = [
-				'monitor_convidado' => $request->input('monitor_convidado'),
-				'nome_professor' => $request->input('nome_professor'),
-			];
-		}else{
-			$monitor_projeto = [
-				'monitor_convidado' => $request->input('monitor_convidado'),
-			];
-		}
-
-		if (is_null($atualiza_dados_academicos)) {
-
-			notify()->flash('Por favor atualize seus dados acadêmicos antes de fazer suas escolhas para a monitoria.','error');
-
-			return redirect()->route('dados.academicos');
-		}
-
 		$atualiza_dados_academicos->update($monitor_projeto);
 		
 		$horario = $request->input('nome_hora_monitoria');
@@ -473,18 +495,6 @@ class CandidatoController extends BaseController
 		$finalizar->tipo_monitoria = $request->input('tipo_monitoria');
 		$finalizar->concorda_termos = $request->input('concorda_termos');
 		$finalizar->id_monitoria = $id_monitoria;
-
-		if ($request->input('tipo_monitoria')!== "somentevoluntaria") {
-			$informou_banco =  DadoBancario::find($id_user);
-
-			if (is_null($informou_banco)) {
-
-				notify()->flash('Por favor informe seus dados bancários antes de efetuar suas escolhas.','error');
-
-				return redirect()->route('dados.bancarios');
-			}
-
-		}
 
 		$finalizar->finalizar = 1;
 
