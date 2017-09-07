@@ -17,9 +17,9 @@
             <input id="nome" name="nome" type="text" class="form-control input-md" value="{{$dados['nome'] or Request::old('nome') ?: '' }}">
           </div>
         </div>
-        @if ($errors->has('nome'))
+        {{-- @if ($errors->has('nome'))
           <span class="help-block">{{ $errors->first('nome') }}</span>
-        @endif
+        @endif --}}
       </div>
 
       <div class="form-group{{ $errors->has('numerorg') ? ' has-error' : '' }}">
@@ -29,9 +29,9 @@
             <input id="numerorg" name="numerorg" type="text" class="form-control input-md" required="" data-parsley-type="alphanum" data-parsley-maxlength="20" value="{{$dados['numerorg'] or Request::old('numerorg') ?: '' }}">
           </div>
         </div>
-        @if ($errors->has('numerorg'))
+        {{-- @if ($errors->has('numerorg'))
           <span class="help-block">{{ $errors->first('numerorg') }}</span>
-        @endif
+        @endif --}}
       </div>
 
       <div class="form-group{{ $errors->has('emissorrg') ? ' has-error' : '' }}">
@@ -41,9 +41,9 @@
             <input id="emissorrg" name="emissorrg" type="text" class="form-control input-md" required="required" data-parsley-maxlength="200" value="{{$dados['emissorrg'] or Request::old('emissorrg') ?: '' }}">
           </div>
         </div>
-        @if ($errors->has('emissorrg'))
+        {{-- @if ($errors->has('emissorrg'))
           <span class="help-block">{{ $errors->first('emissorrg') }}</span>
-        @endif
+        @endif --}}
       </div>
 
       <div class="form-group{{ $errors->has('cpf') ? ' has-error' : '' }}">
@@ -53,9 +53,9 @@
             <input id="cpf" name="cpf" type="text" placeholder="Somente números" class="form-control input-md" required="required" data-parsley-maxlength="13" data-parsley-type="digits" value="{{$dados['cpf'] or Request::old('cpf') ?: '' }}">
           </div>
         </div>
-        @if ($errors->has('cpf'))
+        {{-- @if ($errors->has('cpf'))
           <span class="help-block">{{ $errors->first('cpf') }}</span>
-        @endif
+        @endif --}}
       </div>
 
       <div class="form-group{{ $errors->has('endereco') ? ' has-error' : '' }}">
@@ -65,9 +65,9 @@
             <input id="endereco" name="endereco" type="text" placeholder="" class="form-control input-md" required="" data-parsley-maxlength="255" value="{{$dados['endereco'] or Request::old('endereco') ?: '' }}">
           </div>
         </div>
-        @if ($errors->has('endereco'))
+        {{-- @if ($errors->has('endereco'))
           <span class="help-block">{{ $errors->first('endereco') }}</span>
-        @endif
+        @endif --}}
       </div>
 
       <div class="form-group{{ $errors->has('cidade') ? ' has-error' : '' }}">
@@ -77,9 +77,9 @@
             <input id="cidade" name="cidade" type="text" placeholder="" class="form-control input-md" required="" data-parsley-maxlength="100" value="{{$dados['cidade'] or Request::old('cidade') ?: '' }}">
           </div>
         </div>
-        @if ($errors->has('cidade'))
+        {{-- @if ($errors->has('cidade'))
           <span class="help-block">{{ $errors->first('cidade') }}</span>
-        @endif
+        @endif --}}
       </div>
 
       <div class="form-group{{ $errors->has('cep') ? ' has-error' : '' }}">
@@ -89,9 +89,9 @@
             <input id="cep" name="cep" type="text" placeholder="" class="form-control input-md" required="" data-parsley-maxlength="11" value="{{$dados['cep'] or Request::old('cep') ?: '' }}">
           </div>
         </div>
-        @if ($errors->has('cep'))
+        {{-- @if ($errors->has('cep'))
           <span class="help-block">{{ $errors->first('cep') }}</span>
-        @endif
+        @endif --}}
       </div>
 
       <div class="form-group{{ $errors->has('estado') ? ' has-error' : '' }}">
@@ -101,9 +101,9 @@
             <input id="estado" name="estado" type="text" placeholder="Sigla" class="form-control input-md" required="" data-parsley-maxlength="3" value="{{$dados['estado'] or Request::old('estado') ?: '' }}">
           </div>
         </div>
-        @if ($errors->has('estado'))
+        {{-- @if ($errors->has('estado'))
           <span class="help-block">{{ $errors->first('estado') }}</span>
-        @endif
+        @endif --}}
       </div>
 
       <div class="form-group{{ $errors->has('telefone') ? ' has-error' : '' }}">
@@ -113,9 +113,9 @@
             <input id="telefone" name="telefone" type="text" placeholder="(DD)#######" class="form-control input-md" required="" data-parsley-maxlength="20" value="{{$dados['telefone'] or Request::old('telefone') ?: '' }}">
           </div>
         </div>
-        @if ($errors->has('telefone'))
+        {{-- @if ($errors->has('telefone'))
           <span class="help-block">{{ $errors->first('telefone') }}</span>
-        @endif
+        @endif --}}
       </div>
 
       <div class="form-group{{ $errors->has('celular') ? ' has-error' : '' }}">
@@ -125,9 +125,9 @@
             <input id="celular" name="celular" type="text" placeholder="(DD)#######" class="form-control input-md" required="" data-parsley-maxlength="20" value="{{$dados['celular'] or Request::old('celular') ?: '' }}">
           </div>
         </div>
-        @if ($errors->has('celular'))
+        {{-- @if ($errors->has('celular'))
           <span class="help-block">{{ $errors->first('celular') }}</span>
-        @endif
+        @endif --}}
       </div>
 
       <div class="col-xs-12" style="height:35px;"></div>
