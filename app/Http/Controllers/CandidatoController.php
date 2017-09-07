@@ -119,7 +119,17 @@ class CandidatoController extends BaseController
 				$candidato->update($dados_pessoais);
 			}
 
-			return redirect()->route('dados.bancarios')->with('info','Caso você esteja se candidantando à monitoria voluntária não é necessário informar os dados bancários.')->with('success','Seus dados pessoais foram atualizados.');
+
+			notify()->flash('Seus dados pessoais foram atualizados.','success',[
+				'showCancelButton' => false,
+				'confirmButtonColor' => '#3085d6',
+				'confirmButtonText' => 'OK',
+				'notifica' => true,
+				'notifica_mensagem' =>'Caso você esteja se candidantando à monitoria voluntária não é necessário informar os dados bancários.',
+				'notifica_tipo' => 'info'
+			]);
+
+			return redirect()->route('dados.bancarios');
 	}
 
 /*
@@ -141,8 +151,10 @@ class CandidatoController extends BaseController
 				'agencia_bancaria' => $dados_bancarios->agencia_bancaria,
 				'numero_conta_corrente' => $dados_bancarios->numero_conta_corrente,
 			];
+
 			return view('templates.partials.candidato.dados_bancarios')->with('dados', $dados);	
 		}else{
+			
 			return view('templates.partials.candidato.dados_bancarios');
 		}
 		
@@ -183,7 +195,16 @@ class CandidatoController extends BaseController
 				$banco->update($dados_bancarios);
 			}
 
-			return redirect()->route('dados.academicos')->with('info','Agora você deve informar seus dados acadêmicos.')->with('success','Seus dados bancários foram atualizados.');
+			notify()->flash('Seus dados bancários foram atualizados.','success',[
+				'showCancelButton' => false,
+				'confirmButtonColor' => '#3085d6',
+				'confirmButtonText' => 'OK',
+				'notifica' => true,
+				'notifica_mensagem' =>'Agora você deve informar seus dados acadêmicos.',
+				'notifica_tipo' => 'info'
+			]);
+
+			return redirect()->route('dados.academicos');
 	}
 
 /*
@@ -256,7 +277,16 @@ class CandidatoController extends BaseController
 			$arquivo->nome_arquivo = $filename;
 			$arquivo->save();
 			
-			return redirect()->route('dados.escolhas')->with('info','Agora você pode fazer as escolhas das disciplinas para as quais irá se candidatar à Monitoria do MAT.')->with('success','Seus dados foram atualizados.');
+			notify()->flash('Seus dados acadêmicos foram atualizados.','success',[
+				'showCancelButton' => false,
+				'confirmButtonColor' => '#3085d6',
+				'confirmButtonText' => 'OK',
+				'notifica' => true,
+				'notifica_mensagem' =>'Agora você pode fazer as escolhas das disciplinas para as quais irá se candidatar à Monitoria do MAT.',
+				'notifica_tipo' => 'info'
+			]);
+
+			return redirect()->route('dados.escolhas');
 	}
 
 
@@ -291,16 +321,24 @@ class CandidatoController extends BaseController
 		$status_inscricao = $finaliza_inscricao->retorna_inscricao_finalizada($id_user,$id_monitoria);
 
 		if (!$autoriza_inscricao) {
-			return redirect()->route('home')->with('info','O período de inscrição já está encerrado ou ainda não começou.');
+
+			notify()->flash('O período de inscrição já está encerrado ou ainda não começou.','warning');
+			
+			return redirect()->route('home');
 		}
 
 		if ($status_inscricao) {
-			return redirect()->back()->with('info','Você já finalizou sua inscrição. Não é possível fazer novas escolhas de disciplinas para candidatura à Monitoria do MAT.');
+
+			notify()->flash('Você já finalizou sua inscrição. Não é possível fazer novas escolhas de disciplinas para candidatura à Monitoria do MAT.','warning');
+
+			return redirect()->back();
 		}
 
 		if (count($fez_escolhas)==3) {
 			
-			return redirect()->back()->with('erro','Você já realizou as 03 (três) escolhas possíveis. Não é possível escolher mais nenhuma disciplina.');
+			notify()->flash('Você já realizou as 03 (três) escolhas possíveis. Não é possível escolher mais nenhuma disciplina.','error');
+
+			return redirect()->back();
 		}else{
 
 			$disable=[];
@@ -340,17 +378,24 @@ class CandidatoController extends BaseController
 
 		if (is_null($informou_dados_academicos)) {
 			
-			return redirect()->route('dados.academicos')->with('erro','Por favor informe seus dados acadêmicos antes de efetuar suas escolhas.');
+			notify()->flash('Por favor informe seus dados acadêmicos antes de efetuar suas escolhas.','warning');
+
+			return redirect()->route('dados.academicos');
 		}
 
 
 		if ($status_inscricao) {
 			
-			return redirect()->route('home')->with('info','Você já finalizou sua inscrição. Não é possível fazer novas escolhas de disciplinas para candidatura à Monitoria do MAT.');
+			notify()->flash('Você já finalizou sua inscrição. Não é possível fazer novas escolhas de disciplinas para candidatura à Monitoria do MAT.','error');
+
+			return redirect()->route('home');
 		}
 
 		if (!$autoriza_inscricao) {
-			return redirect()->route('home')->with('info','O período de inscrição já está encerrado ou ainda não começou.');
+
+			notify()->flash('O período de inscrição já está encerrado ou ainda não começou.','warning');
+
+			return redirect()->route('home');
 		}
 
 		$escolhas = new EscolhaMonitoria();
@@ -401,7 +446,10 @@ class CandidatoController extends BaseController
 		}
 
 		if (is_null($atualiza_dados_academicos)) {
-			return redirect()->route('dados.academicos')->with('erro','Por favor atualize seus dados acadêmicos antes de fazer suas escolhas para a monitoria.');
+
+			notify()->flash('Por favor atualize seus dados acadêmicos antes de fazer suas escolhas para a monitoria.','error');
+
+			return redirect()->route('dados.academicos');
 		}
 
 		$atualiza_dados_academicos->update($monitor_projeto);
@@ -430,7 +478,10 @@ class CandidatoController extends BaseController
 			$informou_banco =  DadoBancario::find($id_user);
 
 			if (is_null($informou_banco)) {
-				return redirect()->route('dados.bancarios')->with('erro','Por favor informe seus dados bancários antes de efetuar suas escolhas.');
+
+				notify()->flash('Por favor informe seus dados bancários antes de efetuar suas escolhas.','error');
+
+				return redirect()->route('dados.bancarios');
 			}
 
 		}
@@ -439,7 +490,9 @@ class CandidatoController extends BaseController
 
 		$finalizar->save();
 
-		return redirect()->route('home')->with('success','Suas escolhas foram gravadas com sucesso.');
+		notify()->flash('Suas escolhas foram gravadas com sucesso.','success');
+
+		return redirect()->route('home');
 
 	}
 

@@ -52,7 +52,11 @@ class CoordenadorController extends BaseController
 		
 		$nova_disciplina->save();
 
-		return redirect()->route('cadastra.disciplina')->with('success','Disciplina cadastrada com sucesso!');	
+		notify()->flash('Disciplina cadastrada com sucesso!','success',[
+			'timer' => 2000,
+		]);
+
+		return redirect()->route('cadastra.disciplina');	
 
 	}
 
@@ -112,7 +116,8 @@ class CoordenadorController extends BaseController
 
 		}
 
-		return redirect()->route('configura.monitoria')->with('info','Dados gravados com sucesso');
+		notify()->flash('Dados gravados com sucesso.','info');
+		return redirect()->route('configura.monitoria');
 
 		
 
