@@ -292,6 +292,7 @@ class ComposerStaticInit3f39956306b8f7357be9a0219143fa0d
     public static $classMap = array (
         'CreateArquivosEnviadosTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_05_155028_create_arquivos_enviados_table.php',
         'CreateAtuouMonitoriaTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_05_155102_create_atuou_monitoria_table.php',
+        'CreateCidadesTable' => __DIR__ . '/../..' . '/database/migrations/2017_09_07_163713_create_cidades_table.php',
         'CreateConfiguraMonitoriaTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_04_235058_create_configura_monitoria_table.php',
         'CreateCursosGraduacaoTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_05_155136_create_cursos_graduacao_table.php',
         'CreateDadosAcademicosTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_05_155145_create_dados_academicos_table.php',
@@ -300,6 +301,7 @@ class ComposerStaticInit3f39956306b8f7357be9a0219143fa0d
         'CreateDisciplinasMatTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_05_155212_create_disciplinas_mat_table.php',
         'CreateDisciplinasMonitoriaTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_05_155206_create_disciplinas_monitoria_table.php',
         'CreateEscolhasCandidatosTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_05_155218_create_escolhas_candidatos_table.php',
+        'CreateEstadosTable' => __DIR__ . '/../..' . '/database/migrations/2017_09_07_163722_create_estados_table.php',
         'CreateFinalizaEscolhasTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_05_155223_create_finaliza_escolhas_table.php',
         'CreateHorarioEscolhidoTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_05_155233_create_horario_escolhido_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2017_06_02_151032_create_password_resets_table.php',
