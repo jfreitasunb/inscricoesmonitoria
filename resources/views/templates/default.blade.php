@@ -11,6 +11,7 @@
   @yield('stylesheets')
 </head>
 <body>
+  @include('templates.partials.alertas_erros')
   @include('templates.partials.cabecalho')
   <div class="container">
     @if (Auth::check())
@@ -110,6 +111,20 @@ headers: {
       @endif
         ;
     @endif
+  </script>
+
+  <script>
+
+    var has_errors = {{ $errors->count()>0 ? 'true' : 'false'}};
+
+    if (has_errors){
+      swal({
+        title: 'ERRO',
+        type: 'error',
+        html: jQuery("#ERRORS_COPY").html(),
+        showCloseButton: true,
+      })
+    }
   </script>
 
   @yield('scripts')
