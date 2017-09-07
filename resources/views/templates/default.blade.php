@@ -72,7 +72,15 @@
         @if (notify()->option('cancelButtonText'))
             cancelButtonText: "{!! notify()->option('cancelButtonText') !!}",
         @endif
-      })
+      })@if (notify()->option('notifica'))
+            .then(function () {
+              swal(
+                '{!! notify()->option('notifica_texto') !!}',
+                '{!! notify()->option('notifica_mensagem') !!}',
+                '{!! notify()->option('notifica_tipo') !!}',
+              )
+            })
+        @endif
       @if (notify()->option('confirmacao'))
             .then(function () {
     $.ajaxSetup({
