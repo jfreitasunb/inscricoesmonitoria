@@ -74,7 +74,31 @@
         @endif
       })
       @if (notify()->option('confirmacao'))
-            .then(function () {swal('Deleted!','Your file has been deleted.','success')})
+            .then(function () {
+    $.ajaxSetup({
+headers: {
+'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+}
+});
+
+  $.ajax({
+              type: 'GET',
+              url: '{{ notify()->option('rota') }}',
+              data: {mudar: 1},
+      });
+}, function (dismiss) {
+  // dismiss can be 'cancel', 'overlay',
+  // 'close', and 'timer'
+  if (dismiss === 'cancel') {
+    $.ajax({
+              type: 'GET',
+              url: '{{ notify()->option('rota') }}',
+              data: {
+                mudar: false
+          },
+      });
+  }
+})
       @endif
         ;
     @endif
