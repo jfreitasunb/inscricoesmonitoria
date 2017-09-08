@@ -13,6 +13,7 @@ use Monitoriamat\Models\ConfiguraInscricao;
 use Monitoriamat\Models\DisciplinaMat;
 use Monitoriamat\Models\DisciplinaMonitoria;
 use Monitoriamat\Models\DadoPessoal;
+use Monitoriamat\Models\Estado;
 use Monitoriamat\Models\DadoBancario;
 use Monitoriamat\Models\DadoAcademico;
 use Monitoriamat\Models\AtuacaoMonitoria;
@@ -24,7 +25,11 @@ use Illuminate\Http\Request;
 use Monitoriamat\Mail\EmailVerification;
 use Monitoriamat\Http\Controllers\Controller;
 use Monitoriamat\Http\Controllers\AuthController;
+use Monitoriamat\Http\Controllers\CidadeController;
 use Illuminate\Foundation\Auth\RegistersUsers;
+
+use Monitoriamat\Http\Requests;
+use Illuminate\Support\Facades\Response;
 
 /**
 * Classe para manipulação do candidato.
@@ -32,6 +37,26 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 class CandidatoController extends BaseController
 {
 
+	private $estadoModel;
+
+    public function __construct(Estado $estado)
+    {
+        $this->estadoModel = $estado;
+    }
+
+    // public function index()
+    // {
+    //     $estados = $this->estadoModel->pluck('estado', 'id');
+
+    //     return view('templates.partials.cidade', compact('estados'));
+    // }
+
+    public function getCidades($idEstado)
+    {
+        $estado = $this->estadoModel->find($idEstado);
+        $cidades = $estado->cidades()->getQuery()->get(['id', 'cidade']);
+        return Response::json($cidades);
+    }
 	public function getMenu()
 	{	
 		return view('home');
@@ -43,6 +68,9 @@ class CandidatoController extends BaseController
 
 	public function getDadosPessoais()
 	{
+
+		$estados = $this->estadoModel->pluck('estado', 'id');
+
 		$user = Auth::user();
 		$nome = $user->nome;
 		$id_user = $user->id_user;
@@ -63,7 +91,7 @@ class CandidatoController extends BaseController
 			'celular' => $dados_pessoais->celular,
 		];
 
-		return view('templates.partials.candidato.dados_pessoais')->with('dados', $dados);
+		return view('templates.partials.candidato.dados_pessoais')->with(compact('estados','dados'));
 		
 	}
 
