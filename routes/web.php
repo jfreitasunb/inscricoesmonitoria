@@ -11,8 +11,12 @@
 |
 */
 
+Route::get('/home-cidade', ['as' => 'home', 'uses' => '\Monitoriamat\Http\Controllers\CidadeController@index'] );
+
+Route::get('/get-cidades/{idEstado}', '\Monitoriamat\Http\Controllers\CandidatoController@getCidades');
+
 Route::get('/teste', [
-		'uses'	=> '\Monitoriamat\Http\Controllers\CandidatoController@showNome',
+		'uses'	=> 'Monitoriamat\Http\Controllers\EstadoCandidatoController@showNome',
 ]);
 
 
