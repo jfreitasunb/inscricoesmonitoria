@@ -71,15 +71,15 @@
       </div>
 
       <div class="form-group{{ $errors->has('estado') ? ' has-error' : '' }}">
-      {!! Form::label('estado', 'Estados:', ['class' => 'col-md-4 control-label','required'=> ""]) !!}
-      {!! Form::select('estado', $estados) !!}
+        <div class="row">
+        {!! Form::label('estado', 'Estados:', ['class' => 'col-md-4 control-label','required'=> ""]) !!}
+        {!! Form::select('estado', $estados) !!}
 
-      {{--   <div class="row">
-          <label class="col-md-4 control-label" for="estado">Estado</label>  
+         {{--  <label class="col-md-4 control-label" for="estado">Estado</label>  
           <div class="col-md-4">
             <input id="estado" name="estado" type="text" placeholder="Sigla" class="form-control input-md" required="" data-parsley-maxlength="3" value="{{$dados['estado'] or Request::old('estado') ?: '' }}">
-          </div>
-        </div> --}}
+          </div> --}}
+        </div>
         {{-- @if ($errors->has('estado'))
           <span class="help-block">{{ $errors->first('estado') }}</span>
         @endif --}}
