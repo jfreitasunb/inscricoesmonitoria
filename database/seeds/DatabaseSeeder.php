@@ -10,7 +10,39 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    {   
+        // Estados
+        $this->call('EstadosTableSeeder');
+
+        // Cidades
+        $this->call('CidadesAcreSeeder');
+        $this->call('CidadesAlagoasSeeder');
+        $this->call('CidadesAmapaSeeder');
+        $this->call('CidadesAmazonasSeeder');
+        $this->call('CidadesBahiaSeeder');
+        $this->call('CidadesCearaSeeder');
+        $this->call('CidadesDistritoFederalSeeder');
+        $this->call('CidadesEspiritoSantoSeeder');
+        $this->call('CidadesGoiasSeeder');
+        $this->call('CidadesMaranhaoSeeder');
+        $this->call('CidadesMatoGrossoSeeder');
+        $this->call('CidadesMatoGrossoDoSulSeeder');
+        $this->call('CidadesMinasGeraisSeeder');
+        $this->call('CidadesParaSeeder');
+        $this->call('CidadesParaibaSeeder');
+        $this->call('CidadesParanaSeeder');
+        $this->call('CidadesPernambucoSeeder');
+        $this->call('CidadesPiauiSeeder');
+        $this->call('CidadesRioDeJaneiroSeeder');
+        $this->call('CidadesRioGrandeDoNorteSeeder');
+        $this->call('CidadesRioGrandeDoSulSeeder');
+        $this->call('CidadesRondoniaSeeder');
+        $this->call('CidadesRoraimaSeeder');
+        $this->call('CidadesSantaCatarinaSeeder');
+        $this->call('CidadesSaoPauloSeeder');
+        $this->call('CidadesSergipeSeeder');
+        $this->call('CidadesTocantinsSeeder');
+        
         $user = ['login' => 'javx', 'email' => 'jfreitas@mat.unb.br', 'password' => bcrypt('1'), 'user_type' => 'admin' , 'ativo' => '1', 'created_at' => date("Y-m-d H:i:s"), 'updated_at' => date("Y-m-d H:i:s")];
         $db_user = DB::table('users')->insert($user);
 
