@@ -148,21 +148,3 @@
   <script src="{{ asset('js/parsley.min.js') }}"></script>
   <script src="{{ asset('i18n/pt-br.js') }}"></script>
 @endsection
-
-@section('post-script')
-    <script type="text/javascript">
-        $('select[name=estado]').change(function () {
-            var idEstado = $(this).val();
-
-            $.get('/get-cidades/' + idEstado, function (cidades) {
-                $('select[name=cidade]').empty();
-                $.each(cidades, function (key, value) {
-                    $('select[name=cidade]').append('<option value=' + value.id + '>' + value.cidade + '</option>');
-                });
-            });
-        });
-
-    </script>
-@endsection
-
-
