@@ -14,12 +14,10 @@ class CreateCidadesTable extends Migration
     public function up()
     {
        Schema::create('cidades', function (Blueprint $table){
-            $table->increments('id_cidade');
-            $table->integer('estados_cod_estados');
-            $table->integer('cod_cidades');
-            $table->string('nome',72);
-            $table->integer('cep');
-            $table->rememberToken();
+            $table->increments('id');
+            $table->string('cidade');
+            $table->integer('estado_id')->unsigned()->default(0);
+            $table->foreign('estado_id')->references('id')->on('estados');
             $table->timestamps();
         });
     }
