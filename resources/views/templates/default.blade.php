@@ -128,5 +128,6 @@ headers: {
   </script>
 
   @yield('scripts')
+  @yield('post-script')
 
 </html>
