@@ -72,7 +72,7 @@
 
       <div class="form-group{{ $errors->has('estado') ? ' has-error' : '' }}">
         <div class="row">
-        {!! Form::label('estado', 'Estados:', ['class' => 'col-md-4 control-label','required'=> ""]) !!}
+        {!! Form::label('estado', 'Estados:', ['class' => 'col-md-4 control-label']) !!}
         {!! Form::select('estado', $estados) !!}
 
          {{--  <label class="col-md-4 control-label" for="estado">Estado</label>  
