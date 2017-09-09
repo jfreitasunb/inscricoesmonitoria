@@ -70,30 +70,13 @@
         @endif --}}
       </div>
 
-      <div class="form-group{{ $errors->has('estado') ? ' has-error' : '' }}">
-        <div class="row">
-        {!! Form::label('estado', 'Estados:', ['class' => 'col-md-4 control-label']) !!}
-        {!! Form::select('estado', $estados) !!}
-
-         {{--  <label class="col-md-4 control-label" for="estado">Estado</label>  
-          <div class="col-md-4">
-            <input id="estado" name="estado" type="text" placeholder="Sigla" class="form-control input-md" required="" data-parsley-maxlength="3" value="{{$dados['estado'] or Request::old('estado') ?: '' }}">
-          </div> --}}
-        </div>
-        {{-- @if ($errors->has('estado'))
-          <span class="help-block">{{ $errors->first('estado') }}</span>
-        @endif --}}
-      </div>
-
       <div class="form-group{{ $errors->has('cidade') ? ' has-error' : '' }}">
-      {!! Form::label('cidade', 'Cidades:',['class' => 'col-md-4 control-label']) !!}
-      {!! Form::select('cidade', [],['class' => 'form-control', 'required'=> ""]) !!}
-        {{-- <div class="row">
+        <div class="row">
           <label class="col-md-4 control-label" for="cidade">Cidade</label>  
           <div class="col-md-4">
             <input id="cidade" name="cidade" type="text" placeholder="" class="form-control input-md" required="" data-parsley-maxlength="100" value="{{$dados['cidade'] or Request::old('cidade') ?: '' }}">
           </div>
-        </div> --}}
+        </div>
         {{-- @if ($errors->has('cidade'))
           <span class="help-block">{{ $errors->first('cidade') }}</span>
         @endif --}}
@@ -108,6 +91,17 @@
         </div>
         {{-- @if ($errors->has('cep'))
           <span class="help-block">{{ $errors->first('cep') }}</span>
+        @endif --}}
+      </div>
+
+        <div class="row">
+          <label class="col-md-4 control-label" for="estado">Estado</label>  
+          <div class="col-md-4">
+            <input id="estado" name="estado" type="text" placeholder="Sigla" class="form-control input-md" required="" data-parsley-maxlength="3" value="{{$dados['estado'] or Request::old('estado') ?: '' }}">
+          </div>
+        </div>
+        {{-- @if ($errors->has('estado'))
+          <span class="help-block">{{ $errors->first('estado') }}</span>
         @endif --}}
       </div>
 
@@ -154,23 +148,20 @@
   <script src="{{ asset('i18n/pt-br.js') }}"></script>
 @endsection
 
-@section('post-script')
+{{-- @section('post-script')
     <script type="text/javascript">
-    
         $('select[name=estado]').change(function () {
             var idEstado = $(this).val();
 
-            $.get('{{url('/')}}/get-cidades/' + idEstado, function (cidades) {
+            $.get('/get-cidades/' + idEstado, function (cidades) {
                 $('select[name=cidade]').empty();
                 $.each(cidades, function (key, value) {
                     $('select[name=cidade]').append('<option value=' + value.id + '>' + value.cidade + '</option>');
-                    console.log(cidades);
                 });
             });
         });
 
     </script>
 @endsection
-
-
+ --}}
 
