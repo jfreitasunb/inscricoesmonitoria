@@ -312,7 +312,7 @@ class FinderTest extends Iterator\RealIteratorTestCase
 
         $finder = $this->buildFinder();
         $a = iterator_to_array($finder->directories()->in(self::$tmpDir));
-        $a = array_values(array_map(function ($a) { return (string) $a; }, $a));
+        $a = array_values(array_map('strval', $a));
         sort($a);
         $this->assertEquals($expected, $a, 'implements the \IteratorAggregate interface');
     }
@@ -422,6 +422,20 @@ class FinderTest extends Iterator\RealIteratorTestCase
     {
         $finder = Finder::create()->files();
         count($finder);
+    }
+
+    public function testHasResults()
+    {
+        $finder = $this->buildFinder();
+        $finder->in(__DIR__);
+        $this->assertTrue($finder->hasResults());
+    }
+
+    public function testNoResults()
+    {
+        $finder = $this->buildFinder();
+        $finder->in(__DIR__)->name('DoesNotExist');
+        $this->assertFalse($finder->hasResults());
     }
 
     /**
