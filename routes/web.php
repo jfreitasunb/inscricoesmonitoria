@@ -19,7 +19,7 @@ Route::get('/get-cidades/{idEstado}', '\Monitoriamat\Http\Controllers\CandidatoC
 
 Route::prefix('aluno')->middleware('user.role:aluno')->group(function () {
 
-	Route::get('/aluno', '\Monitoriamat\Http\Controllers\CandidatoController@getMenu')->name('menu.candidato');
+	Route::get('/', '\Monitoriamat\Http\Controllers\CandidatoController@getMenu')->name('menu.candidato');
 
 	Route::get('/aluno/dados/academicos', '\Monitoriamat\Http\Controllers\CandidatoController@getDadosAcademicos')->name('dados.academicos');
 
