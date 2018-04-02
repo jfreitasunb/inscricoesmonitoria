@@ -21,21 +21,21 @@ Route::prefix('aluno')->middleware('user.role:aluno')->group(function () {
 
 	Route::get('/', '\Monitoriamat\Http\Controllers\CandidatoController@getMenu')->name('menu.candidato');
 
-	Route::get('/aluno/dados/academicos', '\Monitoriamat\Http\Controllers\CandidatoController@getDadosAcademicos')->name('dados.academicos');
+	Route::get('dados/academicos', '\Monitoriamat\Http\Controllers\CandidatoController@getDadosAcademicos')->name('dados.academicos');
 
-	Route::post('/aluno/dados/academicos', '\Monitoriamat\Http\Controllers\CandidatoController@postDadosAcademicos')->name('dados.academicos');
+	Route::post('dados/academicos', '\Monitoriamat\Http\Controllers\CandidatoController@postDadosAcademicos')->name('dados.academicos');
 
-	Route::get('/aluno/dados/bancarios', '\Monitoriamat\Http\Controllers\CandidatoController@getDadosBancarios')->name('dados.bancarios');
+	Route::get('dados/bancarios', '\Monitoriamat\Http\Controllers\CandidatoController@getDadosBancarios')->name('dados.bancarios');
 
-	Route::post('/aluno/dados/bancarios', '\Monitoriamat\Http\Controllers\CandidatoController@postDadosBancarios')->name('dados.bancarios');
+	Route::post('dados/bancarios', '\Monitoriamat\Http\Controllers\CandidatoController@postDadosBancarios')->name('dados.bancarios');
 
-	Route::get('/aluno/dados/pessoais', '\Monitoriamat\Http\Controllers\CandidatoController@getDadosPessoais')->name('dados.pessoais');
+	Route::get('dados/pessoais', '\Monitoriamat\Http\Controllers\CandidatoController@getDadosPessoais')->name('dados.pessoais');
 
-	Route::post('/aluno/dados/pessoais', '\Monitoriamat\Http\Controllers\CandidatoController@postDadosPessoais');
+	Route::post('dados/pessoais', '\Monitoriamat\Http\Controllers\CandidatoController@postDadosPessoais');
 
-	Route::get('/aluno/dados/escolhas', '\Monitoriamat\Http\Controllers\CandidatoController@getEscolhaCandidato')->name('dados.escolhas');
+	Route::get('dados/escolhas', '\Monitoriamat\Http\Controllers\CandidatoController@getEscolhaCandidato')->name('dados.escolhas');
 
-	Route::post('/aluno/dados/escolhas', '\Monitoriamat\Http\Controllers\CandidatoController@postEscolhaCandidato');
+	Route::post('dados/escolhas', '\Monitoriamat\Http\Controllers\CandidatoController@postEscolhaCandidato');
 });
 
 
