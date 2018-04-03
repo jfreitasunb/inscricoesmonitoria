@@ -33,7 +33,7 @@ class ResetPassword extends Notification
         return (new MailMessage)
             ->subject('Link para mudança de senha')
             ->line('Você está recebendo essa mensagem porquê solicitou a mudança da sua senha.')
-            ->action('Mudar senha:', url('esqueci/senha', $this->token))
+            ->action('Para mudar senha clique aqui', url('esqueci/senha', $this->token))
             ->line('Se você não solicitou a mudança da sua senha, por favor ignore essa mensagem.');
     }
 }
