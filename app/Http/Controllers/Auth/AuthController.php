@@ -6,6 +6,7 @@ use Auth;
 use DB;
 use Mail;
 use Session;
+use Purifier;
 use Monitoriamat\Models\User;
 use Monitoriamat\Models\Monitoria;
 use Monitoriamat\Models\DadoPessoal;
@@ -49,9 +50,9 @@ class AuthController extends BaseController
 		$novo_usuario = new User();
 
 
-		$novo_usuario->login = $request->input('login');
-        $novo_usuario->email = $request->input('email');
-        $novo_usuario->password = bcrypt($request->input('password'));
+		$novo_usuario->login = Purifier::clean(strtolower(trim($request->input('login'))));
+        $novo_usuario->email = Purifier::clean(strtolower(trim($request->input('email'))));
+        $novo_usuario->password = bcrypt(trim($request->input('password')));
         $novo_usuario->validation_code =  md5($STRING_VALIDA_EMAIL.$request->input('email').date("d-m-Y H:i:s:u"));
 
         $novo_usuario->save();
