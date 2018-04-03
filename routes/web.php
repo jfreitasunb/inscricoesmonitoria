@@ -17,57 +17,26 @@ Route::get('/get-cidades/{idEstado}', '\Monitoriamat\Http\Controllers\CandidatoC
 *Área do candidato
 */
 
-Route::get('/aluno', [
-	'uses' => '\Monitoriamat\Http\Controllers\CandidatoController@getMenu',
-	'as'   => 'menu.candidato',
-	'middleware' => ['user.role:aluno'],
-]);
+Route::prefix('aluno')->middleware('user.role:aluno')->group(function () {
 
-Route::get('/aluno/dados/academicos', [
-	'uses' => '\Monitoriamat\Http\Controllers\CandidatoController@getDadosAcademicos',
-	'as'   => 'dados.academicos',
-	'middleware' => ['user.role:aluno'],
-]);
+	Route::get('/', '\Monitoriamat\Http\Controllers\CandidatoController@getMenu')->name('menu.candidato');
 
-Route::post('/aluno/dados/academicos', [
-	'uses' => '\Monitoriamat\Http\Controllers\CandidatoController@postDadosAcademicos',
-	'as'   => 'dados.academicos',
-	'middleware' => ['user.role:aluno'],
-]);
+	Route::get('dados/academicos', '\Monitoriamat\Http\Controllers\CandidatoController@getDadosAcademicos')->name('dados.academicos');
 
-Route::get('/aluno/dados/bancarios', [
-	'uses' => '\Monitoriamat\Http\Controllers\CandidatoController@getDadosBancarios',
-	'as'   => 'dados.bancarios',
-	'middleware' => ['user.role:aluno'],
-]);
+	Route::post('dados/academicos', '\Monitoriamat\Http\Controllers\CandidatoController@postDadosAcademicos')->name('dados.academicos');
 
-Route::post('/aluno/dados/bancarios', [
-	'uses' => '\Monitoriamat\Http\Controllers\CandidatoController@postDadosBancarios',
-	'as'   => 'dados.bancarios',
-	'middleware' => ['user.role:aluno'],
-]);
+	Route::get('dados/bancarios', '\Monitoriamat\Http\Controllers\CandidatoController@getDadosBancarios')->name('dados.bancarios');
 
-Route::get('/aluno/dados/pessoais', [
-	'uses' => '\Monitoriamat\Http\Controllers\CandidatoController@getDadosPessoais',
-	'as'   => 'dados.pessoais',
-	'middleware' => ['user.role:aluno'],
-]);
+	Route::post('dados/bancarios', '\Monitoriamat\Http\Controllers\CandidatoController@postDadosBancarios')->name('dados.bancarios');
 
-Route::post('/aluno/dados/pessoais', [
-	'uses' => '\Monitoriamat\Http\Controllers\CandidatoController@postDadosPessoais',
-	'middleware' => ['user.role:aluno'],
-]);
+	Route::get('dados/pessoais', '\Monitoriamat\Http\Controllers\CandidatoController@getDadosPessoais')->name('dados.pessoais');
 
-Route::get('/aluno/dados/escolhas', [
-	'uses' => '\Monitoriamat\Http\Controllers\CandidatoController@getEscolhaCandidato',
-	'as'   => 'dados.escolhas',
-	'middleware' => ['user.role:aluno'],
-]);
+	Route::post('dados/pessoais', '\Monitoriamat\Http\Controllers\CandidatoController@postDadosPessoais');
 
-Route::post('/aluno/dados/escolhas', [
-	'uses' => '\Monitoriamat\Http\Controllers\CandidatoController@postEscolhaCandidato',
-	'middleware' => ['user.role:aluno'],
-]);
+	Route::get('dados/escolhas', '\Monitoriamat\Http\Controllers\CandidatoController@getEscolhaCandidato')->name('dados.escolhas');
+
+	Route::post('dados/escolhas', '\Monitoriamat\Http\Controllers\CandidatoController@postEscolhaCandidato');
+});
 
 
 /*
