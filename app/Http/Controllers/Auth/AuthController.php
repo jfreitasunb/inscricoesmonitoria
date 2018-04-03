@@ -106,7 +106,7 @@ class AuthController extends BaseController
 			return redirect()->back();
 		}
 
-		$user_type = DB::table('users')->where('login', $request->input('login'))->value('user_type');
+		$user_type = DB::table('users')->where('login', $login)->value('user_type');
 
 		Session::put('user_type', $user_type);
 
