@@ -163,11 +163,19 @@ class AuthController extends BaseController
 	{
 	    // The verified method has been added to the user model and chained here
 	    // for better readability
-	    User::where('validation_code',$token)->firstOrFail()->verified();
-
-	    notify()->flash('Conta ativada com sucesso!','success',[
+	    if (is_null(User::where('validation_code', $token)->first())) {
+	    	
+	    	notify()->flash('Você já ativou sua conta.','success',[
 				'timer' => 1500,
 			]);
+	    }else{
+	    	User::where('validation_code',$token)->firstOrFail()->verified();
+
+	    	notify()->flash('Conta ativada com sucesso!','success',[
+				'timer' => 1500,
+			]);
+	    }
+	    
 
 	    return redirect()->route('home');
 	}
