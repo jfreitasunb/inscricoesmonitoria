@@ -88,8 +88,11 @@ class AuthController extends BaseController
 			'password' => 'required',
 		]);
 
+		$login = strtolower(trim($request->input('login')));
+
+		$password = trim($request->password);
 		
-		$user = DB::table('users')->where('login', $request->input('login'))->value('ativo');
+		$user = DB::table('users')->where('login', $login)->value('ativo');
 
 		if (!$user) {
 			notify()->flash('Você não ativou sua conta ainda. Você deve clicar no link de ativação que foi enviado para seu e-mail.','info');
