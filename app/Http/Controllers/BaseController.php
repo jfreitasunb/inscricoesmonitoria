@@ -1,8 +1,8 @@
 <?php
 
-namespace Monitoriamat\Http\Controllers;
+namespace InscricoesMonitoria\Http\Controllers;
 
-use Monitoriamat\Models\ConfiguraInscricao;
+use InscricoesMonitoria\Models\ConfiguraInscricao;
 
 use View;
 

@@ -1,7 +1,7 @@
 <?php
 
-namespace Monitoriamat\Mail;
-use Monitoriamat\Models\User;
+namespace InscricoesMonitoria\Mail;
+use InscricoesMonitoria\Models\User;
 
 
 use Illuminate\Bus\Queueable;

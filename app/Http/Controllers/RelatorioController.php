@@ -1,6 +1,6 @@
 <?php
 
-namespace Monitoriamat\Http\Controllers;
+namespace InscricoesMonitoria\Http\Controllers;
 
 use Auth;
 use DB;
@@ -9,22 +9,22 @@ use Session;
 use File;
 use ZipArchive;
 use Carbon\Carbon;
-use Monitoriamat\Models\User;
-use Monitoriamat\Models\ConfiguraInscricao;
-use Monitoriamat\Models\DadoPessoal;
-use Monitoriamat\Models\DadoBancario;
-use Monitoriamat\Models\Documento;
-use Monitoriamat\Models\DadoAcademico;
-use Monitoriamat\Models\DisciplinaMat;
-use Monitoriamat\Models\DisciplinaMonitoria;
-use Monitoriamat\Models\EscolhaMonitoria;
-use Monitoriamat\Models\HorarioEscolhido;
-use Monitoriamat\Models\AtuacaoMonitoria;
-use Monitoriamat\Models\FinalizaEscolha;
+use InscricoesMonitoria\Models\User;
+use InscricoesMonitoria\Models\ConfiguraInscricao;
+use InscricoesMonitoria\Models\DadoPessoal;
+use InscricoesMonitoria\Models\DadoBancario;
+use InscricoesMonitoria\Models\Documento;
+use InscricoesMonitoria\Models\DadoAcademico;
+use InscricoesMonitoria\Models\DisciplinaMat;
+use InscricoesMonitoria\Models\DisciplinaMonitoria;
+use InscricoesMonitoria\Models\EscolhaMonitoria;
+use InscricoesMonitoria\Models\HorarioEscolhido;
+use InscricoesMonitoria\Models\AtuacaoMonitoria;
+use InscricoesMonitoria\Models\FinalizaEscolha;
 use Illuminate\Http\Request;
-use Monitoriamat\Mail\EmailVerification;
-use Monitoriamat\Http\Controllers\Controller;
-use Monitoriamat\Http\Controllers\AuthController;
+use InscricoesMonitoria\Mail\EmailVerification;
+use InscricoesMonitoria\Http\Controllers\Controller;
+use InscricoesMonitoria\Http\Controllers\AuthController;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use League\Csv\Writer;
 use Storage;

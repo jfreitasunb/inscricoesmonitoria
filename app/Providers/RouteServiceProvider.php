@@ -1,6 +1,6 @@
 <?php
 
-namespace Monitoriamat\Providers;
+namespace InscricoesMonitoria\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -14,7 +14,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'Monitoriamat\Http\Controllers';
+    protected $namespace = 'InscricoesMonitoria\Http\Controllers';
 
     /**
      * Define your route model bindings, pattern filters, etc.

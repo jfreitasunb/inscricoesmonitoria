@@ -1,6 +1,6 @@
 <?php
 
-namespace Monitoriamat\Exceptions;
+namespace InscricoesMonitoria\Exceptions;
 
 use Exception;
 use Illuminate\Auth\AuthenticationException;

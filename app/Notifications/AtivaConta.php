@@ -1,6 +1,6 @@
 <?php
 
-namespace Monitoriamat\Notifications;
+namespace InscricoesMonitoria\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Monitoriamat\Models;
+namespace InscricoesMonitoria\Models;
 
 use DB;
 use Carbon\Carbon;

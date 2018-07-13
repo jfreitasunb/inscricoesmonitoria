@@ -1,6 +1,6 @@
 <?php
 
-namespace Monitoriamat\Http\Middleware;
+namespace InscricoesMonitoria\Http\Middleware;
 
 use Illuminate\Cookie\Middleware\EncryptCookies as BaseEncrypter;
 

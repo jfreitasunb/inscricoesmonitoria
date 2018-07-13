@@ -1,6 +1,6 @@
 <?php
 
-namespace Monitoriamat\Models;
+namespace InscricoesMonitoria\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,7 +13,7 @@ class Cidade extends Model
 
     public function estado()
     {
-        return $this->belongsTo('Monitoriamat\Models\Estado');
+        return $this->belongsTo('InscricoesMonitoria\Models\Estado');
     }
 
 }

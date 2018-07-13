@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/get-cidades/{idEstado}', '\Monitoriamat\Http\Controllers\CandidatoController@getCidades');
+Route::get('/get-cidades/{idEstado}', '\InscricoesMonitoria\Http\Controllers\CandidatoController@getCidades');
 
 /*
 *Área do candidato
@@ -19,23 +19,23 @@ Route::get('/get-cidades/{idEstado}', '\Monitoriamat\Http\Controllers\CandidatoC
 
 Route::prefix('aluno')->middleware('user.role:aluno')->group(function () {
 
-	Route::get('/', '\Monitoriamat\Http\Controllers\CandidatoController@getMenu')->name('menu.candidato');
+	Route::get('/', '\InscricoesMonitoria\Http\Controllers\CandidatoController@getMenu')->name('menu.candidato');
 
-	Route::get('dados/academicos', '\Monitoriamat\Http\Controllers\CandidatoController@getDadosAcademicos')->name('dados.academicos');
+	Route::get('dados/academicos', '\InscricoesMonitoria\Http\Controllers\CandidatoController@getDadosAcademicos')->name('dados.academicos');
 
-	Route::post('dados/academicos', '\Monitoriamat\Http\Controllers\CandidatoController@postDadosAcademicos')->name('dados.academicos');
+	Route::post('dados/academicos', '\InscricoesMonitoria\Http\Controllers\CandidatoController@postDadosAcademicos')->name('dados.academicos');
 
-	Route::get('dados/bancarios', '\Monitoriamat\Http\Controllers\CandidatoController@getDadosBancarios')->name('dados.bancarios');
+	Route::get('dados/bancarios', '\InscricoesMonitoria\Http\Controllers\CandidatoController@getDadosBancarios')->name('dados.bancarios');
 
-	Route::post('dados/bancarios', '\Monitoriamat\Http\Controllers\CandidatoController@postDadosBancarios')->name('dados.bancarios');
+	Route::post('dados/bancarios', '\InscricoesMonitoria\Http\Controllers\CandidatoController@postDadosBancarios')->name('dados.bancarios');
 
-	Route::get('dados/pessoais', '\Monitoriamat\Http\Controllers\CandidatoController@getDadosPessoais')->name('dados.pessoais');
+	Route::get('dados/pessoais', '\InscricoesMonitoria\Http\Controllers\CandidatoController@getDadosPessoais')->name('dados.pessoais');
 
-	Route::post('dados/pessoais', '\Monitoriamat\Http\Controllers\CandidatoController@postDadosPessoais');
+	Route::post('dados/pessoais', '\InscricoesMonitoria\Http\Controllers\CandidatoController@postDadosPessoais');
 
-	Route::get('dados/escolhas', '\Monitoriamat\Http\Controllers\CandidatoController@getEscolhaCandidato')->name('dados.escolhas');
+	Route::get('dados/escolhas', '\InscricoesMonitoria\Http\Controllers\CandidatoController@getEscolhaCandidato')->name('dados.escolhas');
 
-	Route::post('dados/escolhas', '\Monitoriamat\Http\Controllers\CandidatoController@postEscolhaCandidato');
+	Route::post('dados/escolhas', '\InscricoesMonitoria\Http\Controllers\CandidatoController@postEscolhaCandidato');
 });
 
 
@@ -44,49 +44,49 @@ Route::prefix('aluno')->middleware('user.role:aluno')->group(function () {
  */
 
 Route::get('/admin', [
-	'uses' => '\Monitoriamat\Http\Controllers\AdminController@getMenu',
+	'uses' => '\InscricoesMonitoria\Http\Controllers\AdminController@getMenu',
 	'as'   => 'menu.admin',
 	'middleware' => ['user.role:admin'],
 ]);
 
 Route::get('/admin/ativa/conta', [
-	'uses' => '\Monitoriamat\Http\Controllers\AdminController@getAtivaConta',
+	'uses' => '\InscricoesMonitoria\Http\Controllers\AdminController@getAtivaConta',
 	'as'   => 'ativa.conta',
 	'middleware' => ['user.role:admin'],
 ]);
 
 Route::post('/admin/ativa/conta', [
-	'uses' => '\Monitoriamat\Http\Controllers\AdminController@postAtivaConta',
+	'uses' => '\InscricoesMonitoria\Http\Controllers\AdminController@postAtivaConta',
 	'as'   => 'ativa.conta',
 	'middleware' => ['user.role:admin'],
 ]);
 
 Route::get('/admin/pesquisar/papel', [
-	'uses' => '\Monitoriamat\Http\Controllers\AdminController@getPesquisarPapelAtual',
+	'uses' => '\InscricoesMonitoria\Http\Controllers\AdminController@getPesquisarPapelAtual',
 	'as'   => 'pesquisar.papel',
 	'middleware' => ['user.role:admin'],
 ]);
 
 Route::post('/admin/pesquisar/papel', [
-	'uses' => '\Monitoriamat\Http\Controllers\AdminController@postPesquisarPapelAtual',
+	'uses' => '\InscricoesMonitoria\Http\Controllers\AdminController@postPesquisarPapelAtual',
 	'as'   => 'pesquisar.papel',
 	'middleware' => ['user.role:admin'],
 ]);
 
 Route::post('/admin/atribuir/papel', [
-	'uses' => '\Monitoriamat\Http\Controllers\AdminController@postAtribuirPapel',
+	'uses' => '\InscricoesMonitoria\Http\Controllers\AdminController@postAtribuirPapel',
 	'as'   => 'atribuir.papel',
 	'middleware' => ['user.role:admin'],
 ]);
 
 Route::get('/admin/cria/coordenador', [
-	'uses' => '\Monitoriamat\Http\Controllers\AdminController@getCriaCoordenador',
+	'uses' => '\InscricoesMonitoria\Http\Controllers\AdminController@getCriaCoordenador',
 	'as'   => 'criar.coordenador',
 	'middleware' => ['user.role:admin'],
 ]);
 
 Route::post('/admin/cria/coordenador', [
-	'uses' => '\Monitoriamat\Http\Controllers\AdminController@postCriaCoordenador',
+	'uses' => '\InscricoesMonitoria\Http\Controllers\AdminController@postCriaCoordenador',
 	'as'   => 'criar.coordenador',
 	'middleware' => ['user.role:admin'],
 ]);
@@ -96,42 +96,42 @@ Route::post('/admin/cria/coordenador', [
  */
 
 Route::get('/coordenador/cadastrar/disciplina',[
-    'uses' => '\Monitoriamat\Http\Controllers\CoordenadorController@getCadastraDisciplina',
+    'uses' => '\InscricoesMonitoria\Http\Controllers\CoordenadorController@getCadastraDisciplina',
     'as'   => 'cadastra.disciplina',
     'middleware' => ['user.role:coordenador,admin'],
 ]);
 
 Route::post('/coordenador/cadastrar/disciplina',[
-    'uses' => '\Monitoriamat\Http\Controllers\CoordenadorController@PostCadastraDisciplina',
+    'uses' => '\InscricoesMonitoria\Http\Controllers\CoordenadorController@PostCadastraDisciplina',
     'as'   => 'cadastra.disciplina',
     'middleware' => ['user.role:coordenador,admin'],
 ]);
 
 Route::get('/coordenador/relatorio/{id_monitoria}',[
-    'uses' => '\Monitoriamat\Http\Controllers\RelatorioController@geraRelatorio',
+    'uses' => '\InscricoesMonitoria\Http\Controllers\RelatorioController@geraRelatorio',
     'as'   => 'gera.relatorio',
     'middleware' => ['user.role:coordenador,admin'],
 ]);
 
 Route::get('/coordenador/relatorio', [
-	'uses' => '\Monitoriamat\Http\Controllers\RelatorioController@getListaRelatorios',
+	'uses' => '\InscricoesMonitoria\Http\Controllers\RelatorioController@getListaRelatorios',
 	'as' => 'relatorio.monitoria',
 	'middleware' => ['user.role:coordenador,admin'],
 ]);
 
 Route::get('/coordenador/configura/monitoria', [
-	'uses' => '\Monitoriamat\Http\Controllers\CoordenadorController@getConfiguraMonitoria',
+	'uses' => '\InscricoesMonitoria\Http\Controllers\CoordenadorController@getConfiguraMonitoria',
 	'as' => 'configura.monitoria',
 	'middleware' => ['user.role:coordenador,admin'],
 ]);
 
 Route::post('/coordenador/configura/monitoria', [
-	'uses' => '\Monitoriamat\Http\Controllers\CoordenadorController@postConfiguraMonitoria',
+	'uses' => '\InscricoesMonitoria\Http\Controllers\CoordenadorController@postConfiguraMonitoria',
 	'middleware' => ['user.role:coordenador,admin'],
 ]);
 
 Route::get('/coordenador', [
-	'uses' => '\Monitoriamat\Http\Controllers\CoordenadorController@getMenu',
+	'uses' => '\InscricoesMonitoria\Http\Controllers\CoordenadorController@getMenu',
 	'as'   => 'menu.coordenador',
 	'middleware' => ['user.role:coordenador'],
 ]);
@@ -141,12 +141,12 @@ Route::get('/coordenador', [
  */
 
 Route::get('/logout', [
-		'uses'	=> '\Monitoriamat\Http\Controllers\Auth\AuthController@getLogout',
+		'uses'	=> '\InscricoesMonitoria\Http\Controllers\Auth\AuthController@getLogout',
 		'as'	=> 'auth.logout',
 ]);
 
 Route::post('/login', [
-		'uses'	=> '\Monitoriamat\Http\Controllers\Auth\AuthController@postLogin',
+		'uses'	=> '\InscricoesMonitoria\Http\Controllers\Auth\AuthController@postLogin',
 ]);
 
 /**
@@ -154,17 +154,17 @@ Route::post('/login', [
  */
 
 Route::get('/login', [
-		'uses'	=> '\Monitoriamat\Http\Controllers\Auth\AuthController@getLogin',
+		'uses'	=> '\InscricoesMonitoria\Http\Controllers\Auth\AuthController@getLogin',
 		'as'	=> 'auth.login',
 		'middleware' => ['guest'],
 ]);
 
 Route::post('/login', [
-		'uses'	=> '\Monitoriamat\Http\Controllers\Auth\AuthController@postLogin',
+		'uses'	=> '\InscricoesMonitoria\Http\Controllers\Auth\AuthController@postLogin',
 ]);
 
 Route::get('register/verify/{token}',[
-	'uses' => '\Monitoriamat\Http\Controllers\Auth\AuthController@verify',
+	'uses' => '\InscricoesMonitoria\Http\Controllers\Auth\AuthController@verify',
 	'middleware' => ['guest'],
 ]);
 
@@ -172,13 +172,13 @@ Route::get('register/verify/{token}',[
 * Registrar
  */
 Route::get('/registrar', [
-		'uses'	=> '\Monitoriamat\Http\Controllers\Auth\AuthController@getSignup',
+		'uses'	=> '\InscricoesMonitoria\Http\Controllers\Auth\AuthController@getSignup',
 		'as'	=> 'auth.registrar',
 		'middleware' => ['guest','autoriza.inscricao']
 ]);
 
 Route::post('/registrar', [
-		'uses'	=> '\Monitoriamat\Http\Controllers\Auth\AuthController@postSignup',
+		'uses'	=> '\InscricoesMonitoria\Http\Controllers\Auth\AuthController@postSignup',
 ]);
 
 /*
@@ -186,31 +186,31 @@ Route::post('/registrar', [
  */
 
 Route::get('esqueci/senha', [
-		'uses'	=> '\Monitoriamat\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm',
+		'uses'	=> '\InscricoesMonitoria\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm',
 		'as'	=> 'password.request',
 		'middleware' => ['guest'],
 ]);
 
 Route::post('esqueci/senha/link', [
-		'uses'	=> '\Monitoriamat\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail',
+		'uses'	=> '\InscricoesMonitoria\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail',
 		'as' => 'password.email',
 		'middleware' => ['guest'],
 ]);
 
 Route::get('/esqueci/senha/{token}', [
-		'uses'	=> '\Monitoriamat\Http\Controllers\Auth\ResetPasswordController@showResetForm',
+		'uses'	=> '\InscricoesMonitoria\Http\Controllers\Auth\ResetPasswordController@showResetForm',
 		'as' => 'password.reset',
 		'middleware' => ['guest'],
 ]);
 
 Route::post('/esqueci/senha/{token}', [
-		'uses'	=> '\Monitoriamat\Http\Controllers\Auth\ResetPasswordController@reset',
+		'uses'	=> '\InscricoesMonitoria\Http\Controllers\Auth\ResetPasswordController@reset',
 		'as' => 'password.reset',
 		'middleware' => ['guest'],
 ]);
 
 Route::get('/mudousenha', [
-		'uses'	=> '\Monitoriamat\Http\Controllers\Auth\AuthController@getMudouSenha',
+		'uses'	=> '\InscricoesMonitoria\Http\Controllers\Auth\AuthController@getMudouSenha',
 		'as'	=> 'mudou.senha',
 ]);
 
@@ -225,6 +225,6 @@ Route::get('/alert', function () {
 * Home
  */
 Route::get('/', [
-		'uses'	=> '\Monitoriamat\Http\Controllers\HomeController@index',
+		'uses'	=> '\InscricoesMonitoria\Http\Controllers\HomeController@index',
 		'as'	=> 'home',
 ]);

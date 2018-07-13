@@ -1,6 +1,6 @@
 <?php
 
-namespace Monitoriamat\Http;
+namespace InscricoesMonitoria\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -16,7 +16,7 @@ class Kernel extends HttpKernel
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
-        \Monitoriamat\Http\Middleware\TrimStrings::class,
+        \InscricoesMonitoria\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
     ];
 
@@ -27,12 +27,12 @@ class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'web' => [
-            \Monitoriamat\Http\Middleware\EncryptCookies::class,
+            \InscricoesMonitoria\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
             // \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            \Monitoriamat\Http\Middleware\VerifyCsrfToken::class,
+            \InscricoesMonitoria\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
@@ -54,9 +54,9 @@ class Kernel extends HttpKernel
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'guest' => \Monitoriamat\Http\Middleware\RedirectIfAuthenticated::class,
+        'guest' => \InscricoesMonitoria\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'user.role' => \Monitoriamat\Http\Middleware\UserRoles::class,
-        'autoriza.inscricao' => \Monitoriamat\Http\Middleware\AutorizaLogin::class,
+        'user.role' => \InscricoesMonitoria\Http\Middleware\UserRoles::class,
+        'autoriza.inscricao' => \InscricoesMonitoria\Http\Middleware\AutorizaLogin::class,
     ];
 }

@@ -1,23 +1,23 @@
 <?php
 
-namespace Monitoriamat\Http\Controllers\Auth;
+namespace InscricoesMonitoria\Http\Controllers\Auth;
 
 use Auth;
 use DB;
 use Mail;
 use Session;
 use Purifier;
-use Monitoriamat\Models\User;
-use Monitoriamat\Models\Monitoria;
-use Monitoriamat\Models\DadoPessoal;
+use InscricoesMonitoria\Models\User;
+use InscricoesMonitoria\Models\Monitoria;
+use InscricoesMonitoria\Models\DadoPessoal;
 use Illuminate\Http\Request;
-use Monitoriamat\Mail\EmailVerification;
-use Monitoriamat\Http\Controllers\Controller;
-use Monitoriamat\Http\Controllers\BaseController;
+use InscricoesMonitoria\Mail\EmailVerification;
+use InscricoesMonitoria\Http\Controllers\Controller;
+use InscricoesMonitoria\Http\Controllers\BaseController;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Notification;
 use Illuminate\Notifications\Messages\MailMessage;
-use Monitoriamat\Notifications\AtivaConta;
+use InscricoesMonitoria\Notifications\AtivaConta;
 
 
 

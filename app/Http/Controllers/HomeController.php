@@ -1,6 +1,6 @@
 <?php
 
-namespace Monitoriamat\Http\Controllers;
+namespace InscricoesMonitoria\Http\Controllers;
 
 use Auth;
 

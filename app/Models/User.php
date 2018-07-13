@@ -1,10 +1,10 @@
 <?php
 
-namespace Monitoriamat\Models;
+namespace InscricoesMonitoria\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Monitoriamat\Notifications\ResetPassword as ResetPasswordNotification;
+use InscricoesMonitoria\Notifications\ResetPassword as ResetPasswordNotification;
 
 class User extends Authenticatable
 {

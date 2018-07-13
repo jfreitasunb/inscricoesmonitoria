@@ -1,22 +1,22 @@
 <?php
 
-namespace Monitoriamat\Http\Controllers;
+namespace InscricoesMonitoria\Http\Controllers;
 
 use Auth;
 use DB;
 use Mail;
 use Session;
 use Carbon\Carbon;
-use Monitoriamat\Models\User;
-use Monitoriamat\Models\ConfiguraInscricao;
-use Monitoriamat\Models\DisciplinaMat;
-use Monitoriamat\Models\DisciplinaMonitoria;
-use Monitoriamat\Models\RelatorioController;
+use InscricoesMonitoria\Models\User;
+use InscricoesMonitoria\Models\ConfiguraInscricao;
+use InscricoesMonitoria\Models\DisciplinaMat;
+use InscricoesMonitoria\Models\DisciplinaMonitoria;
+use InscricoesMonitoria\Models\RelatorioController;
 use Illuminate\Http\Request;
-use Monitoriamat\Mail\EmailVerification;
-use Monitoriamat\Http\Controllers\Controller;
-use Monitoriamat\Http\Controllers\AuthController;
-use Monitoriamat\Http\Controllers\CoordenadorController;
+use InscricoesMonitoria\Mail\EmailVerification;
+use InscricoesMonitoria\Http\Controllers\Controller;
+use InscricoesMonitoria\Http\Controllers\AuthController;
+use InscricoesMonitoria\Http\Controllers\CoordenadorController;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Route;
 
