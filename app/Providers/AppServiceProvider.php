@@ -18,6 +18,14 @@ class AppServiceProvider extends ServiceProvider
             }
                 return true;
         });
+
+        Validator::extend('login_email', function($attribute, $value, $parameters, $validator) {
+            
+            if(filter_var($value, FILTER_VALIDATE_EMAIL)){
+                return false;
+            }
+            return true;
+        });
     }
 
     public function register()
