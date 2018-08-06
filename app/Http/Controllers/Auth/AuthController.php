@@ -50,7 +50,7 @@ class AuthController extends BaseController
 		$novo_usuario = new User();
 
 
-		$novo_usuario->login = Purifier::clean(strtolower(trim($request->input('login'))));
+		$novo_usuario->login = Purifier::clean(str_replace("/", "", strtolower(trim($request->input('login')))));
         $novo_usuario->email = Purifier::clean(strtolower(trim($request->input('email'))));
         $novo_usuario->password = bcrypt(trim($request->input('password')));
         $novo_usuario->validation_code =  md5($STRING_VALIDA_EMAIL.$request->input('email').date("d-m-Y H:i:s:u"));
