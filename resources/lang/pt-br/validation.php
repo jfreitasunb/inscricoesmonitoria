@@ -13,6 +13,7 @@ return [
     |
     */
     'is_voluntario' => "Como foi já é monitor em um projeto, você só pode solicitar monitoria voluntária!",
+    'login_email' => 'Você deve usar como login sua matrícula!',
     'accepted'             => ':attribute deve ser aceito.',
     'active_url'           => ':attribute não é uma URL válida.',
     'after'                => ':attribute deve ser uma data depois de :date.',
