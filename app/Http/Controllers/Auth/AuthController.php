@@ -88,7 +88,7 @@ class AuthController extends BaseController
 			'password' => 'required',
 		]);
 
-		$login = strtolower(trim($request->input('login')));
+		$login = str_replace("/", "",strtolower(trim($request->input('login'))));
 
 		$password = trim($request->password);
 		
