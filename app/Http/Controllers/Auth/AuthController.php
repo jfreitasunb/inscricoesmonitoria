@@ -61,7 +61,7 @@ class AuthController extends BaseController
 
 		$cria_candidato = new DadoPessoal();
 		$cria_candidato->id_user = $id_user;
-		$cria_candidato->nome = $request->input('nome');
+		$cria_candidato->nome = Purifier::clean(trim($request->input('nome')));
 		$cria_candidato->save();
 
 		
