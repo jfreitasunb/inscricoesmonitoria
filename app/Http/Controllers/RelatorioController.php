@@ -70,10 +70,24 @@ class RelatorioController extends BaseController
 
        	$arquivo_relatorio = "Relatorio_inscritos_".$id_monitoria.".csv";
               $arquivo_dados_pessoais_bancario = "Dados_pessoais-bancarios_".$id_monitoria.".csv";
-              $local_relatorios = 'relatorios/csv/';
+              $local_relatorios = public_path('relatorios/csv/');
+
+
+              File::isDirectory($local_relatorios) or File::makeDirectory($local_relatorios,0775,true);
+
+
               $local_documentos = storage_path('app/');
+              
+
               $arquivos_temporarios = public_path("/relatorios/temporario");
+              
+
+              File::isDirectory($arquivos_temporarios) or File::makeDirectory($arquivos_temporarios,0775,true);
+
               $arquivo_zip = public_path('/relatorios/zip/');
+
+              
+              File::isDirectory($arquivo_zip) or File::makeDirectory($arquivo_zip,0775,true);
 
               $documentos_zipados = 'Documentos_'.$id_monitoria.'.zip';
 
