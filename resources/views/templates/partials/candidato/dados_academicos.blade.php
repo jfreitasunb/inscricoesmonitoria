@@ -73,7 +73,7 @@
                 </button>
                 <!-- image-preview-input -->
                 <div class="btn btn-primary">
-                    <input type="file" accept="application/pdf, image/png, image/jpeg, image/jpg, image/gif" name="arquivo" required=""/> <!-- rename it -->
+                    <input type="file" accept="application/pdf" name="arquivo" required=""/> <!-- rename it -->
                 </div>
             </span>
           </div>
