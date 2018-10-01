@@ -86,7 +86,7 @@ class RelatorioController extends BaseController
 
               $arquivo_zip = public_path('/relatorios/zip/');
 
-              
+
               File::isDirectory($arquivo_zip) or File::makeDirectory($arquivo_zip,0775,true);
 
               $documentos_zipados = 'Documentos_'.$id_monitoria.'.zip';
@@ -143,6 +143,11 @@ class RelatorioController extends BaseController
                             $linha_arquivo_DPB['numero_banco'] = $dados_bancarios->numero_banco;
                             $linha_arquivo_DPB['agencia_bancaria'] = $dados_bancarios->agencia_bancaria;
                             $linha_arquivo_DPB['numero_conta_corrente'] = $dados_bancarios->numero_conta_corrente;
+                     }else{
+                            $linha_arquivo_DPB['nome_banco'] = "Não informado";
+                            $linha_arquivo_DPB['numero_banco'] = "";
+                            $linha_arquivo_DPB['agencia_bancaria'] = "";
+                            $linha_arquivo_DPB['numero_conta_corrente'] = "";
                      }
                      
 
