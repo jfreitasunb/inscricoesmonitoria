@@ -272,7 +272,7 @@ class CandidatoController extends BaseController
 			'ira' => 'required|regex:/^\d+(,\d+)*(\.\d+)?$/|min:0',
 			'curso_graduacao' => 'required|max:201',
 			'checkbox_foi_monitor' => 'required',
-			'arquivo' => 'required|max:20000'
+			'arquivo' => 'required|max:20000|mimes:pdf'
 		]);
 
 			$user = Auth::user();
