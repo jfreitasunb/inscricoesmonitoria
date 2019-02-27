@@ -213,7 +213,7 @@ class RelatorioController extends BaseController
        			$linha_arquivo['escolha'] .= $nome."_".$escolhas_candidato[$i]->mencao_aluno."/";
        		}
 
-                     $linha_arquivo['escolha'] = rtrim($linha_arquivo['escolha'], "\\");
+                     $linha_arquivo['escolha'] = rtrim($linha_arquivo['escolha'], "/");
 
        		$horario = new HorarioEscolhido();
 
@@ -227,7 +227,7 @@ class RelatorioController extends BaseController
 
        		}
 
-                     $linha_arquivo['horario'] = rtrim($linha_arquivo['horario'], "\\");
+                     $linha_arquivo['horario'] = rtrim($linha_arquivo['horario'], "/");
 
                      $atuacoes = new AtuacaoMonitoria();
                      
@@ -239,7 +239,7 @@ class RelatorioController extends BaseController
                             $linha_arquivo['atuou_monitoria'] .= $lista_de_atuacoes[$l]->atuou_monitoria."/";
                      }
 
-                     $linha_arquivo['atuou_monitoria'] = rtrim($linha_arquivo['atuou_monitoria'], "\\");
+                     $linha_arquivo['atuou_monitoria'] = rtrim($linha_arquivo['atuou_monitoria'], "/");
 
                      $csv_relatorio->insertOne($linha_arquivo);
                      
