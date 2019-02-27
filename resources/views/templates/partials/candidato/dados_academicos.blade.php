@@ -10,7 +10,7 @@
         <!-- BEGIN ano_semestre_ira -->
         <legend class="scheduler-border">IRA atualizado ({{$ano_semestre_ira}})</legend>
         <!-- END ano_semestre_ira -->
-        <div class="form-horizontal"{{ $errors->has('nome') ? ' has-error' : '' }}>
+        <div class="form-horizontal"{{ $errors->has('ira') ? ' has-error' : '' }}>
           <div class="row">
             <div class="col-md-4 form-group">
               <input id="ira" name="ira" type="text" class="form-control" required="" value="{{$dados['ira'] or Request::old('ira') ?: '' }}">
@@ -28,14 +28,14 @@
             </div>
           </div>
         </div>
-        @if ($errors->has('nome'))
-          <span class="help-block">{{ $errors->first('nome') }}</span>
+        @if ($errors->has('curso_graduacao'))
+          <span class="help-block">{{ $errors->first('curso_graduacao') }}</span>
         @endif
       </fieldset>
 
       <fieldset class="scheduler-border">
         <legend class="scheduler-border">Você já foi monitor de disciplinas do Departamento de Matemática?</legend>
-        <div class="form-horizontal"{{ $errors->has('nome') ? ' has-error' : '' }} required="">
+        <div class="form-horizontal"{{ $errors->has('checkbox_foi_monitor') ? ' has-error' : '' }} required="">
           <div class="row">
             <p>
               <input type="checkbox" name="checkbox_foi_monitor[]" id="checkbox_foi_monitor" value="calculo1_matematica1" @if(is_array(Request::old('checkbox_foi_monitor')) && in_array("calculo1_matematica1",Request::old('checkbox_foi_monitor'))) checked @endif required=""> Sim, de Cálculo 1 ou Matemática 1<br>
@@ -51,15 +51,15 @@
               <input type="checkbox" name="checkbox_foi_monitor[]" id="checkbox_foi_monitor" value="nao" @if(is_array(Request::old('checkbox_foi_monitor')) && in_array("nao",Request::old('checkbox_foi_monitor'))) checked @endif> Não<br>
             </p>
           </div>
-           @if ($errors->has('nome'))
-            <span class="help-block">{{ $errors->first('nome') }}</span>
+           @if ($errors->has('checkbox_foi_monitor'))
+            <span class="help-block">{{ $errors->first('checkbox_foi_monitor') }}</span>
           @endif
         </div>
       </fieldset>
 
       <fieldset class="scheduler-border">
         <legend class="scheduler-border">Histórico</legend>
-        <div class="form-horizontal"{{ $errors->has('nome') ? ' has-error' : '' }}>
+        <div class="form-horizontal"{{ $errors->has('arquivo') ? ' has-error' : '' }}>
           <div class="row">
             <span class="input-group-btn">
                 <!-- image-preview-clear button -->
@@ -72,8 +72,8 @@
                 </div>
             </span>
           </div>
-           @if ($errors->has('nome'))
-            <span class="help-block">{{ $errors->first('nome') }}</span>
+           @if ($errors->has('arquivo'))
+            <span class="help-block">{{ $errors->first('arquivo') }}</span>
           @endif
         </div>
       </fieldset>
