@@ -141,7 +141,6 @@ class CandidatoController extends BaseController
 				$candidato->update($dados_pessoais);
 			}
 
-
 			notify()->flash('Seus dados pessoais foram atualizados.','success');
 
 			return redirect()->route('dados.bancarios');
@@ -413,16 +412,13 @@ class CandidatoController extends BaseController
 			return redirect()->route('home');
 		}
 
-		if ($request->input('tipo_monitoria')!== "somentevoluntaria") {
-			$informou_banco =  DadoBancario::find($id_user);
+		$informou_banco =  DadoBancario::find($id_user);
 
-			if (is_null($informou_banco)) {
+		if (is_null($informou_banco)) {
 
-				notify()->flash('Por favor informe seus dados bancários antes de efetuar suas escolhas.','error');
+			notify()->flash('Por favor informe seus dados bancários antes de efetuar suas escolhas.','error');
 
-				return redirect()->route('dados.bancarios');
-			}
-
+			return redirect()->route('dados.bancarios');
 		}
 
 
