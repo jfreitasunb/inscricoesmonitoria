@@ -110,13 +110,14 @@ class CandidatoController extends BaseController
 			
 			$dados_pessoais = [
 				'id_user' => $id_user,
+				'nome' => $this->titleCase(Purifier::clean($request->input('nome'))),
 				'numerorg' => Purifier::clean($request->input('numerorg')),
-				'emissorrg' => Purifier::clean($request->input('emissorrg')),
+				'emissorrg' => strtoupper(Purifier::clean($request->input('emissorrg'))),
 				'cpf' => Purifier::clean($request->input('cpf')),
 				'endereco' => $this->titleCase(Purifier::clean($request->input('endereco'))),
 				'cidade' => $this->titleCase(Purifier::clean($request->input('cidade'))),
 				'cep' => Purifier::clean($request->input('cep')),
-				'estado' => Purifier::clean($request->input('estado')),
+				'estado' => strtoupper(Purifier::clean($request->input('estado'))),
 				'telefone' => Purifier::clean($request->input('telefone')),
 				'celular' => Purifier::clean($request->input('celular')),
 			];
@@ -128,12 +129,12 @@ class CandidatoController extends BaseController
 				$cria_candidato->id_user = $id_user;
 				$cria_candidato->nome = $this->titleCase(Purifier::clean($request->input('nome')));
 				$cria_candidato->numerorg = Purifier::clean($request->input('numerorg'));
-				$cria_candidato->emissorrg = Purifier::clean($request->input('emissorrg'));
+				$cria_candidato->emissorrg = strtoupper(Purifier::clean($request->input('emissorrg')));
 				$cria_candidato->cpf = Purifier::clean($request->input('cpf'));
 				$cria_candidato->endereco = $this->titleCase(Purifier::clean($request->input('endereco')));
 				$cria_candidato->cidade = $this->titleCase(Purifier::clean($request->input('cidade')));
 				$cria_candidato->cep = Purifier::clean($request->input('cep'));
-				$cria_candidato->estado = Purifier::clean($request->input('estado'));
+				$cria_candidato->estado = strtoupper(Purifier::clean($request->input('estado')));
 				$cria_candidato->telefone = Purifier::clean($request->input('telefone'));
 				$cria_candidato->celular = Purifier::clean($request->input('celular'));
 				$cria_candidato->save($dados_pessoais);
