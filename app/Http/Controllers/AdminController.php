@@ -6,6 +6,7 @@ use Auth;
 use DB;
 use Mail;
 use Session;
+use Purifier;
 use Carbon\Carbon;
 use InscricoesMonitoria\Models\User;
 use InscricoesMonitoria\Models\ConfiguraInscricao;
@@ -46,7 +47,7 @@ class AdminController extends CoordenadorController
 			'ativar' => 'required',
 		]);
 
-		$email = $request->email;
+		$email = Purifier::clean(strtolower(trim($request->email)));
 		
 		$ativar_conta = $request->ativar;
 
@@ -100,7 +101,7 @@ class AdminController extends CoordenadorController
 			'email' => 'email|max:256',
 		]);
 
-		$email = $request->email;
+		$email = Purifier::clean(strtolower(trim($request->email)));
 		
 		$usuario = new User();
 		
@@ -135,7 +136,7 @@ class AdminController extends CoordenadorController
 		]);
 
 
-		$email = $request->email;
+		$email = Purifier::clean(strtolower(trim($request->email)));
 		
 		$novo_papel = $request->novo_papel;
 
@@ -202,9 +203,9 @@ class AdminController extends CoordenadorController
 
 		$novo_usuario = new User();
 
-		$novo_usuario->login = $request->input('login');
+		$novo_usuario->login = Purifier::clean(strtolower(trim($request->input('login'))));
         
-        $novo_usuario->email = $request->input('email');
+        $novo_usuario->email = Purifier::clean(strtolower(trim($request->input('email'))));
         
         $novo_usuario->password = bcrypt(str_random());
         
