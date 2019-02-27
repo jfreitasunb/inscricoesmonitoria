@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class DadoAcademico extends Model
 {
-    protected $primaryKey = 'id_user';
+    protected $primaryKey = 'id';
 
     protected $table = 'dados_academicos';
 
@@ -22,9 +22,8 @@ class DadoAcademico extends Model
 
 public function retorna_dados_academicos($id_user)
     {
-        $dados_academicos = $this->find($id_user);
 
-        return $dados_academicos;
+        return $this->where('id_user', $id_user)->orderBy('updated_at', 'DESC')->get()->first();
 
     }
 }
