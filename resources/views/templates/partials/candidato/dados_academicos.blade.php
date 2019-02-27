@@ -21,17 +21,12 @@
 
       <fieldset class="scheduler-border">
         <legend class="scheduler-border">Curso de Graduação</legend>
-        <div class="form-horizontal{{ $errors->has('nome') ? ' has-error' : '' }}">
-          <p>
-            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="Matemática" required="" @if((array_key_exists('curso_graduacao',$dados) AND $dados['curso_graduacao'] == "Matemática") or  Request::old('curso_graduacao')=="Matemática") checked @endif> Matemática (Bacharelado/Licenciatura)<br>
-            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="Computação" @if((array_key_exists('curso_graduacao',$dados) AND $dados['curso_graduacao'] == "Computação") or Request::old('curso_graduacao')=="Computação") checked @endif> Ciências da Computação (Bacharelado/Licenciatura)<br>
-            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="Estatística" @if((array_key_exists('curso_graduacao',$dados) AND $dados['curso_graduacao'] == "Estatística") or Request::old('curso_graduacao')=="Estatística") checked @endif> Estatística<br>
-            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="Física" @if((array_key_exists('curso_graduacao',$dados) AND $dados['curso_graduacao'] == "Física") or Request::old('curso_graduacao')=="Física") checked @endif> Física (Bacharelado/Licenciatura)<br>
-            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="Química" @if((array_key_exists('curso_graduacao',$dados) AND $dados['curso_graduacao'] == "Química") or Request::old('curso_graduacao')=="Química") checked @endif> Química (Bacharelado/Licenciatura)<br>
-            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="Geologia_Geofísica" @if((array_key_exists('curso_graduacao',$dados) AND $dados['curso_graduacao'] == "Geologia_Geofísica") or Request::old('curso_graduacao')=="Geologia_Geofísica") checked @endif> Geologia/Geofísica<br>
-            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="Engenharia" @if((array_key_exists('curso_graduacao',$dados) AND $dados['curso_graduacao'] == "Engenharia") or Request::old('curso_graduacao')=="Engenharia") checked @endif> Engenharia (Mecânica/Elétrica/Civil/Redes/Mecatrônica/Química/Produção)<br>
-            <input type="radio" name="curso_graduacao" id="curso_graduacao" value="Outros" @if((array_key_exists('curso_graduacao',$dados) AND $dados['curso_graduacao'] == "Outros") or Request::old('curso_graduacao')=="Outros") checked @endif> Outros<br>
-          </p>
+        <div class="form-horizontal"{{ $errors->has('curso_graduacao') ? ' has-error' : '' }}>
+          <div class="row">
+            <div class="col-md-4 form-group">
+              <input id="curso_graduacao" name="curso_graduacao" type="text" class="form-control" required="" value="{{$dados['curso_graduacao'] or Request::old('curso_graduacao') ?: '' }}">
+            </div>
+          </div>
         </div>
         @if ($errors->has('nome'))
           <span class="help-block">{{ $errors->first('nome') }}</span>
