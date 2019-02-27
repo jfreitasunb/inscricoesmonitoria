@@ -80,7 +80,6 @@ class RelatorioController extends BaseController
 
               File::isDirectory($local_relatorios) or File::makeDirectory($local_relatorios,0775,true);
 
-
               $local_documentos = storage_path('app/');
               
               $arquivos_temporarios = public_path("/relatorios/temporario");
@@ -168,7 +167,6 @@ class RelatorioController extends BaseController
                             $linha_arquivo_DPB['numero_conta_corrente'] = "";
                      }
                      
-
        		$dado_academico = new DadoAcademico();
 
        		$dados_academicos = $dado_academico->retorna_dados_academicos($id_user);
@@ -192,8 +190,6 @@ class RelatorioController extends BaseController
                             $linha_arquivo['nome_professor'] = "";
                      }
                      
-
-
        		$escolheu = new EscolhaMonitoria();
 
        		$escolhas_candidato = $escolheu->retorna_escolha_monitoria($id_user,$id_monitoria);
