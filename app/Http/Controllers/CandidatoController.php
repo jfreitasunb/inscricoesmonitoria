@@ -44,19 +44,13 @@ class CandidatoController extends BaseController
         $this->estadoModel = $estado;
     }
 
-    // public function index()
-    // {
-    //     $estados = $this->estadoModel->pluck('estado', 'id');
-
-    //     return view('templates.partials.cidade', compact('estados'));
-    // }
-
     public function getCidades($idEstado)
     {
         $estado = $this->estadoModel->find($idEstado);
         $cidades = $estado->cidades()->getQuery()->get(['id', 'cidade']);
         return Response::json($cidades);
     }
+
 	public function getMenu()
 	{	
 		return view('home');
@@ -148,14 +142,7 @@ class CandidatoController extends BaseController
 			}
 
 
-			notify()->flash('Seus dados pessoais foram atualizados.','success',[
-				'showCancelButton' => false,
-				'confirmButtonColor' => '#3085d6',
-				'confirmButtonText' => 'OK',
-				'notifica' => true,
-				'notifica_mensagem' =>'Caso você esteja se candidantando à monitoria voluntária não é necessário informar os dados bancários.',
-				'notifica_tipo' => 'info'
-			]);
+			notify()->flash('Seus dados pessoais foram atualizados.','success');
 
 			return redirect()->route('dados.bancarios');
 	}
