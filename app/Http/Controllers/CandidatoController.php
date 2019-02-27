@@ -4,6 +4,7 @@ namespace InscricoesMonitoria\Http\Controllers;
 
 use Auth;
 use DB;
+use Purifier;
 use Mail;
 use Session;
 use Validator;
@@ -109,15 +110,15 @@ class CandidatoController extends BaseController
 			
 			$dados_pessoais = [
 				'id_user' => $id_user,
-				'numerorg' => $request->input('numerorg'),
-				'emissorrg' => $request->input('emissorrg'),
-				'cpf' => $request->input('cpf'),
-				'endereco' => $request->input('endereco'),
-				'cidade' => $request->input('cidade'),
-				'cep' => $request->input('cep'),
-				'estado' => $request->input('estado'),
-				'telefone' => $request->input('telefone'),
-				'celular' => $request->input('celular'),
+				'numerorg' => Purifier::clean($request->input('numerorg')),
+				'emissorrg' => Purifier::clean($request->input('emissorrg')),
+				'cpf' => Purifier::clean($request->input('cpf')),
+				'endereco' => Purifier::clean($request->input('endereco')),
+				'cidade' => Purifier::clean($request->input('cidade')),
+				'cep' => Purifier::clean($request->input('cep')),
+				'estado' => Purifier::clean($request->input('estado')),
+				'telefone' => Purifier::clean($request->input('telefone')),
+				'celular' => Purifier::clean($request->input('celular')),
 			];
 
 			$candidato =  DadoPessoal::find($id_user);
@@ -125,16 +126,16 @@ class CandidatoController extends BaseController
 			if (is_null($candidato)) {
 				$cria_candidato = new DadoPessoal();
 				$cria_candidato->id_user = $id_user;
-				$cria_candidato->nome = $request->input('nome');
-				$cria_candidato->numerorg = $request->input('numerorg');
-				$cria_candidato->emissorrg = $request->input('emissorrg');
-				$cria_candidato->cpf = $request->input('cpf');
-				$cria_candidato->endereco = $request->input('endereco');
-				$cria_candidato->cidade = $request->input('cidade');
-				$cria_candidato->cep = $request->input('cep');
-				$cria_candidato->estado = $request->input('estado');
-				$cria_candidato->telefone = $request->input('telefone');
-				$cria_candidato->celular = $request->input('celular');
+				$cria_candidato->nome = Purifier::clean($request->input('nome'));
+				$cria_candidato->numerorg = Purifier::clean($request->input('numerorg'));
+				$cria_candidato->emissorrg = Purifier::clean($request->input('emissorrg'));
+				$cria_candidato->cpf = Purifier::clean($request->input('cpf'));
+				$cria_candidato->endereco = Purifier::clean($request->input('endereco'));
+				$cria_candidato->cidade = Purifier::clean($request->input('cidade'));
+				$cria_candidato->cep = Purifier::clean($request->input('cep'));
+				$cria_candidato->estado = Purifier::clean($request->input('estado'));
+				$cria_candidato->telefone = Purifier::clean($request->input('telefone'));
+				$cria_candidato->celular = Purifier::clean($request->input('celular'));
 				$cria_candidato->save($dados_pessoais);
 			}else{
 				
@@ -188,10 +189,10 @@ class CandidatoController extends BaseController
 			
 			$dados_bancarios = [
 				'id_user' => $id_user,
-				'nome_banco' => $request->input('nome_banco'),
-				'numero_banco' => $request->input('numero_banco'),
-				'agencia_bancaria' => $request->input('agencia_bancaria'),
-				'numero_conta_corrente' => $request->input('numero_conta_corrente'),
+				'nome_banco' => Purifier::clean($request->input('nome_banco')),
+				'numero_banco' => Purifier::clean($request->input('numero_banco')),
+				'agencia_bancaria' => Purifier::clean($request->input('agencia_bancaria')),
+				'numero_conta_corrente' => Purifier::clean($request->input('numero_conta_corrente')),
 			];
 
 			$banco =  DadoBancario::find($id_user);
@@ -199,10 +200,10 @@ class CandidatoController extends BaseController
 			if (is_null($banco)) {
 				$cria_banco = new DadoBancario();
 				$cria_banco->id_user = $id_user;
-				$cria_banco->nome_banco = $request->input('nome_banco');
-				$cria_banco->numero_banco = $request->input('numero_banco');
-				$cria_banco->agencia_bancaria = $request->input('agencia_bancaria');
-				$cria_banco->numero_conta_corrente = $request->input('numero_conta_corrente');
+				$cria_banco->nome_banco = Purifier::clean($request->input('nome_banco'));
+				$cria_banco->numero_banco = Purifier::clean($request->input('numero_banco'));
+				$cria_banco->agencia_bancaria = Purifier::clean($request->input('agencia_bancaria'));
+				$cria_banco->numero_conta_corrente = Purifier::clean($request->input('numero_conta_corrente'));
 				$cria_banco->save();
 			}else{
 				
@@ -242,7 +243,7 @@ class CandidatoController extends BaseController
 		}else{
 			
 			$dados = [
-				'ira' => str_replace('.', ',', $dados_academicos_candidato->ira),
+				'ira' => str_replace('.', ',', Purifier::clean($dados_academicos_candidato->ira),
 				'curso_graduacao' => $dados_academicos_candidato->curso_graduacao,
 			];
 			return view('templates.partials.candidato.dados_academicos')->with(compact('ano_semestre_ira', 'dados'));
@@ -280,7 +281,7 @@ class CandidatoController extends BaseController
 			
 			$cria_dados_academicos = new DadoAcademico();
 			$cria_dados_academicos->id_user = $id_user;
-			$cria_dados_academicos->ira = str_replace(',', '.', $request->input('ira'));
+			$cria_dados_academicos->ira = str_replace(',', '.', Purifier::clean($request->input('ira')));
 			$cria_dados_academicos->curso_graduacao = $request->input('curso_graduacao');
 			$cria_dados_academicos->id_monitoria = $id_monitoria;
 			$cria_dados_academicos->save();
@@ -425,7 +426,7 @@ class CandidatoController extends BaseController
 		if (isset($request->nome_professor)) {
 			$monitor_projeto = [
 				'monitor_convidado' => $request->input('monitor_convidado'),
-				'nome_professor' => $request->input('nome_professor'),
+				'nome_professor' => Purifier::clean($request->input('nome_professor')),
 			];
 		}else{
 			$monitor_projeto = [
