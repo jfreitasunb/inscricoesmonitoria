@@ -277,7 +277,7 @@ class CandidatoController extends BaseController
 		}else{
 			
 			$dados = [
-				'ira' => str_replace('.', ',', Purifier::clean($dados_academicos_candidato->ira)),
+				'ira' => str_replace('.', ',', $dados_academicos_candidato->ira),
 				'curso_graduacao' => $dados_academicos_candidato->curso_graduacao,
 			];
 			
