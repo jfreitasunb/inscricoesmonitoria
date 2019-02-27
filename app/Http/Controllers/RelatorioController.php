@@ -69,7 +69,9 @@ class RelatorioController extends BaseController
        {
 
        	$arquivo_relatorio = "Relatorio_inscritos_".$id_monitoria.".csv";
+              
               $arquivo_dados_pessoais_bancario = "Dados_pessoais-bancarios_".$id_monitoria.".csv";
+              
               $local_relatorios = public_path('relatorios/csv/');
 
               @unlink($local_relatorios.$arquivo_relatorio);
@@ -81,14 +83,11 @@ class RelatorioController extends BaseController
 
               $local_documentos = storage_path('app/');
               
-
               $arquivos_temporarios = public_path("/relatorios/temporario");
               
-
               File::isDirectory($arquivos_temporarios) or File::makeDirectory($arquivos_temporarios,0775,true);
 
               $arquivo_zip = public_path('/relatorios/zip/');
-
 
               File::isDirectory($arquivo_zip) or File::makeDirectory($arquivo_zip,0775,true);
 
@@ -97,10 +96,11 @@ class RelatorioController extends BaseController
               @unlink($arquivo_zip.$documentos_zipados);
 
               $csv_relatorio = Writer::createFromPath($local_relatorios.$arquivo_relatorio, 'w+');
+              
               $csv_dados_pessoais_bancarios = Writer::createFromPath($local_relatorios.$arquivo_dados_pessoais_bancario, 'w+');
 
-
               $relatorio = new FinalizaEscolha();
+              
               $usuarios_finalizados = $relatorio->retorna_usuarios_relatorios($id_monitoria);
 
               $cabecalho = ["Nome","E-mail","Celular","Curso de Graduação", "IRA", "Tipo de Monitoria", "Monitor Convidado", "Nome do Professor", "Escolhas", "Horários", "Atuações Anteoriores"];
@@ -108,21 +108,24 @@ class RelatorioController extends BaseController
               $cabecalho_dados_pessoais_bancario = ["Nome","E-mail","Matrícula","Celular","CPF", "Banco", "Número", "Agência", "Conta Corrente"];
 
               $csv_relatorio->insertOne($cabecalho);
+              
               $csv_dados_pessoais_bancarios->insertOne($cabecalho_dados_pessoais_bancario);
-
 
               foreach ($usuarios_finalizados as $usuario) {
 
                      $linha_arquivo = [];
-       		$id_user = $usuario->id_user;
+       		
+                     $id_user = $usuario->id_user;
 
                      $user = New User();
 
                      $email = $user->find($id_user)->email;
+                     
                      $matricula = $user->find($id_user)->login;
 
        		$dado_pessoal = new DadoPessoal();
-       		$dados_pessoais = $dado_pessoal->retorna_dados_pessoais($id_user);
+       		
+                     $dados_pessoais = $dado_pessoal->retorna_dados_pessoais($id_user);
 
                      $linha_arquivo['nome'] = $dados_pessoais->nome;
 
@@ -131,11 +134,13 @@ class RelatorioController extends BaseController
                      $linha_arquivo['email'] = $email;
 
                      $linha_arquivo_DPB['email'] = $email;
+                     
                      $linha_arquivo_DPB['matricula'] = $matricula;
 
                      $linha_arquivo['celular'] = $dados_pessoais->celular;
 
                      $linha_arquivo_DPB['celular'] = $dados_pessoais->celular;
+                     
                      $linha_arquivo_DPB['CPF'] = $dados_pessoais->cpf;
 
                      $dado_bancario = new DadoBancario();
@@ -143,14 +148,23 @@ class RelatorioController extends BaseController
                      $dados_bancarios = $dado_bancario->retorna_dados_bancarios($id_user);
 
                      if (!is_null($dados_bancarios)) {
+                            
                             $linha_arquivo_DPB['nome_banco'] = $dados_bancarios->nome_banco;
+                            
                             $linha_arquivo_DPB['numero_banco'] = $dados_bancarios->numero_banco;
+                            
                             $linha_arquivo_DPB['agencia_bancaria'] = $dados_bancarios->agencia_bancaria;
+                            
                             $linha_arquivo_DPB['numero_conta_corrente'] = $dados_bancarios->numero_conta_corrente;
+
                      }else{
+                            
                             $linha_arquivo_DPB['nome_banco'] = "Não informado";
+                            
                             $linha_arquivo_DPB['numero_banco'] = "";
+                            
                             $linha_arquivo_DPB['agencia_bancaria'] = "";
+                            
                             $linha_arquivo_DPB['numero_conta_corrente'] = "";
                      }
                      
@@ -166,6 +180,7 @@ class RelatorioController extends BaseController
                      $linha_arquivo['tipo_monitoria'] = $usuario->tipo_monitoria;
 
                      if ($dados_academicos->monitor_convidado) {
+                            
                             $linha_arquivo['monitor_convidado'] = "Sim";
 
                             $linha_arquivo['nome_professor'] = $dados_academicos->nome_professor;
@@ -209,11 +224,13 @@ class RelatorioController extends BaseController
        		for ($j=0; $j < sizeof($horarios_escolhidos); $j++) { 
        			
        			$linha_arquivo['horario'] .= $horarios_escolhidos[$j]->dia_semana."_".$horarios_escolhidos[$j]->horario_monitoria."/";
+
        		}
 
                      $linha_arquivo['horario'] = rtrim($linha_arquivo['horario'], "\\");
 
                      $atuacoes = new AtuacaoMonitoria();
+                     
                      $lista_de_atuacoes = $atuacoes->retorna_atuacao_monitoria($id_user);
 
                      $linha_arquivo['atuou_monitoria'] = "";
@@ -256,16 +273,12 @@ class RelatorioController extends BaseController
               // File::cleanDirectory($arquivos_temporarios);
 
               return $this->getArquivosRelatorios($id_monitoria,$arquivo_relatorio,$documentos_zipados,$arquivo_dados_pessoais_bancario);
+       }
 
-       
-    }
+       public function getRelatorioMonitoria()
+       {
 
-	
-
-	public function getRelatorioMonitoria()
-	{
-
-		return view('templates.partials.coordenador.relatorio_monitoria');
-	}
+       	return view('templates.partials.coordenador.relatorio_monitoria');
+       }
 
 }
