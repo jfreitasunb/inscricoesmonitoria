@@ -48,7 +48,9 @@ class CandidatoController extends BaseController
     public function getCidades($idEstado)
     {
         $estado = $this->estadoModel->find($idEstado);
+        
         $cidades = $estado->cidades()->getQuery()->get(['id', 'cidade']);
+        
         return Response::json($cidades);
     }
 
@@ -67,10 +69,13 @@ class CandidatoController extends BaseController
 		$estados = $this->estadoModel->pluck('estado', 'id');
 
 		$user = Auth::user();
+		
 		$nome = $user->nome;
+		
 		$id_user = $user->id_user;
 		
 		$candidato = new DadoPessoal();
+		
 		$dados_pessoais = $candidato->retorna_dados_pessoais($id_user);
 
 		$dados = [
@@ -92,60 +97,75 @@ class CandidatoController extends BaseController
 
 	public function postDadosPessoais(Request $request)
 	{
-			$this->validate($request, [
-				'nome' => 'max:256',
-				'numerorg' => 'required|max:21',
-				'emissorrg' => 'required|max:201',
-				'cpf' => 'required|cpf|numeric',
-				'endereco' => 'required|max:256',
-				'cidade' => 'required|max:101',
-				'cep' => 'required|max:12',
-				'estado' => 'required|max:3',
-				'telefone' => 'required|max:21',
-				'celular' => 'required|max:21',
-			]);
+		$this->validate($request, [
+			'nome' => 'max:256',
+			'numerorg' => 'required|max:21',
+			'emissorrg' => 'required|max:201',
+			'cpf' => 'required|cpf|numeric',
+			'endereco' => 'required|max:256',
+			'cidade' => 'required|max:101',
+			'cep' => 'required|max:12',
+			'estado' => 'required|max:3',
+			'telefone' => 'required|max:21',
+			'celular' => 'required|max:21',
+		]);
 
-			$user = Auth::user();
-			$id_user = $user->id_user;
+		$user = Auth::user();
+		
+		$id_user = $user->id_user;
+		
+		$dados_pessoais = [
+			'id_user' => $id_user,
+			'nome' => $this->titleCase(Purifier::clean($request->input('nome'))),
+			'numerorg' => Purifier::clean($request->input('numerorg')),
+			'emissorrg' => strtoupper(Purifier::clean($request->input('emissorrg'))),
+			'cpf' => Purifier::clean($request->input('cpf')),
+			'endereco' => $this->titleCase(Purifier::clean($request->input('endereco'))),
+			'cidade' => $this->titleCase(Purifier::clean($request->input('cidade'))),
+			'cep' => Purifier::clean($request->input('cep')),
+			'estado' => strtoupper(Purifier::clean($request->input('estado'))),
+			'telefone' => Purifier::clean($request->input('telefone')),
+			'celular' => Purifier::clean($request->input('celular')),
+		];
+
+		$candidato =  DadoPessoal::find($id_user);
+
+		if (is_null($candidato)) {
 			
-			$dados_pessoais = [
-				'id_user' => $id_user,
-				'nome' => $this->titleCase(Purifier::clean($request->input('nome'))),
-				'numerorg' => Purifier::clean($request->input('numerorg')),
-				'emissorrg' => strtoupper(Purifier::clean($request->input('emissorrg'))),
-				'cpf' => Purifier::clean($request->input('cpf')),
-				'endereco' => $this->titleCase(Purifier::clean($request->input('endereco'))),
-				'cidade' => $this->titleCase(Purifier::clean($request->input('cidade'))),
-				'cep' => Purifier::clean($request->input('cep')),
-				'estado' => strtoupper(Purifier::clean($request->input('estado'))),
-				'telefone' => Purifier::clean($request->input('telefone')),
-				'celular' => Purifier::clean($request->input('celular')),
-			];
+			$cria_candidato = new DadoPessoal();
+			
+			$cria_candidato->id_user = $id_user;
+			
+			$cria_candidato->nome = $this->titleCase(Purifier::clean($request->input('nome')));
+			
+			$cria_candidato->numerorg = Purifier::clean($request->input('numerorg'));
+			
+			$cria_candidato->emissorrg = strtoupper(Purifier::clean($request->input('emissorrg')));
+			
+			$cria_candidato->cpf = Purifier::clean($request->input('cpf'));
+			
+			$cria_candidato->endereco = $this->titleCase(Purifier::clean($request->input('endereco')));
+			
+			$cria_candidato->cidade = $this->titleCase(Purifier::clean($request->input('cidade')));
+			
+			$cria_candidato->cep = Purifier::clean($request->input('cep'));
+			
+			$cria_candidato->estado = strtoupper(Purifier::clean($request->input('estado')));
+			
+			$cria_candidato->telefone = Purifier::clean($request->input('telefone'));
+			
+			$cria_candidato->celular = Purifier::clean($request->input('celular'));
+			
+			$cria_candidato->save($dados_pessoais);
 
-			$candidato =  DadoPessoal::find($id_user);
+		}else{
+			
+			$candidato->update($dados_pessoais);
+		}
 
-			if (is_null($candidato)) {
-				$cria_candidato = new DadoPessoal();
-				$cria_candidato->id_user = $id_user;
-				$cria_candidato->nome = $this->titleCase(Purifier::clean($request->input('nome')));
-				$cria_candidato->numerorg = Purifier::clean($request->input('numerorg'));
-				$cria_candidato->emissorrg = strtoupper(Purifier::clean($request->input('emissorrg')));
-				$cria_candidato->cpf = Purifier::clean($request->input('cpf'));
-				$cria_candidato->endereco = $this->titleCase(Purifier::clean($request->input('endereco')));
-				$cria_candidato->cidade = $this->titleCase(Purifier::clean($request->input('cidade')));
-				$cria_candidato->cep = Purifier::clean($request->input('cep'));
-				$cria_candidato->estado = strtoupper(Purifier::clean($request->input('estado')));
-				$cria_candidato->telefone = Purifier::clean($request->input('telefone'));
-				$cria_candidato->celular = Purifier::clean($request->input('celular'));
-				$cria_candidato->save($dados_pessoais);
-			}else{
-				
-				$candidato->update($dados_pessoais);
-			}
+		notify()->flash('Seus dados pessoais foram atualizados.','success');
 
-			notify()->flash('Seus dados pessoais foram atualizados.','success');
-
-			return redirect()->route('dados.bancarios');
+		return redirect()->route('dados.bancarios');
 	}
 
 /*
@@ -155,12 +175,15 @@ class CandidatoController extends BaseController
 	public function getDadosBancarios()
 	{
 		$user = Auth::user();
+		
 		$id_user = $user->id_user;
 		
 		$candidato = new DadoBancario();
+		
 		$dados_bancarios = $candidato->retorna_dados_bancarios($id_user);
 
 		if (!is_null($dados_bancarios)) {
+			
 			$dados = [
 				'nome_banco' => $dados_bancarios->nome_banco,
 				'numero_banco' => $dados_bancarios->numero_banco,
@@ -169,6 +192,7 @@ class CandidatoController extends BaseController
 			];
 
 			return view('templates.partials.candidato.dados_bancarios')->with('dados', $dados);	
+
 		}else{
 			
 			return view('templates.partials.candidato.dados_bancarios');
@@ -185,35 +209,44 @@ class CandidatoController extends BaseController
 			'numero_conta_corrente' => 'required|max:256',
 		]);
 
-			$user = Auth::user();
-			$id_user = $user->id_user;
+		$user = Auth::user();
+		
+		$id_user = $user->id_user;
+		
+		$dados_bancarios = [
+			'id_user' => $id_user,
+			'nome_banco' => $this->titleCase(Purifier::clean($request->input('nome_banco'))),
+			'numero_banco' => Purifier::clean($request->input('numero_banco')),
+			'agencia_bancaria' => Purifier::clean($request->input('agencia_bancaria')),
+			'numero_conta_corrente' => Purifier::clean($request->input('numero_conta_corrente')),
+		];
+
+		$banco =  DadoBancario::find($id_user);
+
+		if (is_null($banco)) {
+		
+			$cria_banco = new DadoBancario();
+		
+			$cria_banco->id_user = $id_user;
+		
+			$cria_banco->nome_banco = $this->titleCase(Purifier::clean($request->input('nome_banco')));
+		
+			$cria_banco->numero_banco = Purifier::clean($request->input('numero_banco'));
+		
+			$cria_banco->agencia_bancaria = Purifier::clean($request->input('agencia_bancaria'));
+		
+			$cria_banco->numero_conta_corrente = Purifier::clean($request->input('numero_conta_corrente'));
+		
+			$cria_banco->save();
+		
+		}else{
 			
-			$dados_bancarios = [
-				'id_user' => $id_user,
-				'nome_banco' => $this->titleCase(Purifier::clean($request->input('nome_banco'))),
-				'numero_banco' => Purifier::clean($request->input('numero_banco')),
-				'agencia_bancaria' => Purifier::clean($request->input('agencia_bancaria')),
-				'numero_conta_corrente' => Purifier::clean($request->input('numero_conta_corrente')),
-			];
+			$banco->update($dados_bancarios);
+		}
 
-			$banco =  DadoBancario::find($id_user);
+		notify()->flash('Seus dados bancários foram atualizados.', 'success');
 
-			if (is_null($banco)) {
-				$cria_banco = new DadoBancario();
-				$cria_banco->id_user = $id_user;
-				$cria_banco->nome_banco = $this->titleCase(Purifier::clean($request->input('nome_banco')));
-				$cria_banco->numero_banco = Purifier::clean($request->input('numero_banco'));
-				$cria_banco->agencia_bancaria = Purifier::clean($request->input('agencia_bancaria'));
-				$cria_banco->numero_conta_corrente = Purifier::clean($request->input('numero_conta_corrente'));
-				$cria_banco->save();
-			}else{
-				
-				$banco->update($dados_bancarios);
-			}
-
-			notify()->flash('Seus dados bancários foram atualizados.', 'success');
-
-			return redirect()->route('dados.academicos');
+		return redirect()->route('dados.academicos');
 	}
 
 /*
@@ -256,39 +289,51 @@ class CandidatoController extends BaseController
 			'arquivo' => 'required|max:20000|mimes:pdf'
 		]);
 
-			$user = Auth::user();
-			$id_user = $user->id_user;
+		$user = Auth::user();
 
+		$id_user = $user->id_user;
 
-			for ($i=0; $i < sizeof($request->checkbox_foi_monitor); $i++) {
-				$atuacao = new AtuacaoMonitoria;
-
-				$atuacao->id_user = $id_user;
-				$atuacao->atuou_monitoria = $request->checkbox_foi_monitor[$i];
-
-				$atuacao->save();
-			}
-
-			$monitoria_ativa = new ConfiguraInscricao();
-
-			$id_monitoria = $monitoria_ativa->retorna_inscricao_ativa()->id_monitoria;
+		for ($i=0; $i < sizeof($request->checkbox_foi_monitor); $i++) {
 			
-			$cria_dados_academicos = new DadoAcademico();
-			$cria_dados_academicos->id_user = $id_user;
-			$cria_dados_academicos->ira = str_replace(',', '.', Purifier::clean($request->input('ira')));
-			$cria_dados_academicos->curso_graduacao = $request->input('curso_graduacao');
-			$cria_dados_academicos->id_monitoria = $id_monitoria;
-			$cria_dados_academicos->save();
+			$atuacao = new AtuacaoMonitoria;
 
-			$filename = $request->arquivo->store('documentos');
-			$arquivo = new Documento();
-			$arquivo->id_user = $id_user;
-			$arquivo->nome_arquivo = $filename;
-			$arquivo->save();
+			$atuacao->id_user = $id_user;
 			
-			notify()->flash('Seus dados acadêmicos foram atualizados.', 'success');
+			$atuacao->atuou_monitoria = $request->checkbox_foi_monitor[$i];
 
-			return redirect()->route('dados.escolhas');
+			$atuacao->save();
+
+		}
+
+		$monitoria_ativa = new ConfiguraInscricao();
+
+		$id_monitoria = $monitoria_ativa->retorna_inscricao_ativa()->id_monitoria;
+		
+		$cria_dados_academicos = new DadoAcademico();
+		
+		$cria_dados_academicos->id_user = $id_user;
+		
+		$cria_dados_academicos->ira = str_replace(',', '.', Purifier::clean($request->input('ira')));
+		
+		$cria_dados_academicos->curso_graduacao = $request->input('curso_graduacao');
+		
+		$cria_dados_academicos->id_monitoria = $id_monitoria;
+		
+		$cria_dados_academicos->save();
+
+		$filename = $request->arquivo->store('documentos');
+		
+		$arquivo = new Documento();
+		
+		$arquivo->id_user = $id_user;
+		
+		$arquivo->nome_arquivo = $filename;
+		
+		$arquivo->save();
+		
+		notify()->flash('Seus dados acadêmicos foram atualizados.', 'success');
+
+		return redirect()->route('dados.escolhas');
 	}
 
 
@@ -298,23 +343,26 @@ class CandidatoController extends BaseController
 	public function getEscolhaCandidato()
 	{
 		$user = Auth::user();
+		
 		$id_user = $user->id_user;
 		
 		$monitoria_ativa = new ConfiguraInscricao();
+		
 		$id_monitoria = $monitoria_ativa->retorna_inscricao_ativa()->id_monitoria;
+		
 		$autoriza_inscricao = $monitoria_ativa->autoriza_inscricao();
 		
 		$disciplinas_escolhas = new DisciplinaMonitoria();
+		
 		$escolhas = $disciplinas_escolhas->pega_disciplinas_monitoria($id_monitoria);	
 
 		$array_horarios_disponiveis = array('12:00 às 13:00','13:00 às 14:00','18:00 às 19:00');
 
-    
     	$array_dias_semana = array('Segunda-Feira','Terça-Feira','Quarta-Feira','Quinta-Feira','Sexta-Feira');
 
     	$escolhas_candidato = new EscolhaMonitoria();
-		$fez_escolhas = $escolhas_candidato->retorna_escolha_monitoria($id_user,$id_monitoria);
 		
+		$fez_escolhas = $escolhas_candidato->retorna_escolha_monitoria($id_user,$id_monitoria);
 
 		$disable[] = 'disabled="disabled"';
 
@@ -359,10 +407,13 @@ class CandidatoController extends BaseController
 
 
 		$user = Auth::user();
+		
 		$id_user = $user->id_user;
 		
 		$monitoria_ativa = new ConfiguraInscricao();
+		
 		$id_monitoria = $monitoria_ativa->retorna_inscricao_ativa()->id_monitoria;
+		
 		$autoriza_inscricao = $monitoria_ativa->autoriza_inscricao();
 
 		$finaliza_inscricao = new FinalizaEscolha();
@@ -436,30 +487,51 @@ class CandidatoController extends BaseController
 		$escolhas->deleta_escolhas_anterioes($id_user, $id_monitoria);
 
 		if (isset($request->escolha_aluno_1)) {
+			
 			$grava_escolhas = new EscolhaMonitoria();
+			
 			$grava_escolhas->id_user = $id_user;
+			
 			$grava_escolhas->id_monitoria = $id_monitoria;
+			
 			$grava_escolhas->escolha_aluno = $request->input('escolha_aluno_1');
+			
 			$grava_escolhas->mencao_aluno = $request->input('mencao_aluno_1');
+			
 			$grava_escolhas->save();
+
 		}
 
 		if (isset($request->escolha_aluno_2) and isset($request->mencao_aluno_2)) {
+			
 			$grava_escolhas = new EscolhaMonitoria();
+			
 			$grava_escolhas->id_user = $id_user;
+			
 			$grava_escolhas->id_monitoria = $id_monitoria;
+			
 			$grava_escolhas->escolha_aluno = $request->input('escolha_aluno_2');
+			
 			$grava_escolhas->mencao_aluno = $request->input('mencao_aluno_2');
+			
 			$grava_escolhas->save();
+
 		}
 
 		if (isset($request->escolha_aluno_3) and isset($request->mencao_aluno_3)) {
+			
 			$grava_escolhas = new EscolhaMonitoria();
+			
 			$grava_escolhas->id_user = $id_user;
+			
 			$grava_escolhas->id_monitoria = $id_monitoria;
+			
 			$grava_escolhas->escolha_aluno = $request->input('escolha_aluno_3');
+			
 			$grava_escolhas->mencao_aluno = $request->input('mencao_aluno_3');
+			
 			$grava_escolhas->save();
+
 		}
 
 		$atualiza_dados_academicos->update($monitor_projeto);
@@ -469,11 +541,17 @@ class CandidatoController extends BaseController
 		(new HorarioEscolhido())->deleta_horarios_anterioes($id_user, $id_monitoria);
 
 		foreach ($horario as $key) {
+			
 			$temp = explode('_', $key);
+			
 			$horario_escolhido = new HorarioEscolhido();
+			
 			$horario_escolhido->id_user = $id_user;
+			
 			$horario_escolhido->horario_monitoria = $temp[1];
+			
 			$horario_escolhido->dia_semana = $temp[0];
+			
 			$horario_escolhido->id_monitoria = $id_monitoria;
 
 			$horario_escolhido->save();
@@ -484,14 +562,19 @@ class CandidatoController extends BaseController
 		$ja_finalizou_anteriormente = $finalizar->retorna_inscricao_inicializada($id_user,$id_monitoria);
 
 		if (!$ja_finalizou_anteriormente) {
+			
 			$finalizar->id_user = $id_user;
+			
 			$finalizar->tipo_monitoria = $request->input('tipo_monitoria');
+			
 			$finalizar->concorda_termos = $request->input('concorda_termos');
+			
 			$finalizar->id_monitoria = $id_monitoria;
 
 			$finalizar->finalizar = 1;
 
 			$finalizar->save();
+
 		}else{
 
 			$finalizar->atualiza_status($id_user, $id_monitoria, $request->input('tipo_monitoria'));
