@@ -89,11 +89,12 @@
             <input id="cep" name="cep" type="text" placeholder="" class="form-control input-md" required="" data-parsley-maxlength="11" value="{{$dados['cep'] or Request::old('cep') ?: '' }}">
           </div>
         </div>
-        {{-- @if ($errors->has('cep'))
+       {{--  @if ($errors->has('cep'))
           <span class="help-block">{{ $errors->first('cep') }}</span>
         @endif --}}
       </div>
 
+      <div class="form-group{{ $errors->has('estado') ? ' has-error' : '' }}">
         <div class="row">
           <label class="col-md-4 control-label" for="estado">Estado</label>  
           <div class="col-md-4">
