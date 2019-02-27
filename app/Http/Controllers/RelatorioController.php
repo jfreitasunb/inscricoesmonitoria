@@ -181,6 +181,7 @@ class RelatorioController extends BaseController
 
        		$disciplina = new DisciplinaMat();
 
+                     $linha_arquivo['escolha'] = "";
 
        		for ($i=0; $i < sizeof($escolhas_candidato); $i++) { 
        			
@@ -190,27 +191,37 @@ class RelatorioController extends BaseController
 
        			$nome = $nome_disciplina[0]->nome;
 
-       			$linha_arquivo['escolha_'.($i+1)] = $nome.",".$escolhas_candidato[$i]->mencao_aluno;
-
+       			$linha_arquivo['escolha'] .= $nome."_".$escolhas_candidato[$i]->mencao_aluno."/";
        		}
+
+                     $linha_arquivo['escolha'] = rtrim($linha_arquivo['escolha'], "\\");
 
        		$horario = new HorarioEscolhido();
 
        		$horarios_escolhidos = $horario->retorna_horarios_escolhidos($id_user,$id_monitoria);
 
+                     $linha_arquivo['horario'] = "";
+
        		for ($j=0; $j < sizeof($horarios_escolhidos); $j++) { 
        			
-       			$linha_arquivo['horario'.($j+1)] = $horarios_escolhidos[$j]->dia_semana.",".$horarios_escolhidos[$j]->horario_monitoria;
+       			$linha_arquivo['horario'] .= $horarios_escolhidos[$j]->dia_semana."_".$horarios_escolhidos[$j]->horario_monitoria."/";
        		}
+
+                     $linha_arquivo['horario'] = rtrim($linha_arquivo['horario'], "\\");
 
                      $atuacoes = new AtuacaoMonitoria();
                      $lista_de_atuacoes = $atuacoes->retorna_atuacao_monitoria($id_user);
 
+                     $linha_arquivo['atuou_monitoria'] = "";
+
                      for ($l=0; $l < sizeof($lista_de_atuacoes); $l++) { 
-                            $linha_arquivo['atuou_monitoria'.($l+1)] = $lista_de_atuacoes[$l]->atuou_monitoria;
+                            $linha_arquivo['atuou_monitoria'] .= $lista_de_atuacoes[$l]->atuou_monitoria."/";
                      }
 
+                     $linha_arquivo['atuou_monitoria'] = rtrim($linha_arquivo['atuou_monitoria'], "\\");
+
                      $csv_relatorio->insertOne($linha_arquivo);
+                     
                      $csv_dados_pessoais_bancarios->insertOne($linha_arquivo_DPB);
 
                      $documento = new Documento();
