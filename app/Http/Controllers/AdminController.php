@@ -47,9 +47,11 @@ class AdminController extends CoordenadorController
 		]);
 
 		$email = $request->email;
+		
 		$ativar_conta = $request->ativar;
 
 		$usuario = new User();
+		
 		$user = $usuario->retorna_user_por_email($email);
 
 		if (!is_null($user)) {
@@ -57,30 +59,37 @@ class AdminController extends CoordenadorController
 			$status_usuario = $user->ativo;
 
 			if ($status_usuario) {
+				
 				notify()->flash('A conta registrada com o e-mail: '.$email.' já foi ativada!','info');
 
 				return redirect()->route('ativa.conta');
+
 			}else{
 
 				if ($ativar_conta) {
+					
 					$user->ativo = TRUE;
+					
 					$user->save();
 
 					notify()->flash('A conta registrada com o e-mail: '.$email.' foi ativada com sucesso!','success');
 
 					return redirect()->route('ativa.conta')->with('success','A conta registrada com o e-mail: '.$email.' foi ativada com sucesso!');
 				}
-
 			}
 		}else{
+
 			notify()->flash('Não existe nenhuma conta registrada com o e-mail: '.$email.'!','error');
+			
 			return redirect()->route('ativa.conta');
+
 		}
 	}
 
 	public function getPesquisarPapelAtual()
 	{
 		$dados = null;
+		
 		return view('templates.partials.admin.atribuir_papel')->with('dados_usuario', $dados);
 	}
 
@@ -94,6 +103,7 @@ class AdminController extends CoordenadorController
 		$email = $request->email;
 		
 		$usuario = new User();
+		
 		$user = $usuario->retorna_user_por_email($email);
 
 		if (!is_null($user)) {
@@ -103,6 +113,7 @@ class AdminController extends CoordenadorController
 			$papel_corrente_usuario = $user->user_type;
 
 			$dados_usuario['email'] = $email;
+			
 			$dados_usuario['papel_atual'] = $papel_corrente_usuario;
 
 			return view('templates.partials.admin.atribuir_papel')->with(compact('dados_usuario', 'papeis_disponiveis'));
@@ -129,6 +140,7 @@ class AdminController extends CoordenadorController
 		$novo_papel = $request->novo_papel;
 
 		$usuario = new User();
+		
 		$user = $usuario->retorna_user_por_email($email);
 
 		$dados_usuario = null;
@@ -173,10 +185,7 @@ class AdminController extends CoordenadorController
 			
 			return redirect()->route('pesquisar.papel');
 		}
-
 	}
-
-
 
 	public function getCriaCoordenador()
 	{
@@ -194,10 +203,15 @@ class AdminController extends CoordenadorController
 		$novo_usuario = new User();
 
 		$novo_usuario->login = $request->input('login');
+        
         $novo_usuario->email = $request->input('email');
+        
         $novo_usuario->password = bcrypt(str_random());
+        
         $novo_usuario->validation_code =  NULL;
+        
         $novo_usuario->user_type = "coordenador";
+        
         $novo_usuario->ativo = TRUE;
 
         $novo_usuario->save();
@@ -205,8 +219,6 @@ class AdminController extends CoordenadorController
         notify()->flash('A conta de coordenador para o e-mail: '.$novo_usuario->email.' foi criada com sucesso!','success');
 
         return redirect()->route('criar.coordenador');
-		
 
 	}
-
 }

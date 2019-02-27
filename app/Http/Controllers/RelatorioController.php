@@ -34,13 +34,12 @@ use Storage;
 */
 class RelatorioController extends BaseController
 {
-
 	public function getListaRelatorios()
 	{
 
-		$relatorio = new ConfiguraInscricao();
+              $relatorio = new ConfiguraInscricao();
 
-		$relatorio_disponivel = $relatorio->retorna_lista_para_relatorio();
+              $relatorio_disponivel = $relatorio->retorna_lista_para_relatorio();
 
               $arquivo_relatorio = "";
 
@@ -48,7 +47,7 @@ class RelatorioController extends BaseController
 
               $monitoria = "";
 
-		return view('templates.partials.coordenador.relatorio_monitoria')->with(compact('monitoria','relatorio_disponivel', 'arquivo_relatorio','documentos_zipados'));
+              return view('templates.partials.coordenador.relatorio_monitoria')->with(compact('monitoria','relatorio_disponivel', 'arquivo_relatorio','documentos_zipados'));
 	}
 
 
