@@ -72,6 +72,9 @@ class RelatorioController extends BaseController
               $arquivo_dados_pessoais_bancario = "Dados_pessoais-bancarios_".$id_monitoria.".csv";
               $local_relatorios = public_path('relatorios/csv/');
 
+              @unlink($local_relatorios.$arquivo_relatorio);
+
+              @unlink($local_relatorios.$arquivo_dados_pessoais_bancario);
 
               File::isDirectory($local_relatorios) or File::makeDirectory($local_relatorios,0775,true);
 
@@ -91,6 +94,7 @@ class RelatorioController extends BaseController
 
               $documentos_zipados = 'Documentos_'.$id_monitoria.'.zip';
 
+              @unlink($arquivo_zip.$documentos_zipados);
 
               $csv_relatorio = Writer::createFromPath($local_relatorios.$arquivo_relatorio, 'w+');
               $csv_dados_pessoais_bancarios = Writer::createFromPath($local_relatorios.$arquivo_dados_pessoais_bancario, 'w+');
