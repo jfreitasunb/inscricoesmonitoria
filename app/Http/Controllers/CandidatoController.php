@@ -211,14 +211,7 @@ class CandidatoController extends BaseController
 				$banco->update($dados_bancarios);
 			}
 
-			notify()->flash('Seus dados bancários foram atualizados.','success',[
-				'showCancelButton' => false,
-				'confirmButtonColor' => '#3085d6',
-				'confirmButtonText' => 'OK',
-				'notifica' => true,
-				'notifica_mensagem' =>'Agora você deve informar seus dados acadêmicos.',
-				'notifica_tipo' => 'info'
-			]);
+			notify()->flash('Seus dados bancários foram atualizados.', 'success');
 
 			return redirect()->route('dados.academicos');
 	}
@@ -293,14 +286,7 @@ class CandidatoController extends BaseController
 			$arquivo->nome_arquivo = $filename;
 			$arquivo->save();
 			
-			notify()->flash('Seus dados acadêmicos foram atualizados.','success',[
-				'showCancelButton' => false,
-				'confirmButtonColor' => '#3085d6',
-				'confirmButtonText' => 'OK',
-				'notifica' => true,
-				'notifica_mensagem' =>'Agora você pode fazer as escolhas das disciplinas para as quais irá se candidatar à Monitoria do MAT.',
-				'notifica_tipo' => 'info'
-			]);
+			notify()->flash('Seus dados acadêmicos foram atualizados.', 'success');
 
 			return redirect()->route('dados.escolhas');
 	}
