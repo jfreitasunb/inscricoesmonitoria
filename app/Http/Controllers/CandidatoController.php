@@ -336,18 +336,11 @@ class CandidatoController extends BaseController
 			return redirect()->back();
 		}
 
-		// if (count($fez_escolhas)==3) {
-			
-		// 	notify()->flash('Você já realizou as 03 (três) escolhas possíveis. Não é possível escolher mais nenhuma disciplina.','error');
-
-		// 	return redirect()->back();
-		// }else{
-
-			$disable=[];
-			$disable[] = '';
-			
-			return view('templates.partials.candidato.escolha_monitoria')->with(compact('disable','escolhas','array_horarios_disponiveis','array_dias_semana'));
-		// }
+		$disable=[];
+		
+		$disable[] = '';
+		
+		return view('templates.partials.candidato.escolha_monitoria')->with(compact('disable','escolhas','array_horarios_disponiveis','array_dias_semana'));
 		
 	}
 
@@ -442,37 +435,32 @@ class CandidatoController extends BaseController
 		
 		$escolhas->deleta_escolhas_anterioes($id_user, $id_monitoria);
 
-		
-		// if (count($fez_escolhas)==0 or count($fez_escolhas)<3) {
-		// 	$grava_escolhas = new EscolhaMonitoria();
-		// 	$grava_escolhas->id_user = $id_user;
-		// 	$grava_escolhas->id_monitoria = $id_monitoria;
-		// 	$grava_escolhas->escolha_aluno = $request->input('escolha_aluno_1');
-		// 	$grava_escolhas->mencao_aluno = $request->input('mencao_aluno_1');
-		// 	$grava_escolhas->save();
+		if (isset($request->escolha_aluno_1)) {
+			$grava_escolhas = new EscolhaMonitoria();
+			$grava_escolhas->id_user = $id_user;
+			$grava_escolhas->id_monitoria = $id_monitoria;
+			$grava_escolhas->escolha_aluno = $request->input('escolha_aluno_1');
+			$grava_escolhas->mencao_aluno = $request->input('mencao_aluno_1');
+			$grava_escolhas->save();
+		}
 
-		// 	$fez_escolhas = $escolhas->retorna_escolha_monitoria($id_user,$id_monitoria);
+		if (isset($request->escolha_aluno_2) and isset($request->mencao_aluno_2)) {
+			$grava_escolhas = new EscolhaMonitoria();
+			$grava_escolhas->id_user = $id_user;
+			$grava_escolhas->id_monitoria = $id_monitoria;
+			$grava_escolhas->escolha_aluno = $request->input('escolha_aluno_2');
+			$grava_escolhas->mencao_aluno = $request->input('mencao_aluno_2');
+			$grava_escolhas->save();
+		}
 
-		// 	if (isset($request->escolha_aluno_2) and isset($request->mencao_aluno_2) and count($fez_escolhas) < 3) {
-		// 		$grava_escolhas = new EscolhaMonitoria();
-		// 		$grava_escolhas->id_user = $id_user;
-		// 		$grava_escolhas->id_monitoria = $id_monitoria;
-		// 		$grava_escolhas->escolha_aluno = $request->input('escolha_aluno_2');
-		// 		$grava_escolhas->mencao_aluno = $request->input('mencao_aluno_2');
-		// 		$grava_escolhas->save();
-		// 	}
-
-		// 	$fez_escolhas = $escolhas->retorna_escolha_monitoria($id_user,$id_monitoria);
-
-		// 	if (isset($request->escolha_aluno_3) and isset($request->mencao_aluno_3) and count($fez_escolhas) < 3) {
-		// 		$grava_escolhas = new EscolhaMonitoria();
-		// 		$grava_escolhas->id_user = $id_user;
-		// 		$grava_escolhas->id_monitoria = $id_monitoria;
-		// 		$grava_escolhas->escolha_aluno = $request->input('escolha_aluno_3');
-		// 		$grava_escolhas->mencao_aluno = $request->input('mencao_aluno_3');
-		// 		$grava_escolhas->save();
-		// 	}
-		// }
+		if (isset($request->escolha_aluno_3) and isset($request->mencao_aluno_3)) {
+			$grava_escolhas = new EscolhaMonitoria();
+			$grava_escolhas->id_user = $id_user;
+			$grava_escolhas->id_monitoria = $id_monitoria;
+			$grava_escolhas->escolha_aluno = $request->input('escolha_aluno_3');
+			$grava_escolhas->mencao_aluno = $request->input('mencao_aluno_3');
+			$grava_escolhas->save();
+		}
 
 		$atualiza_dados_academicos->update($monitor_projeto);
 		
@@ -493,21 +481,26 @@ class CandidatoController extends BaseController
 		
 		$finalizar = new FinalizaEscolha();
 
-		$finalizar->id_user = $id_user;
-		$finalizar->tipo_monitoria = $request->input('tipo_monitoria');
-		$finalizar->concorda_termos = $request->input('concorda_termos');
-		$finalizar->id_monitoria = $id_monitoria;
+		$ja_finalizou_anteriormente = $finalizar->retorna_inscricao_inicializada($id_user,$id_monitoria);
 
-		$finalizar->finalizar = 1;
+		if (!$ja_finalizou_anteriormente) {
+			$finalizar->id_user = $id_user;
+			$finalizar->tipo_monitoria = $request->input('tipo_monitoria');
+			$finalizar->concorda_termos = $request->input('concorda_termos');
+			$finalizar->id_monitoria = $id_monitoria;
 
-		$finalizar->save();
+			$finalizar->finalizar = 1;
+
+			$finalizar->save();
+		}else{
+
+			$finalizar->atualiza_status($id_user, $id_monitoria, $request->input('tipo_monitoria'));
+		}
+		
 
 		notify()->flash('Suas escolhas foram gravadas com sucesso.','success');
 
 		return redirect()->route('home');
 
 	}
-
-
-
 }
