@@ -19,6 +19,7 @@ class CreateEscolhasCandidatosTable extends Migration
             $table->string('escolha_aluno',20);
             $table->string('mencao_aluno',2);
             $table->integer('id_monitoria');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

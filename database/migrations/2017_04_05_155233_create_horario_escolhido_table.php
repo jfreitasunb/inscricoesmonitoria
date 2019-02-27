@@ -19,6 +19,7 @@ class CreateHorarioEscolhidoTable extends Migration
             $table->string('horario_monitoria',100);
             $table->string('dia_semana',100);
             $table->integer('id_monitoria');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
