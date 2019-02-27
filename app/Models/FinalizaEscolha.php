@@ -30,11 +30,28 @@ class FinalizaEscolha extends Model
 
     }
 
+    public function retorna_inscricao_inicializada($id_user, $id_monitoria)
+    {
+        $finalizou_inscricao = $this->select('finalizar')->where("id_user", $id_user)->where("id_monitoria", $id_monitoria)->get();
+
+        if (count($finalizou_inscricao)>0) {
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+
+    }
+
     public function retorna_usuarios_relatorios($id_monitoria)
     {
         $usarios_relatorios = $this->get()->where("id_monitoria", $id_monitoria)->where('finalizar',TRUE);
 
         return $usarios_relatorios;
 
+    }
+
+    public function atualiza_status($id_user, $id_monitoria, $tipo_monitoria)
+    {
+        DB::table('finaliza_escolhas')->where('id_user', $id_user)->where('id_monitoria', $id_monitoria)->update(['finalizar' => TRUE, 'tipo_monitoria' => $tipo_monitoria, 'updated_at' => date('Y-m-d H:i:s')]);
     }
 }
