@@ -255,9 +255,13 @@ class CandidatoController extends BaseController
 	public function getDadosAcademicos()
 	{
 		$user = Auth::user();
+		
 		$id_user = $user->id_user;
 		
 		$monitoria_ativa = new ConfiguraInscricao();
+
+		$id_monitoria = $monitoria_ativa->retorna_inscricao_ativa()->id_monitoria;
+		
 		$ano_semestre_ira = $monitoria_ativa->ira_ano_semestre();
 
 		$dados_academicos = new DadoAcademico();
@@ -265,14 +269,18 @@ class CandidatoController extends BaseController
 		$dados_academicos_candidato = $dados_academicos->retorna_dados_academicos($id_user);
 
 		if (is_null($dados_academicos_candidato)) {
+			
 			$dados = [];
+			
 			return view('templates.partials.candidato.dados_academicos')->with(compact('ano_semestre_ira', 'dados'));
+
 		}else{
 			
 			$dados = [
 				'ira' => str_replace('.', ',', Purifier::clean($dados_academicos_candidato->ira)),
 				'curso_graduacao' => $dados_academicos_candidato->curso_graduacao,
 			];
+			
 			return view('templates.partials.candidato.dados_academicos')->with(compact('ano_semestre_ira', 'dados'));
 		}
 
@@ -315,7 +323,7 @@ class CandidatoController extends BaseController
 		
 		$cria_dados_academicos->ira = str_replace(',', '.', Purifier::clean($request->input('ira')));
 		
-		$cria_dados_academicos->curso_graduacao = $request->input('curso_graduacao');
+		$cria_dados_academicos->curso_graduacao = $this->titleCase(Purifier::clean($request->input('curso_graduacao')));
 		
 		$cria_dados_academicos->id_monitoria = $id_monitoria;
 		
